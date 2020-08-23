@@ -41,6 +41,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DomainServices\AlbumDomainService.cs" />
+    <Compile Include="DomainServices\GenreDomainService.cs" />
+    <Compile Include="DomainServices\ArtistDomainService.cs" />
+    <Compile Include="DomainServices\Interfaces\IMoodDomainService.cs" />
+    <Compile Include="DomainServices\Interfaces\IGenreDomainService.cs" />
+    <Compile Include="DomainServices\Interfaces\IArtistDomainService.cs" />
+    <Compile Include="DomainServices\Interfaces\IAlbumDomainService.cs" />
+    <Compile Include="DomainServices\Interfaces\IPlaylistDomainService.cs" />
+    <Compile Include="DomainServices\Interfaces\ITrackDomainService.cs" />
+    <Compile Include="DomainServices\MoodDomainService.cs" />
+    <Compile Include="DomainServices\PlaylistDomainService.cs" />
+    <Compile Include="DomainServices\TrackDomainService.cs" />
     <Compile Include="Models\Entities\Album.cs" />
     <Compile Include="Models\Entities\Artist.cs" />
     <Compile Include="Models\Entities\BaseEntity.cs" />
@@ -52,6 +64,10 @@
     <Compile Include="Repositories\IAlbumRepository.cs" />
     <Compile Include="Repositories\IArtistRepository.cs" />
     <Compile Include="Repositories\IBaseRepository.cs" />
+    <Compile Include="Repositories\IGenreRepository.cs" />
+    <Compile Include="Repositories\IMoodRepository.cs" />
+    <Compile Include="Repositories\IPlaylistRepository.cs" />
+    <Compile Include="Repositories\ITrackRepository.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

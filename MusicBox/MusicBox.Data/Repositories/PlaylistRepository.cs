@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MusicBox.Domain.Repositories;
 
 namespace MusicBox.Data.Repositories
 {
-    class PlaylistRepository
+    public class PlaylistRepository : BaseRepository, IPlaylistRepository
     {
+
     }
 }

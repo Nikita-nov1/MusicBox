@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MusicBox.Domain.Models.Entities
 {
@@ -19,7 +16,7 @@ namespace MusicBox.Domain.Models.Entities
 
         public DateTime Year { get; set; }
 
-       
+
 
     }
 }
