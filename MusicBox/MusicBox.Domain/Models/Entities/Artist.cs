@@ -10,5 +10,8 @@ namespace MusicBox.Domain.Models.Entities
     {
        
         public ICollection<Track> Tracks { get; set; }
+
+        public ICollection<Album> Albums { get; set; }
+
     }
 }

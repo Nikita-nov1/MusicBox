@@ -49,6 +49,7 @@
     <Compile Include="Models\Entities\Playlist.cs" />
     <Compile Include="Models\Entities\Track.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\IBaseRepository.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

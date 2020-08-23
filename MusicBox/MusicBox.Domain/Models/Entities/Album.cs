@@ -10,6 +10,16 @@ namespace MusicBox.Domain.Models.Entities
     {
         public ICollection<Track> Tracks { get; set; }
 
+
+        public Guid ArtistId { get; set; }
+
+        public Artist Artist { get; set; }
+
+
+
         public DateTime Year { get; set; }
+
+       
+
     }
 }
