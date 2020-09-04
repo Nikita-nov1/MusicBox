@@ -1,6 +1,8 @@
-﻿namespace MusicBox.Domain.Repositories
+﻿using MusicBox.Domain.Models.Entities;
+
+namespace MusicBox.Domain.Repositories
 {
-    public interface IMoodRepository : IBaseRepository
+    public interface IMoodRepository : IBaseRepository<Mood>
     {
 
     }

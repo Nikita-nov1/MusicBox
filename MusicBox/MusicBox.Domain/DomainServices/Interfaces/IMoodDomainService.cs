@@ -1,6 +1,6 @@
 ﻿namespace MusicBox.Domain.DomainServices.Interfaces
 {
-    public interface IMoodDomainService
+    public interface IMoodDomainService : IBaseDomainService
     {
     }
 }

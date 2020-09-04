@@ -1,13 +1,21 @@
-﻿namespace MusicBox.Domain.Repositories
-{
-    public interface IBaseRepository
-    {
-        int Get();
+﻿using System.Collections.Generic;
 
-        //IEnumerable<T> GetAll();
-        //T Get(int id);
-        //void Create(T item);
-        //void Update(T item);
+namespace MusicBox.Domain.Repositories
+{
+    public interface IBaseRepository<T> where T : class
+    {
+        int Count();
+
+        void Create(T item);
+
+        void Delete(T item);
         //void Delete(int id);
+
+        void Update(T item);
+
+        T Get(object id);
+
+        IEnumerable<T> GetAll();
+
     }
 }
