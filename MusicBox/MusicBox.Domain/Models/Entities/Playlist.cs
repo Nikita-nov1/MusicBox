@@ -2,9 +2,9 @@
 
 namespace MusicBox.Domain.Models.Entities
 {
-    public class Playlist
+    public class Playlist : BaseEntity
     {
-        public ICollection<Track> Tracks { get; set; }
+        public List<Track> Tracks { get; set; }
 
     }
 }

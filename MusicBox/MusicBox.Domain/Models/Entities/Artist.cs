@@ -4,10 +4,9 @@ namespace MusicBox.Domain.Models.Entities
 {
     public class Artist : BaseEntity
     {
+        public List<Track> Tracks { get; set; }
 
-        public ICollection<Track> Tracks { get; set; }
-
-        public ICollection<Album> Albums { get; set; }
+        public List<Album> Albums { get; set; }
 
     }
 }
