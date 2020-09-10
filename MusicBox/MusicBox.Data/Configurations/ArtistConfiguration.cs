@@ -13,16 +13,13 @@ namespace MusicBox.Data.Configurations
     {
         public ArtistConfiguration()
         {
-            //ToTable("Users");
+            ToTable("Artists");
 
-            //HasKey(s => s.Id);
+            HasKey(s => s.Id);
 
-            //Property(p => p.FirstName);
-            //Property(p => p.LastName);
+            Property(p => p.Title);
 
-            //HasOptional(s => s.Role)
-            //   .WithMany(c => c.Users)
-            //   .Map(m => m.MapKey("RoleId")).WillCascadeOnDelete(true);
+
         }
     }
 }

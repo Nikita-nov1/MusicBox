@@ -81,13 +81,17 @@
     <Compile Include="Models\Entities\User.cs" />
     <Compile Include="Models\Entities\UserImage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\IAlbumImageRepository.cs" />
     <Compile Include="Repositories\IAlbumRepository.cs" />
+    <Compile Include="Repositories\IArtistImageRepository.cs" />
     <Compile Include="Repositories\IArtistRepository.cs" />
     <Compile Include="Repositories\IBaseRepository.cs" />
     <Compile Include="Repositories\IGenreRepository.cs" />
     <Compile Include="Repositories\IMoodRepository.cs" />
     <Compile Include="Repositories\IPlaylistRepository.cs" />
+    <Compile Include="Repositories\ITrackFileRepository.cs" />
     <Compile Include="Repositories\ITrackRepository.cs" />
+    <Compile Include="Repositories\ITrackStatisticsRepository.cs" />
     <Compile Include="UnitOfWork\IUnitOfWork.cs" />
   </ItemGroup>
   <ItemGroup>

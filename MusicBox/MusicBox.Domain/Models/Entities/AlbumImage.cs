@@ -1,7 +1,10 @@
 ﻿namespace MusicBox.Domain.Models.Entities
 {
-    public class AlbumImage : Album
+    public class AlbumImage  
     {
-        public byte[] Image { get; set; }
+        public int Id { get; set; } //
+        public byte[] Image { get; set; } //
+
+        public Album Album { get; set; } //
     }
 }

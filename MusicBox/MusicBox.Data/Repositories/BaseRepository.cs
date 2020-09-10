@@ -55,7 +55,7 @@ namespace MusicBox.Data.Repositories
         {
             throw new NotImplementedException();
         }
-
+       
         IEnumerable<T> IBaseRepository<T>.GetAll()
         {
             throw new NotImplementedException();

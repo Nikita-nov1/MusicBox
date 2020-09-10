@@ -7,16 +7,27 @@ namespace MusicBox.Data.Configurations
     {
         public AlbumConfiguration()
         {
-            //ToTable("Users");
+            ToTable("Albums");
 
-            //HasKey(s => s.Id);
+            HasKey(c => c.Id);
 
-            //Property(p => p.FirstName);
-            //Property(p => p.LastName);
+            Property(c => c.Title);
 
-            //HasOptional(s => s.Role)
-            //   .WithMany(c => c.Users)
-            //   .Map(m => m.MapKey("RoleId")).WillCascadeOnDelete(true);
+            Property(c => c.DateOfCreation);
+
+            Property(c => c.Year);
+
+            HasRequired<Artist>(a => a.Artist)
+                .WithMany(a => a.Albums)
+                .Map(m => m.MapKey("ArtistId"))
+                .WillCascadeOnDelete(false);
+
+            HasMany<Track>(c => c.Tracks)
+                .WithOptional(c => c.Album)
+                .Map(m => m.MapKey("AlbumId"))
+                .WillCascadeOnDelete(false);
+          
+
         }
     }
 

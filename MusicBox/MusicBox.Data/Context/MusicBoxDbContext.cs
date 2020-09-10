@@ -5,7 +5,7 @@ namespace MusicBox.Data.Context
     public class MusicBoxDbContext : DbContext, IMusicBoxDbContext
     {
         public MusicBoxDbContext()
-            : base("name=connectionString")
+            : base("name=MusicBoxDb")
         {
         }
 

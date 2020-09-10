@@ -1,8 +1,12 @@
 ﻿namespace MusicBox.Domain.Models.Entities
 {
 
-    public class ArtistImage : Artist
+    public class ArtistImage 
     {
-        public byte[] Image { get; set; }
+        public int Id { get; set; } //
+        public byte[] Image { get; set; } //
+        public Artist Artist { get; set; } //
+
+        
     }
 }

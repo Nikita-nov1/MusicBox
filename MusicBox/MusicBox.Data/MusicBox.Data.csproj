@@ -52,13 +52,22 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Configurations\AlbumConfiguration.cs" />
+    <Compile Include="Configurations\AlbumImageConfiguration.cs" />
     <Compile Include="Configurations\ArtistConfiguration.cs" />
+    <Compile Include="Configurations\ArtistImageConfiguration.cs" />
     <Compile Include="Configurations\GenreConfiguration.cs" />
     <Compile Include="Configurations\MoodConfiguration.cs" />
     <Compile Include="Configurations\PlaylistConfiguration.cs" />
     <Compile Include="Configurations\TrackConfiguration.cs" />
+    <Compile Include="Configurations\TrackFileConfiguration.cs" />
+    <Compile Include="Configurations\TrackStatisticsConfiguration.cs" />
     <Compile Include="Context\IMusicBoxDbContext.cs" />
     <Compile Include="Context\MusicBoxDbContext.cs" />
+    <Compile Include="Migrations\202009101309379_AddFirstMigration1.cs" />
+    <Compile Include="Migrations\202009101309379_AddFirstMigration1.designer.cs">
+      <DependentUpon>202009101309379_AddFirstMigration1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\AlbumRepository.cs" />
     <Compile Include="Repositories\ArtistRepository.cs" />
@@ -69,7 +78,6 @@
     <Compile Include="Repositories\TrackRepository.cs" />
     <Compile Include="UnitOfWork\UnitOfWork.cs" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\MusicBox.Domain\MusicBox.Domain.csproj">
       <Project>{519DDB3B-B8B9-44B2-AB28-4FE7B1A2E592}</Project>
@@ -79,6 +87,11 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202009101309379_AddFirstMigration1.resx">
+      <DependentUpon>202009101309379_AddFirstMigration1.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
