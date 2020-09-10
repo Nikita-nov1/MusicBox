@@ -1,4 +1,5 @@
-﻿using System.Data.Entity;
+﻿using MusicBox.Data.Migrations;
+using System.Data.Entity;
 
 namespace MusicBox.Data.Context
 {
