@@ -11,11 +11,11 @@ namespace MusicBox.Data.Configurations
 
             HasKey(c => c.Id);
 
-            Property(c => c.Title);
+            Property(c => c.Title).IsRequired().HasMaxLength(25);
 
-            Property(c => c.DateOfCreation);
+            Property(c => c.DateOfCreation).IsOptional();
 
-            Property(c => c.DurationSong);
+            Property(c => c.DurationSong).IsOptional().HasMaxLength(10);
 
             HasRequired<Artist>(c => c.Artist)
                 .WithMany(c => c.Tracks)

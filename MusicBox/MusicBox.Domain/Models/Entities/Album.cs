@@ -7,7 +7,7 @@ namespace MusicBox.Domain.Models.Entities
     {
         public DateTime DateOfCreation { get; set; }   //
 
-        public DateTime Year { get; set; }  //
+        public short Year { get; set; }  //
         public List<Track> Tracks { get; set; }  //
         public Artist Artist { get; set; }  //
         public AlbumImage AlbumImage { get; set; } //

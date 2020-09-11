@@ -11,7 +11,7 @@ namespace MusicBox.Data.Configurations
 
             HasKey(c => c.Id);
 
-            Property(c => c.CountOfCalls);
+            Property(c => c.CountOfCalls).IsRequired();
 
             HasRequired<Track>(c => c.Track)
                 .WithRequiredPrincipal(c => c.TrackStatistics)

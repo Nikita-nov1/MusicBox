@@ -11,11 +11,20 @@ namespace MusicBox.Data.Configurations
 
             HasKey(c => c.Id);
 
-            Property(c => c.Title);
+            Property(c => c.DateOfCreation).IsRequired();
+            HasIndex(c => c.Title).IsUnique(true);
+            //Property(c => c.Title).IsRequired().HasMaxLength(25); 
 
-            Property(c => c.DateOfCreation);
+            HasIndex(c => c.Title).IsUnique(true);
+            Property(c => c.Title).HasMaxLength(30);
 
-            Property(c => c.Year);
+
+            //Property(p => p.Title)
+            //    .HasColumnName("Full_Name")
+            //    .HasMaxLength(30)
+            //    .HasColumnAnnotation("Index", new IndexAnnotation(new IndexAttribute("IX_Name") { IsUnique = true }));
+
+            Property(c => c.Year).IsOptional();
 
             HasRequired<Artist>(a => a.Artist)
                 .WithMany(a => a.Albums)

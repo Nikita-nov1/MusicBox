@@ -11,7 +11,7 @@ namespace MusicBox.Data.Configurations
 
             HasKey(c => c.Id);
 
-            Property(c => c.TrackLocation);
+            Property(c => c.TrackLocation).IsRequired().HasMaxLength(110);
 
             HasRequired<Track>(c => c.Track)
                 .WithRequiredPrincipal(c => c.TrackFile)
