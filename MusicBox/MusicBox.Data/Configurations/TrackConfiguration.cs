@@ -11,7 +11,7 @@ namespace MusicBox.Data.Configurations
 
             HasKey(c => c.Id);
 
-            Property(c => c.Title).IsRequired().HasMaxLength(25);
+            Property(c => c.Title).IsRequired().HasMaxLength(30);
 
             Property(c => c.DateOfCreation).IsOptional();
 

@@ -7,7 +7,7 @@ namespace MusicBox.Data.Configurations
     {
         public TrackFileConfiguration()
         {
-            ToTable("TrackFile");
+            ToTable("TrackFiles");
 
             HasKey(c => c.Id);
 

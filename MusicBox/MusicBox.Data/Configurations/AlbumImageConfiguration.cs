@@ -7,7 +7,7 @@ namespace MusicBox.Data.Configurations
     {
         public AlbumImageConfiguration()
         {
-            ToTable("AlbumImage");
+            ToTable("AlbumImages");
 
             HasKey(c => c.Id);
 

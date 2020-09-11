@@ -67,9 +67,9 @@
     <Compile Include="Context\IMusicBoxDbContext.cs" />
     <Compile Include="Context\MusicBoxDbContext.cs" />
     <Compile Include="InitializersDb\MusicBoxDbContextDropCreateDatabaseIfModelChanges.cs" />
-    <Compile Include="Migrations\202009101309379_AddFirstMigration1.cs" />
-    <Compile Include="Migrations\202009101309379_AddFirstMigration1.designer.cs">
-      <DependentUpon>202009101309379_AddFirstMigration1.cs</DependentUpon>
+    <Compile Include="Migrations\202009111534412_AddFirstMigration.cs" />
+    <Compile Include="Migrations\202009111534412_AddFirstMigration.designer.cs">
+      <DependentUpon>202009111534412_AddFirstMigration.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -93,11 +93,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202009101309379_AddFirstMigration1.resx">
-      <DependentUpon>202009101309379_AddFirstMigration1.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202009111534412_AddFirstMigration.resx">
+      <DependentUpon>202009111534412_AddFirstMigration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

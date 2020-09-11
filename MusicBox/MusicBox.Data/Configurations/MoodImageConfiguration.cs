@@ -7,7 +7,7 @@ namespace MusicBox.Data.Configurations
     {
         public MoodImageConfiguration()
         {
-            ToTable("MoodImage");
+            ToTable("MoodImages");
 
             HasKey(c => c.Id);
 

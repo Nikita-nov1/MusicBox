@@ -7,7 +7,7 @@ namespace MusicBox.Data.Configurations
     {
         public GenreImageConfiguration()
         {
-            ToTable("GenreImage");
+            ToTable("GenreImages");
 
             HasKey(c => c.Id);
 

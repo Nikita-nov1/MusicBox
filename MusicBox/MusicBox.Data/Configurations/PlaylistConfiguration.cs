@@ -7,11 +7,11 @@ namespace MusicBox.Data.Configurations
     {
         public PlaylistConfiguration()
         {
-            ToTable("Playlist");
+            ToTable("Playlists");
 
             HasKey(c => c.Id);
 
-            Property(c => c.Title).HasMaxLength(25).IsRequired();
+            Property(c => c.Title).HasMaxLength(30).IsRequired();
 
             HasMany(c => c.Tracks)
                 .WithOptional(c => c.Playlist)

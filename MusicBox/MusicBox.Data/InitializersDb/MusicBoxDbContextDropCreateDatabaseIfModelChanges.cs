@@ -49,14 +49,14 @@ namespace MusicBox.Data.InitializersDb
                 new Album(){AlbumImage =albumImages[0],Year = 1997,Title = "Альбом 1",Artist = artists[0]  }
             };
 
-            if (!db.Set<Album>().Any())
-            {
-                db.Set<Album>().AddRange(new[]
-                {
-                    new Album(){AlbumImage = albumImages[0], Artist = }
+            //if (!db.Set<Album>().Any())
+            //{
+            //    db.Set<Album>().AddRange(new[]
+            //    {
+            //        new Album(){AlbumImage = albumImages[0], Artist = }
 
-                });
-            }
+            //    });
+            //}
             
         }
 
@@ -97,14 +97,14 @@ namespace MusicBox.Data.InitializersDb
                 });
             }
 
-            if (!db.Set<Album>().Any())
-            {
-                db.Set<Album>().AddRange(new[]
-                {
-                    new Album(){AlbumImage = albumImages[0], Artist = }
+            //if (!db.Set<Album>().Any())
+            //{
+            //    db.Set<Album>().AddRange(new[]
+            //    {
+            //        new Album(){AlbumImage = albumImages[0], Artist = }
 
-                });
-            }
+            //    });
+            //}
 
         }
     }

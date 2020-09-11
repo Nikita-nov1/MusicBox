@@ -12,11 +12,12 @@ namespace MusicBox.Data.Configurations
             HasKey(c => c.Id);
 
             Property(c => c.DateOfCreation).IsRequired();
-            HasIndex(c => c.Title).IsUnique(true);
+            //HasIndex(c => c.Title).IsUnique(true);
             //Property(c => c.Title).IsRequired().HasMaxLength(25); 
 
-            HasIndex(c => c.Title).IsUnique(true);
             Property(c => c.Title).HasMaxLength(30);
+            HasIndex(c => c.Title).IsUnique(true);
+            
 
 
             //Property(p => p.Title)

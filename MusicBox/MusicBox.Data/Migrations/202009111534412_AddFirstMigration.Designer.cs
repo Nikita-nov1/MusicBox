@@ -7,13 +7,13 @@ namespace MusicBox.Data.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class AddFirstMigration1 : IMigrationMetadata
+    public sealed partial class AddFirstMigration : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AddFirstMigration1));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(AddFirstMigration));
         
         string IMigrationMetadata.Id
         {
-            get { return "202009101309379_AddFirstMigration1"; }
+            get { return "202009111534412_AddFirstMigration"; }
         }
         
         string IMigrationMetadata.Source
