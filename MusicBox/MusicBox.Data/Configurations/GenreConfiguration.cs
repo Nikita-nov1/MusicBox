@@ -1,10 +1,5 @@
 ﻿using MusicBox.Domain.Models.Entities;
-using System;
-using System.Collections.Generic;
 using System.Data.Entity.ModelConfiguration;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MusicBox.Data.Configurations
 {
@@ -12,6 +7,16 @@ namespace MusicBox.Data.Configurations
     {
         public GenreConfiguration()
         {
+            ToTable("Genres");
+
+            HasKey(c => c.Id);
+
+            Property(c => c.Title).HasMaxLength(25).IsRequired();
+
+            HasMany(c => c.Tracks)
+                .WithOptional(c => c.Genre)
+                .Map(m => m.MapKey("GenreId"))
+                .WillCascadeOnDelete(false);
         }
     }
 }

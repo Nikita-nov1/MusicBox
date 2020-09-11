@@ -56,8 +56,11 @@
     <Compile Include="Configurations\ArtistConfiguration.cs" />
     <Compile Include="Configurations\ArtistImageConfiguration.cs" />
     <Compile Include="Configurations\GenreConfiguration.cs" />
+    <Compile Include="Configurations\GenreImageConfiguration.cs" />
     <Compile Include="Configurations\MoodConfiguration.cs" />
+    <Compile Include="Configurations\MoodImageConfiguration.cs" />
     <Compile Include="Configurations\PlaylistConfiguration.cs" />
+    <Compile Include="Configurations\PlaylistImageConfiguration.cs" />
     <Compile Include="Configurations\TrackConfiguration.cs" />
     <Compile Include="Configurations\TrackFileConfiguration.cs" />
     <Compile Include="Configurations\TrackStatisticsConfiguration.cs" />

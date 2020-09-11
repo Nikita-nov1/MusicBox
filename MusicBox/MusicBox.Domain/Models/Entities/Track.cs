@@ -14,11 +14,10 @@ namespace MusicBox.Domain.Models.Entities
 
         public Album Album { get; set; } //
 
+        public Mood Mood { get; set; }
 
-        //public Mood Mood { get; set; }
+        public Genre Genre { get; set; }
 
-        //public Genre Genre { get; set; }
-
-        //public Playlist Playlist { get; set; }
+        public Playlist Playlist { get; set; }
     }
 }

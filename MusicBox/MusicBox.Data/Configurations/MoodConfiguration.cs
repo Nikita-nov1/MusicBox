@@ -1,18 +1,22 @@
 ﻿using MusicBox.Domain.Models.Entities;
-using System;
-using System.Collections.Generic;
 using System.Data.Entity.ModelConfiguration;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MusicBox.Data.Configurations
 {
-    public class MoodConfiguration  : EntityTypeConfiguration<Mood>
+    public class MoodConfiguration : EntityTypeConfiguration<Mood>
     {
         public MoodConfiguration()
         {
+            ToTable("Mood");
 
+            HasKey(c => c.Id);
+
+            Property(c => c.Title).HasMaxLength(25).IsRequired();
+
+            HasMany(c => c.Tracks)
+                .WithOptional(c => c.Mood)
+                .Map(m => m.MapKey("MoodId"))
+                .WillCascadeOnDelete(false);
         }
     }
 }

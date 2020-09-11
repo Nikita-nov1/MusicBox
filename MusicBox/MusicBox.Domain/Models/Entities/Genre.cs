@@ -5,6 +5,7 @@ namespace MusicBox.Domain.Models.Entities
     public class Genre : BaseEntity
     {
         public List<Track> Tracks { get; set; }
+        public GenreImage GenreImage { get; set; }
 
     }
 }
