@@ -1,4 +1,7 @@
-﻿using System;
+﻿using MusicBox.Data.Context;
+using MusicBox.Data.InitializersDb;
+using MusicBox.Domain.Models.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,8 +11,16 @@ namespace MusicBox.Controllers
 {
     public class HomeController : Controller
     {
+        private IMusicBoxDbContext db;
+        public HomeController(IMusicBoxDbContext db)
+        {
+            this.db = db;
+        }
+
         public ActionResult Index()
         {
+            //InitializersDbMusicBoxDb db = new InitializersDbMusicBoxDb();
+            //db.Seed();
             return View();
         }
 

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace MusicBox.Domain.Models.Entities
 {
@@ -18,6 +19,6 @@ namespace MusicBox.Domain.Models.Entities
 
         public Genre Genre { get; set; }
 
-        public Playlist Playlist { get; set; }
+        public List<Playlist> Playlists { get; set; }
     }
 }
