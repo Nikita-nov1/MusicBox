@@ -5,17 +5,12 @@ namespace MusicBox.Domain.Repositories
     public interface IBaseRepository<T> where T : class
     {
         int Count();
-
-        void Create(T item);
-
+        void Add(T item);
+        List<T> GetAll();
         void Delete(T item);
-        //void Delete(int id);
-
-        void Update(T item);
-
+        void DeleteById(object itemId);
         T Get(object id);
-
-        IEnumerable<T> GetAll();
+        T Create();
 
     }
 }

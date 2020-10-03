@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 
 namespace MusicBox.Domain.UnitOfWork
 {
@@ -13,5 +9,8 @@ namespace MusicBox.Domain.UnitOfWork
             where TEntity : class;
 
         int SaveChanges();
+
+        DbEntityEntry<TEntity> Entry<TEntity>(TEntity entity)
+           where TEntity : class;
     }
 }

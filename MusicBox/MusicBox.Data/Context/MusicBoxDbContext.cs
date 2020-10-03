@@ -1,19 +1,14 @@
-﻿using MusicBox.Data.InitializersDb;
-//using MusicBox.Data.Migrations;
-using System.Data.Entity;
-using System;
-using System.Diagnostics;
+﻿using System.Data.Entity;
 
 namespace MusicBox.Data.Context
 {
     public class MusicBoxDbContext : DbContext, IMusicBoxDbContext
     {
-    
+
         public MusicBoxDbContext()
             : base("name=MusicBoxDb")
         {
-            Debug.WriteLine("---------1---");
-            //Database.SetInitializer<MusicBoxDbContext>(new MusicBoxDbContextDropCreateDatabaseAlways());
+            Database.SetInitializer<MusicBoxDbContext>(null);
 
         }
 

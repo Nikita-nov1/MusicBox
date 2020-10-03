@@ -6,9 +6,12 @@ namespace MusicBox.Data.Repositories
 {
     public class GenreRepository : BaseRepository<Genre>, IGenreRepository
     {
+        private readonly IUnitOfWork unitOfWork;
         public GenreRepository(IUnitOfWork unitOfWork)
-          : base(unitOfWork)
+            : base(unitOfWork)
         {
+            this.unitOfWork = unitOfWork;
+
         }
     }
 }

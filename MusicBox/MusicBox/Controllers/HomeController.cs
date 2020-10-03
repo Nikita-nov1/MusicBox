@@ -19,8 +19,8 @@ namespace MusicBox.Controllers
 
         public ActionResult Index()
         {
-            //InitializersDbMusicBoxDb db = new InitializersDbMusicBoxDb();
-            //db.Seed();
+            InitializersDbMusicBoxDb db = new InitializersDbMusicBoxDb();
+            db.Seed();
             return View();
         }
 

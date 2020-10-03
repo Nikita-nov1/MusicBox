@@ -9,14 +9,14 @@ namespace MusicBox.Data.Repositories
 {
     public class BaseRepository<T> : IBaseRepository<T> where T : class
     {
-        private IUnitOfWork unitOfWork;
+        private readonly IUnitOfWork unitOfWork;
 
         public BaseRepository(IUnitOfWork unitOfWork)
         {
             this.unitOfWork = unitOfWork;
         }
 
-        public T Get(object id)
+        public virtual T Get(object id)
         {
             return DbSet().Find(id);
         }
@@ -26,22 +26,33 @@ namespace MusicBox.Data.Repositories
             return DbSet().Count();
         }
 
-        public virtual void Create(T item)
+        public virtual void Add(T item)
         {
             DbSet().Add(item);
         }
+
+        public virtual T Create()    
+        {
+            return DbSet().Create();
+        }
+
 
         public virtual void Delete(T item)
         {
             DbSet().Remove(item);
         }
 
-        protected virtual IQueryable<T> GetAll()
+        public virtual void DeleteById(object itemId)
         {
-            return DbSet();
+            Delete(Get(itemId));
         }
 
-        protected virtual IQueryable<T> GetItems()
+        public virtual List<T> GetAll()
+        {
+            return DbSet().ToList();
+        }
+
+        protected virtual IQueryable<T> GetQueryableItems()
         {
             return DbSet().AsQueryable();
         }
@@ -49,16 +60,6 @@ namespace MusicBox.Data.Repositories
         private DbSet<T> DbSet()
         {
             return unitOfWork.Set<T>();
-        }
-
-        public void Update(T item)
-        {
-            throw new NotImplementedException();
-        }
-       
-        IEnumerable<T> IBaseRepository<T>.GetAll()
-        {
-            throw new NotImplementedException();
         }
     }
 

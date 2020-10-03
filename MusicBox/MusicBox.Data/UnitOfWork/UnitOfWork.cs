@@ -3,15 +3,16 @@ using MusicBox.Domain.UnitOfWork;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace MusicBox.Data.UnitOfWork
 {
-    public class UnitOfWork : IUnitOfWork//, IDisposable
+    public class UnitOfWork : IUnitOfWork
     {
-        private IMusicBoxDbContext db;
+        private readonly IMusicBoxDbContext db;
        
         public UnitOfWork(IMusicBoxDbContext db)
         {
@@ -24,32 +25,18 @@ namespace MusicBox.Data.UnitOfWork
             return db.Set<TEntity>();
         }
 
+        public DbEntityEntry<TEntity> Entry<TEntity>(TEntity entity)
+            where TEntity : class
+        {
+            return db.Entry<TEntity>(entity);
+        }
+
         public int SaveChanges()
         {
             return db.SaveChanges();
         }
 
-        //private bool disposed = false;
-
-        //public virtual void Dispose(bool disposing)
-        //{
-        //    if (!this.disposed)
-        //    {
-        //        if (disposing)
-        //        {
-        //            db.Dispose();
-        //        }
-        //        this.disposed = true;
-        //    }
-        //}
-
-        //public void Dispose()
-        //{
-        //    Dispose(true);
-        //    GC.SuppressFinalize(this);
-        //}
     }
-
-
-    
 }
+
+
