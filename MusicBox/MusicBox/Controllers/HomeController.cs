@@ -1,5 +1,4 @@
 ﻿using MusicBox.Data.Context;
-using MusicBox.Data.InitializersDb;
 using MusicBox.Domain.Models.Entities;
 using System;
 using System.Collections.Generic;
@@ -19,8 +18,6 @@ namespace MusicBox.Controllers
 
         public ActionResult Index()
         {
-            InitializersDbMusicBoxDb db = new InitializersDbMusicBoxDb();
-            db.Seed();
             return View();
         }
 
