@@ -1,4 +1,4 @@
-﻿namespace FillingDb
+﻿namespace SetupDb
 {
     class Program
     {

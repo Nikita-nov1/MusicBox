@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace FillingDb
+namespace SetupDb
 {
     public class AddElementsDb
     {

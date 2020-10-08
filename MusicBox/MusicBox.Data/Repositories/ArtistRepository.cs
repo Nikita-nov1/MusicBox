@@ -6,11 +6,9 @@ namespace MusicBox.Data.Repositories
 {
     public class ArtistRepository : BaseRepository<Artist>, IArtistRepository
     {
-        private readonly IUnitOfWork unitOfWork;
         public ArtistRepository(IUnitOfWork unitOfWork)
             : base(unitOfWork)
         {
-            this.unitOfWork = unitOfWork;
 
         }
     }

@@ -1,5 +1,9 @@
 ﻿using Autofac;
 using Autofac.Integration.Mvc;
+using FluentValidation;
+using FluentValidation.Mvc;
+using MusicBox.App_Start.Core;
+using MusicBox.Areas.Admin.PresentationServices.Interfaces;
 using MusicBox.Data.Context;
 using MusicBox.Data.Repositories;
 using MusicBox.Data.UnitOfWork;
@@ -23,11 +27,16 @@ namespace MusicBox.App_Start
             var builder = new ContainerBuilder();
             builder.RegisterControllers(Assembly.GetExecutingAssembly());
 
-            builder.RegisterType<UnitOfWork>().As<IUnitOfWork>().InstancePerRequest();
-            builder.RegisterType<MusicBoxDbContext>().As<IMusicBoxDbContext>().InstancePerRequest();
+            builder.RegisterType<UnitOfWork>().As<IUnitOfWork>().InstancePerLifetimeScope();
+            builder.RegisterType<MusicBoxDbContext>().As<IMusicBoxDbContext>().InstancePerLifetimeScope();
 
             builder.RegisterAssemblyTypes(typeof(IBasePresentationService).Assembly)
                .Where(t => typeof(IBasePresentationService).IsAssignableFrom(t))
+               .AsImplementedInterfaces()
+               .InstancePerDependency();
+
+            builder.RegisterAssemblyTypes(typeof(IBaseAdminPresentationService).Assembly)
+               .Where(t => typeof(IBaseAdminPresentationService).IsAssignableFrom(t))
                .AsImplementedInterfaces()
                .InstancePerDependency();
 
@@ -40,11 +49,26 @@ namespace MusicBox.App_Start
                 .AsClosedTypesOf(typeof(IBaseRepository<>))
                 .AsImplementedInterfaces()
                 .InstancePerDependency();
+
             builder.RegisterFilterProvider();
+
+            //Register the API Validators(the custome validators used for FluentValidation)
+            //AssemblyScanner.FindValidatorsInAssemblyContaining<TTT>()
+            //                        .ForEach(result =>
+            //                        {
+            //                            builder.RegisterType(result.ValidatorType)
+            //                            .Keyed<IValidator>(result.InterfaceType)
+            //                            .As<IValidator>();
+            //                        });
 
             var container = builder.Build();
 
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
+
+            FluentValidationModelValidatorProvider.Configure(config =>
+            {
+                config.ValidatorFactory = new AutofacValidatorFactory(container);
+            });
         }
     }
 }

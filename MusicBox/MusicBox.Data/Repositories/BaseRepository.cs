@@ -3,6 +3,7 @@ using MusicBox.Domain.UnitOfWork;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 
 namespace MusicBox.Data.Repositories
@@ -55,6 +56,11 @@ namespace MusicBox.Data.Repositories
         protected virtual IQueryable<T> GetQueryableItems()
         {
             return DbSet().AsQueryable();
+        }
+
+        protected virtual DbEntityEntry<T> Entry(T entry)
+        {
+            return unitOfWork.Entry<T>(entry);
         }
 
         private DbSet<T> DbSet()

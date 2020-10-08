@@ -12,7 +12,9 @@ namespace MusicBox.Data.Configurations
             HasKey(c => c.Id);
 
             Property(c => c.Image);
-            
+
+            Property(c => c.ContentType).HasMaxLength(50);
+
 
             HasRequired<Album>(c => c.Album)
                 .WithRequiredPrincipal(c => c.AlbumImage)

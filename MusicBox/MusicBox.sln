@@ -17,7 +17,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MusicBox.Data", "MusicBox.D
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "FillingDatabase", "FillingDatabase", "{BF9F62DF-8A86-40BE-B777-E22617FAEBCA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FillingDb", "FillingDb\FillingDb.csproj", "{F3E699F6-4588-418F-9299-B7015427EED1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SetupDb", "FillingDb\SetupDb.csproj", "{F3E699F6-4588-418F-9299-B7015427EED1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
