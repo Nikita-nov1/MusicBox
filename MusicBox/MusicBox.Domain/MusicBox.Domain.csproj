@@ -52,8 +52,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DomainServices\AlbumDomainService.cs" />
+    <Compile Include="DomainServices\ArtistImageDomainService.cs" />
     <Compile Include="DomainServices\GenreDomainService.cs" />
     <Compile Include="DomainServices\ArtistDomainService.cs" />
+    <Compile Include="DomainServices\Interfaces\IArtistImageDomainService.cs" />
     <Compile Include="DomainServices\Interfaces\IBaseDomainService.cs" />
     <Compile Include="DomainServices\Interfaces\IMoodDomainService.cs" />
     <Compile Include="DomainServices\Interfaces\IGenreDomainService.cs" />
@@ -64,6 +66,7 @@
     <Compile Include="DomainServices\MoodDomainService.cs" />
     <Compile Include="DomainServices\PlaylistDomainService.cs" />
     <Compile Include="DomainServices\TrackDomainService.cs" />
+    <Compile Include="Models\AdditionalModels\InfArtist.cs" />
     <Compile Include="Models\Entities\Album.cs" />
     <Compile Include="Models\Entities\AlbumImage.cs" />
     <Compile Include="Models\Entities\Artist.cs" />

@@ -22,9 +22,14 @@ namespace MusicBox
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/mvc-grid").Include(
+                        "~/Scripts/MvcGrid/mvc-grid.js",
+                        "~/Scripts/MvcGrid/mvc-grid-additional.js"));
+
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                      "~/Content/site.css",
+                      "~/Content/MvcGrid/mvc-grid.css"));
         }
     }
 }

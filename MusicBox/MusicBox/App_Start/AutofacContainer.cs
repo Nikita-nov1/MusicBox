@@ -3,6 +3,7 @@ using Autofac.Integration.Mvc;
 using FluentValidation;
 using FluentValidation.Mvc;
 using MusicBox.App_Start.Core;
+using MusicBox.Areas.Admin.PresentationServices;
 using MusicBox.Areas.Admin.PresentationServices.Interfaces;
 using MusicBox.Data.Context;
 using MusicBox.Data.Repositories;
@@ -34,6 +35,8 @@ namespace MusicBox.App_Start
                .Where(t => typeof(IBasePresentationService).IsAssignableFrom(t))
                .AsImplementedInterfaces()
                .InstancePerDependency();
+
+
 
             builder.RegisterAssemblyTypes(typeof(IBaseAdminPresentationService).Assembly)
                .Where(t => typeof(IBaseAdminPresentationService).IsAssignableFrom(t))

@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using MusicBox.App_Start;
+using MusicBox.Infrastructure;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
@@ -22,6 +23,7 @@ namespace MusicBox
                 AutoMapperConfig.Configure(cfg);
             });
 
+            CreateStorage.CreateUploadedFiles();
         }
     }
 }

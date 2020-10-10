@@ -1,5 +1,6 @@
 ﻿using MusicBox.Areas.Admin.Models.Artists;
 using MusicBox.Areas.Admin.PresentationServices.Interfaces;
+using MusicBox.Domain.Models.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,8 +21,23 @@ namespace MusicBox.Areas.Admin.Controllers
         // GET: Admin/Artist
         public ActionResult Index()
         {
-            return View();
+            return View(presentationServices.GetArtists());
         }
+
+        public ActionResult RenderImage(int id)  // todo доделать async
+        {
+            ArtistImage artistImage = presentationServices.GetImage(id);
+            if (artistImage.Image != null && !string.IsNullOrEmpty(artistImage.ContentType))
+            {
+                return File(artistImage.Image, artistImage.ContentType);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+
 
         // GET: Admin/Artist/Details/5
         public ActionResult Details(int id)

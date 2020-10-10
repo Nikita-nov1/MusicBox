@@ -11,6 +11,10 @@ namespace MusicBox.Areas.Admin.PresentationServices
     {
         protected byte[] ConvertToBytes(HttpPostedFileBase image)
         {
+            if (image == null)
+            {
+                return null;
+            }
             byte[] imageBytes = null;
 
             using (var binaryReader = new BinaryReader(image.InputStream))
