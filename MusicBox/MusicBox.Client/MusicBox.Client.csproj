@@ -230,6 +230,7 @@
     <Content Include="Areas\Admin\Views\Artist\Create.cshtml" />
     <Content Include="Areas\Admin\Views\Artist\Index.cshtml" />
     <Content Include="Content\MvcGrid\Fonts\GridGlyphs.woff" />
+    <Content Include="Areas\Admin\Views\Artist\Edit.cshtml" />
     <None Include="Scripts\jquery-3.5.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.5.1.js" />
     <Content Include="Scripts\jquery-3.5.1.min.js" />

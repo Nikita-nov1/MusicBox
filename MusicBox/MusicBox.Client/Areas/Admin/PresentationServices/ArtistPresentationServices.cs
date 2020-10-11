@@ -31,16 +31,38 @@ namespace MusicBox.Areas.Admin.PresentationServices
             //    return (imageFile.ContentType == "image/jpeg" || imageFile.ContentType == "image/gif" || imageFile.ContentType == "image/png") ? FileToByte(imageFile) : null;  //todo проверить в валидации на тип
             //}
 
-            if (artistVm.Image == null && artistVm.Image.ContentLength == 0)  // перенести на уровень DS
-            {
-                // в Image предаю дефолтную картинку
-            }
-            //  Save(artistVm.Image);
             Artist artist = Mapper.Map<Artist>(artistVm);
-            artist.ArtistImage.Image = ConvertToBytes(artistVm.Image);
-
+            artist.ArtistImage.ContentType = artistVm.Image != null ? artistVm.Image.ContentType : null;  // todoM (В vappere есть)  как это запихнуть в mapper?   
+            artist.ArtistImage.Image = ConvertToBytes(artistVm.Image);                                    // можно попробовать 2 строчки обвернуть в метод и сделать дженерик для других сущностей
 
             artistDomainService.AddArtist(artist);
+        }
+
+        public EditArtistsViewModel GetEditArtistVm(int id)
+        {
+            Artist artist = artistDomainService.GetArtist(id);
+            return Mapper.Map<EditArtistsViewModel>(artist);
+
+        }
+
+        public void EditArtist(EditArtistsViewModel artistVm)
+        {
+            //User user = userDomainService.GetUserWithAllAttachments(userVm.Id);
+            //user = UserMapper.EditUsersVmToUser(userVm, user);
+            //user.City = cityDomainService.GetCity(userVm.CityId);
+            //user.Country = countryDomainService.GetCountry(userVm.CountryId);
+
+            //userDomainService.EditUser();
+            Artist artist = artistDomainService.GetArtistWithImage(artistVm.Id);
+            if (artistVm.Image != null)
+            {
+                artist.ArtistImage.ContentType = artistVm.Image != null ? artistVm.Image.ContentType : null;  // todo как это запихнуть в mapper?
+                artist.ArtistImage.Image = ConvertToBytes(artistVm.Image);
+            }
+            artist = Mapper.Map<EditArtistsViewModel, Artist>(artistVm, artist);
+
+            artistDomainService.EditArtist();
+
         }
 
         public ArtistImage GetImage(int artitId)
@@ -56,7 +78,7 @@ namespace MusicBox.Areas.Admin.PresentationServices
 
 
             artistsViewModels = Mapper.Map<List<GetArtistsViewModel>>(artists);
-            //artistsViewModels = Mapper.Map<List<InfArtist>, List<GetArtistsViewModel>>(infArtists, artistsViewModels); // todo спросить, как обновлять модель, не изменяя не существующие значения
+            //artistsViewModels = Mapper.Map<List<InfArtist>, List<GetArtistsViewModel>>(infArtists, artistsViewModels); // todoM спросить, как обновлять модель, не изменяя не существующие значения
 
             int index = 0;
             foreach (var artistVm in artistsViewModels)

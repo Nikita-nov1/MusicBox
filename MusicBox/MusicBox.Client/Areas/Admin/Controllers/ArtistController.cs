@@ -46,6 +46,7 @@ namespace MusicBox.Areas.Admin.Controllers
         }
 
         // GET: Admin/Artist/Create
+        [HttpGet]
         public ActionResult Create()
         {
             return View();
@@ -67,23 +68,22 @@ namespace MusicBox.Areas.Admin.Controllers
         // GET: Admin/Artist/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            return View(presentationServices.GetEditArtistVm(id));
         }
 
-        // POST: Admin/Artist/Edit/5
+        //POST: Admin/Artist/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(EditArtistsViewModel artistVm)
         {
-            try
+            if (ModelState.IsValid)
             {
-
+                presentationServices.EditArtist(artistVm);
                 return RedirectToAction("Index");
             }
-            catch
-            {
-                return View();
-            }
+
+            return View(artistVm);
         }
+
 
         // GET: Admin/Artist/Delete/5
         public ActionResult Delete(int id)

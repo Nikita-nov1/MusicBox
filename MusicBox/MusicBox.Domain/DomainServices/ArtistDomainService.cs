@@ -12,7 +12,7 @@ namespace MusicBox.Domain.DomainServices
     {
         private readonly IArtistRepository artistRepository;
         private readonly IUnitOfWork unitOfWork;
-        private const string pathDefaultImage = "C:/Users/Asus/source/repos/Nikita-nov1/MusicBox/MusicBox/MusicBox/Files/Images/Artists/defaultArtistImage.jpg"; //todo  как можно заменит? (картинка находиться в P-слое)
+        private const string pathDefaultImage = "C:/Users/Asus/source/repos/Nikita-nov1/MusicBox/MusicBox/MusicBox/Files/Images/Artists/defaultArtistImage.jpg"; //todoM  как можно заменит? (картинка находиться в P-слое)
         public ArtistDomainService(IArtistRepository artistRepository, IUnitOfWork unitOfWork)
         {
             this.artistRepository = artistRepository;
@@ -22,25 +22,32 @@ namespace MusicBox.Domain.DomainServices
 
         public void AddArtist(Artist artist)
         {
-            if (artist.ArtistImage.Image == null && artist.ArtistImage.Image.Length < 1)
+            if (artist.ArtistImage.Image is null)  // нет проверки на artist.ArtistImage.Image.Length < 1  -- проверить потом, чему равняется artist.ArtistImage.Image.Length п
             {
-                using (FileStream fileStream = new FileStream(pathDefaultImage, FileMode.Open))   //todo в одельный метод , и узнать, нормально ли using в using вставлять
-                {
-                    using (var binaryReader = new BinaryReader(fileStream))
-                    {
-                        artist.ArtistImage.ContentType = Path.GetExtension(fileStream.Name);
-                        artist.ArtistImage.Image = binaryReader.ReadBytes((int)fileStream.Length);
-                    }
-                }
+                OpenFileAndConvertToBytes(artist);
             }
             artistRepository.Add(artist);
             unitOfWork.SaveChanges();
+
         }
 
+        public Artist GetArtistWithImage(int id)
+        {
+            return artistRepository.GetArtistWithImage(id);
+
+        }
+
+        public Artist GetArtist(int id)
+        {
+            return artistRepository.Get(id);
+
+        }
+       
 
         public List<Artist> GetAtrists()
         {
             return artistRepository.GetAll();
+
         }
 
         public List<InfArtist> GetInfArtist()
@@ -49,6 +56,23 @@ namespace MusicBox.Domain.DomainServices
 
         }
 
+        public void EditArtist()
+        {
+            unitOfWork.SaveChanges();
+
+        }
+
+        private void OpenFileAndConvertToBytes(Artist artist)
+        {
+            using (FileStream fileStream = new FileStream(pathDefaultImage, FileMode.Open))   //todoM узнать, нормально ли using в using вставлять?  // потом можно сделать дженерик в базовый класс(как в репозитории)
+            {
+                using (var binaryReader = new BinaryReader(fileStream))
+                {
+                    artist.ArtistImage.ContentType = Path.GetExtension(fileStream.Name);
+                    artist.ArtistImage.Image = binaryReader.ReadBytes((int)fileStream.Length);
+                }
+            }
+        }
 
 
 

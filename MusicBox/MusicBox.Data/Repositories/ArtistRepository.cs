@@ -16,15 +16,22 @@ namespace MusicBox.Data.Repositories
         {
 
         }
+        public Artist GetArtistWithImage(int id)
+        {
+            var entityArtist = Get(id);
+            Entry(entityArtist).Reference(c => c.ArtistImage).Load();
 
-        
+            return entityArtist;
+        }
+
+
         public List<InfArtist> GetInfArtists()
         {
             return GetQueryableItems().Select(c => new InfArtist
             {
                 Id = c.Id,
-                NumberOfAlbums = c.Albums.Count,
-                NumberOfTracks = c.Tracks.Count
+                NumberOfAlbums = c.Albums.Count(),
+                NumberOfTracks = c.Tracks.Count()
 
             }).ToList();
         }

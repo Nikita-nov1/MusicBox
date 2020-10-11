@@ -7,10 +7,10 @@ namespace MusicBox.Areas.Admin.PresentationServices.Interfaces
     public interface IArtistPresentationServices : IBaseAdminPresentationService
     {
         void AddArtist(CreateArtistsViewModel artistVm);
-
         List<GetArtistsViewModel> GetArtists();
-
         ArtistImage GetImage(int artitId);
+        EditArtistsViewModel GetEditArtistVm(int id);
+        void EditArtist(EditArtistsViewModel artistVm);
 
     }
 }

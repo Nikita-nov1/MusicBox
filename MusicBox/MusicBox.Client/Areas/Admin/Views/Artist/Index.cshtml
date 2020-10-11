@@ -23,7 +23,7 @@
     {
         columns.Add().RenderedAs((model, row) => row + 1).Titled("#").Sortable(false);
 
-        columns.Add(model => " <img src="+@Url.Action("RenderImage", new { id = model.Id })+" alt='' height=50 width=50 />  ").Sortable(false).Encoded(false); ;
+        columns.Add(model => " <img src="+@Url.Action("RenderImage", new { id = model.Id })+" alt='' height=45 width=45 />  ").Sortable(false).Encoded(false); ;
 
         columns.Add(model => model.Title).Titled("Name");
         columns.Add(model => model.NumberOfAlbums).Titled("Number of albums").Sortable(true);
