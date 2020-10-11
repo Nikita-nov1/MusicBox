@@ -12,7 +12,7 @@ namespace MusicBox.Domain.DomainServices
     {
         private readonly IArtistRepository artistRepository;
         private readonly IUnitOfWork unitOfWork;
-        private const string pathDefaultImage = "C:/Users/Asus/source/repos/Nikita-nov1/MusicBox/MusicBox/MusicBox/Files/Images/Artists/defaultArtistImage.jpg"; //todoM  как можно заменит? (картинка находиться в P-слое)
+        private const string pathDefaultImage = "C:/Users/Asus/source/repos/Nikita-nov1/MusicBox/MusicBox/MusicBox.Client/Files/Images/Artists/defaultArtistImage.jpg"; //todoM  как можно заменит? (картинка находиться в P-слое)
         public ArtistDomainService(IArtistRepository artistRepository, IUnitOfWork unitOfWork)
         {
             this.artistRepository = artistRepository;
