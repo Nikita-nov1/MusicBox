@@ -3,7 +3,7 @@ using Autofac.Integration.Mvc;
 using FluentValidation;
 using FluentValidation.Mvc;
 using MusicBox.App_Start.Core;
-using MusicBox.Areas.Admin.PresentationServices;
+using MusicBox.Areas.Admin.AdminValidators.Artist;
 using MusicBox.Areas.Admin.PresentationServices.Interfaces;
 using MusicBox.Data.Context;
 using MusicBox.Data.Repositories;
@@ -12,11 +12,8 @@ using MusicBox.Domain.DomainServices.Interfaces;
 using MusicBox.Domain.Repositories;
 using MusicBox.Domain.UnitOfWork;
 using MusicBox.PresentationServices.Interfaces;
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Web;
 using System.Web.Mvc;
 
 namespace MusicBox.App_Start
@@ -36,8 +33,6 @@ namespace MusicBox.App_Start
                .AsImplementedInterfaces()
                .InstancePerDependency();
 
-
-
             builder.RegisterAssemblyTypes(typeof(IBaseAdminPresentationService).Assembly)
                .Where(t => typeof(IBaseAdminPresentationService).IsAssignableFrom(t))
                .AsImplementedInterfaces()
@@ -56,13 +51,13 @@ namespace MusicBox.App_Start
             builder.RegisterFilterProvider();
 
             //Register the API Validators(the custome validators used for FluentValidation)
-            //AssemblyScanner.FindValidatorsInAssemblyContaining<TTT>()
-            //                        .ForEach(result =>
-            //                        {
-            //                            builder.RegisterType(result.ValidatorType)
-            //                            .Keyed<IValidator>(result.InterfaceType)
-            //                            .As<IValidator>();
-            //                        });
+            AssemblyScanner.FindValidatorsInAssemblyContaining<CreateArtistsVmValidator>()
+                                    .ForEach(result =>
+                                    {
+                                        builder.RegisterType(result.ValidatorType)
+                                        .Keyed<IValidator>(result.InterfaceType)
+                                        .As<IValidator>();
+                                    });
 
             var container = builder.Build();
 

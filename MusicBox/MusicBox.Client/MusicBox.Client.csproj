@@ -167,9 +167,13 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\AdminValidators\Artist\CreateArtistsVmValidator.cs" />
+    <Compile Include="Areas\Admin\AdminValidators\Artist\EditArtistsVmValidator.cs" />
     <Compile Include="Areas\Admin\Controllers\AlbumController.cs" />
     <Compile Include="Areas\Admin\Controllers\ArtistController.cs" />
     <Compile Include="Areas\Admin\Models\Artists\CreateArtistsViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\Artists\DeleteArtistsViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\Artists\DetailsArtistsViewModel.cs" />
     <Compile Include="Areas\Admin\Models\Artists\EditArtistsViewModel.cs" />
     <Compile Include="Areas\Admin\Models\Artists\GetArtistsViewModel.cs" />
     <Compile Include="Areas\Admin\PresentationServices\ArtistPresentationServices.cs" />
@@ -231,6 +235,8 @@
     <Content Include="Areas\Admin\Views\Artist\Index.cshtml" />
     <Content Include="Content\MvcGrid\Fonts\GridGlyphs.woff" />
     <Content Include="Areas\Admin\Views\Artist\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Artist\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Artist\Details.cshtml" />
     <None Include="Scripts\jquery-3.5.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.5.1.js" />
     <Content Include="Scripts\jquery-3.5.1.min.js" />

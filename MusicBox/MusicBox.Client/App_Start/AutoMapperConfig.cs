@@ -12,39 +12,51 @@ namespace MusicBox.App_Start
 {
     public static class AutoMapperConfig
     {
-        //ContentType = artistVm?.Image.ContentType
         public static void Configure(IMapperConfigurationExpression cfg)
         {
+
             cfg.CreateMap<CreateArtistsViewModel, Artist>()
-                .ForMember(dest => dest.Title, opt => opt.MapFrom(src => src.Title))
-                .AfterMap((artistVm, artist) => artist.ArtistImage = new ArtistImage
-                {
-                    // ContentType = (artistVm is null) ? null : artistVm.Image.ContentType  //todoM   разобраться, как тут мапить Image.ContentType с условием, если artistVm.Image != null
-                });
+                .BeforeMap((src, dest) => dest.ArtistImage = new ArtistImage())
+                .AfterMap((src, dest) => SetContentTypeForArtistImage(src.Image, dest));
 
-            cfg.CreateMap<Artist, GetArtistsViewModel>()
-                .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id))
-                .ForMember(dest => dest.Title, opt => opt.MapFrom(src => src.Title));
+            cfg.CreateMap<Artist, GetArtistsViewModel>();
 
-            cfg.CreateMap<InfArtist, GetArtistsViewModel>()
-                .ForSourceMember(dest => dest.Id, opt=>opt.DoNotValidate())
-                .ForMember(dest => dest.NumberOfAlbums, opt => opt.MapFrom(src => src.NumberOfAlbums))
-                .ForMember(dest => dest.NumberOfTracks, opt => opt.MapFrom(src => src.NumberOfTracks));
+            cfg.CreateMap<ArtistStatistics, GetArtistsViewModel>()
+                .ForMember(dest => dest.Id, opt => opt.MapFrom(scr => scr.Artist.Id))
+                .ForMember(dest => dest.Title, opt => opt.MapFrom(scr => scr.Artist.Title));
 
 
             cfg.CreateMap<Artist, EditArtistsViewModel>()
-                .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id))
-                .ForMember(dest => dest.Title, opt => opt.MapFrom(src => src.Title))
                 .ForMember(dest => dest.Image, opt => opt.Ignore());
 
-            cfg.CreateMap<EditArtistsViewModel, Artist>()               //todo  можно ли сделать такие условия, чтобы мапились только те значения, которые отличаются от первоначальных?
-                .ForMember(dest => dest.Id, opt => opt.Ignore())
-                .ForMember(dest => dest.Title, opt => opt.MapFrom(src => src.Title))
-                .ForMember(dest => dest.ArtistImage, opt => opt.Ignore());   //todoM  как сделать условие,чтобы смапить картинку, если она не null - поменять, если null, то не изменять её - не для этого случая
+
+            cfg.CreateMap<EditArtistsViewModel, Artist>()            //todo  можно ли сделать такие условия, чтобы мапились только те значения, которые отличаются от первоначальных?    
+               .ForMember(dest => dest.Id, opt => opt.Ignore())
+               .AfterMap((src, dest) => ChangeArtistImage(src.Image, dest));
+
+            cfg.CreateMap<Artist, DeleteArtistsViewModel>();
+
+            cfg.CreateMap<Artist, DetailsArtistsViewModel>();
 
 
         }
 
-        //.ForMember(b => b.GuestPhone, options => options.MapFrom(source => GetGuestAllPhoneNumbers(source.Guest)))
+        private static void ChangeArtistImage(HttpPostedFileBase image, Artist dest)
+        {
+            if (image != null)
+            {
+                dest.ArtistImage.ContentType = image.ContentType;
+            }
+        }
+
+        private static void SetContentTypeForArtistImage(HttpPostedFileBase image, Artist artist)
+        {
+            if (image != null)
+            {
+                artist.ArtistImage.ContentType = image.ContentType;
+            }
+          
+        }
+
     }
 }

@@ -50,9 +50,20 @@ namespace MusicBox.Domain.DomainServices
 
         }
 
-        public List<InfArtist> GetInfArtist()
+        public Artist GetAtristWithTracksAndAlbumsWithAllAttachments(int id)
         {
-            return artistRepository.GetInfArtists();
+            return artistRepository.GetAtristWithTracksAndAlbumsWithAllAttachments(id);
+        }
+
+        public void DeleteArtist(int id)
+        {
+            artistRepository.DeleteById(id);
+            unitOfWork.SaveChanges();
+        }
+
+        public List<ArtistStatistics> GetArtistsStatistics()
+        {
+            return artistRepository.GetArtistsStatistics();
 
         }
 
@@ -64,7 +75,7 @@ namespace MusicBox.Domain.DomainServices
 
         private void OpenFileAndConvertToBytes(Artist artist)
         {
-            using (FileStream fileStream = new FileStream(pathDefaultImage, FileMode.Open))   //todoM узнать, нормально ли using в using вставлять?  // потом можно сделать дженерик в базовый класс(как в репозитории)
+            using (FileStream fileStream = new FileStream(pathDefaultImage, FileMode.Open))    // потом можно сделать дженерик в базовый класс(как в репозитории)
             {
                 using (var binaryReader = new BinaryReader(fileStream))
                 {

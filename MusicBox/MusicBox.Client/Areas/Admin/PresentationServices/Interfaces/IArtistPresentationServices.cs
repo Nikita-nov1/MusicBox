@@ -11,6 +11,9 @@ namespace MusicBox.Areas.Admin.PresentationServices.Interfaces
         ArtistImage GetImage(int artitId);
         EditArtistsViewModel GetEditArtistVm(int id);
         void EditArtist(EditArtistsViewModel artistVm);
+        DeleteArtistsViewModel  GetDeleteArtistVm(int id);
+        void DeleteArtist(int id);
+        DetailsArtistsViewModel GetDetailsArtistsViewModel(int id);
 
     }
 }

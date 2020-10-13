@@ -23,17 +23,17 @@ namespace MusicBox.Areas.Admin.PresentationServices
         }
 
 
+        public string GetPathDefaultArtistImage()  // todoM1 нужно ли отдельный класс для этого метода? (Возможно нужно в Presentation слое добавить консольное приложение)
+        {
+             return HostingEnvironment.MapPath("~/Files/Images/Artists/defaultArtistImage.jpg");
+        }
+
         public void AddArtist(CreateArtistsViewModel artistVm)
         {
-            //public static byte[] ImageToByte(HttpPostedFileBase imageFile)
-            //{
-            //    if (imageFile == null) { return null; }
-            //    return (imageFile.ContentType == "image/jpeg" || imageFile.ContentType == "image/gif" || imageFile.ContentType == "image/png") ? FileToByte(imageFile) : null;  //todo проверить в валидации на тип
-            //}
+            
 
             Artist artist = Mapper.Map<Artist>(artistVm);
-            artist.ArtistImage.ContentType = artistVm.Image != null ? artistVm.Image.ContentType : null;  // todoM (В vappere есть)  как это запихнуть в mapper?   
-            artist.ArtistImage.Image = ConvertToBytes(artistVm.Image);                                    // можно попробовать 2 строчки обвернуть в метод и сделать дженерик для других сущностей
+            artist.ArtistImage.Image = ConvertToBytes(artistVm.Image);                                   
 
             artistDomainService.AddArtist(artist);
         }
@@ -47,46 +47,53 @@ namespace MusicBox.Areas.Admin.PresentationServices
 
         public void EditArtist(EditArtistsViewModel artistVm)
         {
-            //User user = userDomainService.GetUserWithAllAttachments(userVm.Id);
-            //user = UserMapper.EditUsersVmToUser(userVm, user);
-            //user.City = cityDomainService.GetCity(userVm.CityId);
-            //user.Country = countryDomainService.GetCountry(userVm.CountryId);
-
-            //userDomainService.EditUser();
             Artist artist = artistDomainService.GetArtistWithImage(artistVm.Id);
+            artist = Mapper.Map<EditArtistsViewModel, Artist>(artistVm, artist);
+
             if (artistVm.Image != null)
             {
-                artist.ArtistImage.ContentType = artistVm.Image != null ? artistVm.Image.ContentType : null;  // todo как это запихнуть в mapper?
                 artist.ArtistImage.Image = ConvertToBytes(artistVm.Image);
             }
-            artist = Mapper.Map<EditArtistsViewModel, Artist>(artistVm, artist);
 
             artistDomainService.EditArtist();
 
         }
 
+        public DetailsArtistsViewModel GetDetailsArtistsViewModel(int id)
+        {
+            var artist = artistDomainService.GetAtristWithTracksAndAlbumsWithAllAttachments(id);
+            var result = Mapper.Map<DetailsArtistsViewModel>(artist);
+            return result;
+        }
+
+        public DeleteArtistsViewModel GetDeleteArtistVm(int id)
+        {
+            Artist artist = artistDomainService.GetArtist(id);
+            return Mapper.Map<DeleteArtistsViewModel>(artist);
+
+        }
+
+        public void DeleteArtist(int id)
+        {
+            artistDomainService.DeleteArtist(id);
+        }
+
         public ArtistImage GetImage(int artitId)
         {
-            return artistImageDomainService.GetArtistImage(artitId);
+            ArtistImage artistImage = artistImageDomainService.GetArtistImage(artitId);
+            if (artistImage == null)
+            {
+                return new ArtistImage();
+            }
+            return artistImage;
         }
 
         public List<GetArtistsViewModel> GetArtists()
         {
             List<GetArtistsViewModel> artistsViewModels = new List<GetArtistsViewModel>();
-            List<Artist> artists = artistDomainService.GetAtrists();
-            List<InfArtist> infArtists = artistDomainService.GetInfArtist();
+            List<ArtistStatistics> artistsStatistics = artistDomainService.GetArtistsStatistics();
 
-
-            artistsViewModels = Mapper.Map<List<GetArtistsViewModel>>(artists);
-            //artistsViewModels = Mapper.Map<List<InfArtist>, List<GetArtistsViewModel>>(infArtists, artistsViewModels); // todoM спросить, как обновлять модель, не изменяя не существующие значения
-
-            int index = 0;
-            foreach (var artistVm in artistsViewModels)
-            {
-                artistVm.NumberOfTracks = infArtists[index].NumberOfTracks;
-                artistVm.NumberOfAlbums = infArtists[index++].NumberOfAlbums;
-
-            }
+            artistsViewModels = Mapper.Map<List<GetArtistsViewModel>>(artistsStatistics);
 
             return artistsViewModels;
         }

@@ -1,9 +1,6 @@
 ﻿using Autofac;
 using FluentValidation;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 namespace MusicBox.App_Start.Core
 {

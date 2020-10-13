@@ -6,7 +6,8 @@ namespace MusicBox.Domain.Repositories
 {
     public interface IArtistRepository : IBaseRepository<Artist>
     {
-        List<InfArtist> GetInfArtists();
+        List<ArtistStatistics> GetArtistsStatistics();
         Artist GetArtistWithImage(int id);
+        Artist GetAtristWithTracksAndAlbumsWithAllAttachments(int id);
     }
 }

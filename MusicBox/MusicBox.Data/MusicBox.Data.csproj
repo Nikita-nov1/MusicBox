@@ -66,17 +66,9 @@
     <Compile Include="Configurations\TrackStatisticsConfiguration.cs" />
     <Compile Include="Context\IMusicBoxDbContext.cs" />
     <Compile Include="Context\MusicBoxDbContext.cs" />
-    <Compile Include="Migrations\202009111534412_AddFirstMigration.cs" />
-    <Compile Include="Migrations\202009111534412_AddFirstMigration.designer.cs">
-      <DependentUpon>202009111534412_AddFirstMigration.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202009122212218_AddManyToManyForTreksPlaylist.cs" />
-    <Compile Include="Migrations\202009122212218_AddManyToManyForTreksPlaylist.designer.cs">
-      <DependentUpon>202009122212218_AddManyToManyForTreksPlaylist.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202010081336512_Add_ContentType_for_Image.cs" />
-    <Compile Include="Migrations\202010081336512_Add_ContentType_for_Image.designer.cs">
-      <DependentUpon>202010081336512_Add_ContentType_for_Image.cs</DependentUpon>
+    <Compile Include="Migrations\202010130022217_FirstMigration.cs" />
+    <Compile Include="Migrations\202010130022217_FirstMigration.designer.cs">
+      <DependentUpon>202010130022217_FirstMigration.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -101,14 +93,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202009111534412_AddFirstMigration.resx">
-      <DependentUpon>202009111534412_AddFirstMigration.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202009122212218_AddManyToManyForTreksPlaylist.resx">
-      <DependentUpon>202009122212218_AddManyToManyForTreksPlaylist.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202010081336512_Add_ContentType_for_Image.resx">
-      <DependentUpon>202010081336512_Add_ContentType_for_Image.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202010130022217_FirstMigration.resx">
+      <DependentUpon>202010130022217_FirstMigration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

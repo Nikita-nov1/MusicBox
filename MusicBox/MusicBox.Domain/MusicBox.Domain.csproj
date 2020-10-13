@@ -66,7 +66,7 @@
     <Compile Include="DomainServices\MoodDomainService.cs" />
     <Compile Include="DomainServices\PlaylistDomainService.cs" />
     <Compile Include="DomainServices\TrackDomainService.cs" />
-    <Compile Include="Models\AdditionalModels\InfArtist.cs" />
+    <Compile Include="Models\AdditionalModels\ArtistStatistics.cs" />
     <Compile Include="Models\Entities\Album.cs" />
     <Compile Include="Models\Entities\AlbumImage.cs" />
     <Compile Include="Models\Entities\Artist.cs" />

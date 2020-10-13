@@ -7,13 +7,13 @@ namespace MusicBox.Data.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class Add_ContentType_for_Image : IMigrationMetadata
+    public sealed partial class FirstMigration : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(Add_ContentType_for_Image));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(FirstMigration));
         
         string IMigrationMetadata.Id
         {
-            get { return "202010081336512_Add_ContentType_for_Image"; }
+            get { return "202010130022217_FirstMigration"; }
         }
         
         string IMigrationMetadata.Source

@@ -22,7 +22,7 @@ namespace MusicBox.Data.Configurations
             Property(p => p.Title).HasColumnName("Full_Name").HasMaxLength(30);
             HasIndex(c => c.Title).IsUnique(true);
 
-
+            
 
             //Property(p => p.Title)
             //    .HasColumnName("Full_Name")

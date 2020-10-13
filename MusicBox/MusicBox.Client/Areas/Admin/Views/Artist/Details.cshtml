@@ -1,0 +1,33 @@
+﻿@using MusicBox.Domain.Models.Entities
+@model MusicBox.Areas.Admin.Models.Artists.DetailsArtistsViewModel
+
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+@{ 
+    foreach (var album in Model.Albums)
+    {
+        Console.WriteLine(album);
+        foreach (var track in album.Tracks)
+        {
+            Console.WriteLine(track);
+        }
+    }
+
+    Console.WriteLine("Треки без альбомов");
+
+    List<Track> tracksWithoutAlbum = Model.Tracks.Where(c => c.Album == null).ToList();
+
+    foreach (var track in tracksWithoutAlbum)
+    {
+        Console.WriteLine(track);
+    }
+
+    // сделать 1 PartialView для Console.WriteLine(track);
+    // сделать 1 PartialView для Console.WriteLine(album);
+
+}

@@ -8,9 +8,11 @@ namespace MusicBox.Domain.DomainServices.Interfaces
     {
         void AddArtist(Artist artist);
         List<Artist> GetAtrists();
-        List<InfArtist> GetInfArtist();
+        List<ArtistStatistics> GetArtistsStatistics();
         Artist GetArtistWithImage(int id);
         Artist GetArtist(int id);
         void EditArtist();
+        void DeleteArtist(int id);
+        Artist GetAtristWithTracksAndAlbumsWithAllAttachments(int id);
     }
 }

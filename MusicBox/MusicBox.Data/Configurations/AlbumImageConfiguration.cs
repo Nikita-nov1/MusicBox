@@ -17,8 +17,7 @@ namespace MusicBox.Data.Configurations
 
 
             HasRequired<Album>(c => c.Album)
-                .WithRequiredPrincipal(c => c.AlbumImage)
-                .Map(m => m.MapKey("AlbumImageId"))
+                .WithRequiredDependent(c => c.AlbumImage)
                 .WillCascadeOnDelete(true);
         }
     }

@@ -16,8 +16,7 @@ namespace MusicBox.Data.Configurations
             Property(c => c.ContentType).HasMaxLength(50);
 
             HasRequired<Artist>(c => c.Artist)
-                .WithRequiredPrincipal(c => c.ArtistImage)
-                .Map(m => m.MapKey("ArtistImageId"))
+                .WithRequiredDependent(c => c.ArtistImage)
                 .WillCascadeOnDelete(true);
 
 

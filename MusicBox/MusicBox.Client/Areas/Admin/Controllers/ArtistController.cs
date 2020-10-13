@@ -4,6 +4,7 @@ using MusicBox.Domain.Models.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 
@@ -42,7 +43,7 @@ namespace MusicBox.Areas.Admin.Controllers
         // GET: Admin/Artist/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            return View(presentationServices.GetDetailsArtistsViewModel(id));
         }
 
         // GET: Admin/Artist/Create
@@ -86,24 +87,28 @@ namespace MusicBox.Areas.Admin.Controllers
 
 
         // GET: Admin/Artist/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Delete(int? id)
         {
-            return View();
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            return View(presentationServices.GetDeleteArtistVm((int)id));
         }
 
         // POST: Admin/Artist/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        [HttpPost, ActionName("Delete")]
+        public ActionResult DeleteConfirmed(int id)
         {
-            try
+            if (ModelState.IsValid)
             {
-
+                presentationServices.DeleteArtist(id);
                 return RedirectToAction("Index");
             }
-            catch
-            {
-                return View();
-            }
+
+            return RedirectToAction("Index");
+
         }
     }
 }
