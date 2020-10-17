@@ -11,11 +11,10 @@ namespace MusicBox.Data.Configurations
 
             HasKey(c => c.Id);
 
-            Property(c => c.TrackLocation).IsRequired().HasMaxLength(110);
+            Property(c => c.TrackLocation).IsRequired().HasMaxLength(200);
 
             HasRequired<Track>(c => c.Track)
-                .WithRequiredPrincipal(c => c.TrackFile)
-                .Map(m => m.MapKey("TrackFileId"))
+                .WithRequiredDependent(c => c.TrackFile)
                 .WillCascadeOnDelete(true);
 
         }

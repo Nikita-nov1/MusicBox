@@ -171,15 +171,31 @@
     <Compile Include="Areas\Admin\AdminValidators\Artist\EditArtistsVmValidator.cs" />
     <Compile Include="Areas\Admin\Controllers\AlbumController.cs" />
     <Compile Include="Areas\Admin\Controllers\ArtistController.cs" />
+    <Compile Include="Areas\Admin\Controllers\TrackController.cs" />
+    <Compile Include="Areas\Admin\Models\Albums\CreateAlbumsViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\Albums\DeleteAlbumsViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\Albums\DetailsAlbumsViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\Albums\EditAlbumsViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\Albums\GetAlbumsViewModel.cs" />
     <Compile Include="Areas\Admin\Models\Artists\CreateArtistsViewModel.cs" />
     <Compile Include="Areas\Admin\Models\Artists\DeleteArtistsViewModel.cs" />
     <Compile Include="Areas\Admin\Models\Artists\DetailsArtistsViewModel.cs" />
     <Compile Include="Areas\Admin\Models\Artists\EditArtistsViewModel.cs" />
     <Compile Include="Areas\Admin\Models\Artists\GetArtistsViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\Tracks\CreateTracksViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\Tracks\DeleteTracksViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\Tracks\DetailsTracksViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\Tracks\EditTracksViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\Tracks\GetTracksViewModel.cs" />
+    <Compile Include="Areas\Admin\PresentationServices\AlbumPresentationServices.cs" />
     <Compile Include="Areas\Admin\PresentationServices\ArtistPresentationServices.cs" />
     <Compile Include="Areas\Admin\PresentationServices\BaseAdminPresentationService.cs" />
+    <Compile Include="Areas\Admin\PresentationServices\GetPathServices.cs" />
+    <Compile Include="Areas\Admin\PresentationServices\Interfaces\IAlbumPresentationServices.cs" />
     <Compile Include="Areas\Admin\PresentationServices\Interfaces\IArtistPresentationServices.cs" />
     <Compile Include="Areas\Admin\PresentationServices\Interfaces\IBaseAdminPresentationService.cs" />
+    <Compile Include="Areas\Admin\PresentationServices\Interfaces\ITrackPresentationServices.cs" />
+    <Compile Include="Areas\Admin\PresentationServices\TrackPresentationServices.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\TrackController.cs" />
     <Compile Include="ExtensionMethods\MappingExpressionExtension.cs" />
@@ -201,7 +217,8 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\MvcGrid\mvc-grid.css" />
     <Content Include="favicon.ico" />
-    <Content Include="Files\Images\Artists\defaultArtistImage.jpg" />
+    <Content Include="Files\Images\Album\defaultAlbumImage.jpg" />
+    <Content Include="Files\Images\Artist\defaultArtistImage.jpg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.bundle.js" />
@@ -237,6 +254,11 @@
     <Content Include="Areas\Admin\Views\Artist\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Artist\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\Artist\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Album\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Album\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Album\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Track\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Track\Create.cshtml" />
     <None Include="Scripts\jquery-3.5.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.5.1.js" />
     <Content Include="Scripts\jquery-3.5.1.min.js" />
@@ -351,9 +373,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
-    <Folder Include="Areas\Admin\Models\AdditionalModels\" />
-    <Folder Include="Areas\Admin\Models\Albums\" />
-    <Folder Include="Areas\Admin\Models\Tracks\" />
     <Folder Include="Models\" />
     <Folder Include="Views\Track\" />
   </ItemGroup>

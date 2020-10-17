@@ -13,9 +13,9 @@ namespace MusicBox.Data.Repositories
 
         }
 
-        public ArtistImage GetFirstOrDefault(object id)
+        public ArtistImage GetFirstOrDefault(int id)
         {
-            return GetQueryableItems().Where(c => c.Id == (int)id).FirstOrDefault();
+            return GetQueryableItems().Where(c => c.Id == id).FirstOrDefault();
         }
     }
 }

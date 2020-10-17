@@ -24,6 +24,10 @@ namespace MusicBox.Data.Repositories
             return entityArtist;
         }
 
+        public Artist Get(string artistTitle)
+        {
+            return GetQueryableItems().FirstOrDefault(c => c.Title == artistTitle);
+        }
 
         public List<ArtistStatistics> GetArtistsStatistics()
         {
@@ -38,7 +42,7 @@ namespace MusicBox.Data.Repositories
 
         public Artist GetAtristWithTracksAndAlbumsWithAllAttachments(int id) // todo
         {
-            var artist = Get(id);
+           // var artist = Get(id);
 
             return GetQueryableItems()
             .Include(x => x.Tracks)

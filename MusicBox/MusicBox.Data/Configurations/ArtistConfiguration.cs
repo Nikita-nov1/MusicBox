@@ -19,15 +19,11 @@ namespace MusicBox.Data.Configurations
 
             HasKey(c => c.Id);
 
-            Property(p => p.Title).HasColumnName("Full_Name").HasMaxLength(30);
+            Property(p => p.Title).HasColumnName("Full_Name").HasMaxLength(30).IsRequired();
             HasIndex(c => c.Title).IsUnique(true);
 
-            
 
-            //Property(p => p.Title)
-            //    .HasColumnName("Full_Name")
-            //    .HasMaxLength(30).HasColumnAnnotation(IndexAnnotation.AnnotationName, new IndexAnnotation(new IndexAttribute() { IsUnique = true }));
-            //   // .HasColumnAnnotation("Index", new IndexAnnotation(new IndexAttribute("IX_Name") { IsUnique = true }));
+
 
         }
     }

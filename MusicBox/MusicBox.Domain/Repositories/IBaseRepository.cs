@@ -11,6 +11,7 @@ namespace MusicBox.Domain.Repositories
         void DeleteById(object itemId);
         T Get(object id);
         T Create();
+        T AddWithEntityReturn(T item);
 
     }
 }

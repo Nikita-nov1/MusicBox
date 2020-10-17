@@ -6,7 +6,7 @@ namespace MusicBox.Domain.DomainServices.Interfaces
 {
     public interface IArtistDomainService : IBaseDomainService
     {
-        void AddArtist(Artist artist);
+        Artist AddArtist(Artist artist);
         List<Artist> GetAtrists();
         List<ArtistStatistics> GetArtistsStatistics();
         Artist GetArtistWithImage(int id);
@@ -14,5 +14,7 @@ namespace MusicBox.Domain.DomainServices.Interfaces
         void EditArtist();
         void DeleteArtist(int id);
         Artist GetAtristWithTracksAndAlbumsWithAllAttachments(int id);
+        Artist GetArtistOrCreateNewIfHeNotExist(string artist);
+
     }
 }

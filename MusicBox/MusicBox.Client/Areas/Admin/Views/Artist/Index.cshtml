@@ -28,7 +28,7 @@
         columns.Add(model => model.Title).Titled("Name");
         columns.Add(model => model.NumberOfAlbums).Titled("Number of albums").Sortable(true);
 
-        columns.Add(model => model.NumberOfTracks).Titled("Number of tacks");
+        columns.Add(model => model.NumberOfTracks).Titled("Number of tracks");
         columns.Add(model => Html.ActionLink("Details", "Details", new { id = model.Id }) + " | " +
         Html.ActionLink("Edit", "Edit", new { id = model.Id }) + " | " +
         Html.ActionLink("Delete", "Delete", new { id = model.Id })).Titled("Actions").Sortable(false).Encoded(false); ;

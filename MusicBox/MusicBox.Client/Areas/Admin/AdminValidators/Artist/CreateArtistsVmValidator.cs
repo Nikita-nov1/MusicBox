@@ -21,6 +21,7 @@ namespace MusicBox.Areas.Admin.AdminValidators.Artist
             //    .MaximumLength(15).WithMessage("Last Name can have a max of 15 characters.");
 
             // Сделать валидацию для Title -> Проверку на размер и на уникальность
+
             // Сделать валидацию для Image -> Проверку на тип расширения(допусается только картинки), размер (HttpPostedFileBase ->ContentLength) , Image моет быть null
         }
 
