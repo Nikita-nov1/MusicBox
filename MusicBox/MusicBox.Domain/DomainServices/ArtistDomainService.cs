@@ -5,6 +5,8 @@ using MusicBox.Domain.Repositories;
 using MusicBox.Domain.UnitOfWork;
 using System.Collections.Generic;
 using System.IO;
+using System.Runtime.Remoting.Channels;
+using System.Web.Mvc;
 
 namespace MusicBox.Domain.DomainServices
 {
@@ -12,7 +14,8 @@ namespace MusicBox.Domain.DomainServices
     {
         private readonly IArtistRepository artistRepository;
         private readonly IUnitOfWork unitOfWork;
-        private const string pathDefaultImage = "C:/Users/Asus/source/repos/Nikita-nov1/MusicBox/MusicBox/MusicBox.Client/Files/Images/Artists/defaultArtistImage.jpg"; //todoM  как можно заменит? (картинка находиться в P-слое)
+        private const string pathDefaultImage = Server.MapPath("~/Files/Images/Artists/defaultArtistImage.jpg"); //todoM  как можно заменит? (картинка находиться в P-слое)
+
         public ArtistDomainService(IArtistRepository artistRepository, IUnitOfWork unitOfWork)
         {
             this.artistRepository = artistRepository;
@@ -43,7 +46,6 @@ namespace MusicBox.Domain.DomainServices
 
         }
        
-
         public List<Artist> GetAtrists()
         {
             return artistRepository.GetAll();
@@ -85,10 +87,9 @@ namespace MusicBox.Domain.DomainServices
             }
         }
 
-
-
-
-
-
+        public bool IsUniqueNewTitle(string title)
+        {
+            return artistRepository.IsUniqueNewTitle(title);
+        }
     }
 }

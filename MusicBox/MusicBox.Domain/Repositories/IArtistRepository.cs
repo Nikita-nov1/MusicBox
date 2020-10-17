@@ -9,5 +9,6 @@ namespace MusicBox.Domain.Repositories
         List<ArtistStatistics> GetArtistsStatistics();
         Artist GetArtistWithImage(int id);
         Artist GetAtristWithTracksAndAlbumsWithAllAttachments(int id);
+        bool IsUniqueNewTitle(string title);
     }
 }
