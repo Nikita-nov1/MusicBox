@@ -15,7 +15,8 @@ namespace MusicBox.Areas.Admin.AdminValidators.Artist
 
             RuleFor(x => x.Title)
              .NotEmpty().WithMessage("Please specify a first name.")
-             .MaximumLength(20).WithMessage("Title can have a maximum of 20 characters.");
+             .MaximumLength(20).WithMessage("Title can have a maximum of 20 characters.")
+             .Must(IsUniqueNewTitle).WithMessage("Title name already exists. Please modify Title name.");
 
             RuleFor(x => x.Image)
             .Must(x => x.ContentLength <= 10000)
@@ -28,13 +29,11 @@ namespace MusicBox.Areas.Admin.AdminValidators.Artist
             .When(x => x.Image != null)
             .WithMessage("File type is not allowed");
 
-            RuleFor(x => x)
-                .Must(IsUniqueNewTitle).WithMessage("Title name already exists. Please modify Title name.");
         }
 
-        private bool IsUniqueNewTitle(CreateArtistsViewModel createArtistViewModel)
+        private bool IsUniqueNewTitle(string title)
         {
-            return artistDomainService.IsUniqueNewTitle(createArtistViewModel.Title);
+            return artistDomainService.IsUniqueNewTitle(title);
         }
     }
 }

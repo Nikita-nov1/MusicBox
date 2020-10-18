@@ -62,12 +62,6 @@ namespace MusicBox.App_Start
                                       .AsImplementedInterfaces()
                                       .InstancePerLifetimeScope();
                                   });
-                                  //.ForEach(result =>
-                                  //  {
-                                  //      builder.RegisterType(result.ValidatorType)
-                                  //      .Keyed<IValidator>(result.InterfaceType)
-                                  //      .As<IValidator>();
-                                  //  });
 
             var container = builder.Build();
 
