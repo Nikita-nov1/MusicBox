@@ -53,5 +53,16 @@ namespace MusicBox.Data.Repositories
         {
             return !GetQueryableItems().Any(x => x.Title.Equals(title));
         }
+
+        public bool IsUniqueTitle(int id, string title)
+        {
+            var artist = Get(id);
+            if (artist.Title.Equals(title))
+            {
+                return true;
+            }
+
+            else return !GetQueryableItems().Any(x => x.Title.Equals(title));
+        }
     }
 }

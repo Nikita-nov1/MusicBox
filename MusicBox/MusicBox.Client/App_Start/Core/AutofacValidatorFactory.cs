@@ -1,22 +1,21 @@
-﻿using Autofac;
-using FluentValidation;
+﻿using FluentValidation;
 using System;
+using System.Web.Mvc;
 
 namespace MusicBox.App_Start.Core
 {
     public class AutofacValidatorFactory : ValidatorFactoryBase
     {
-        private readonly IContainer container;
+        private readonly IDependencyResolver dependencyResolver;
 
-        public AutofacValidatorFactory(IContainer container)
+        public AutofacValidatorFactory(IDependencyResolver dependencyResolver)
         {
-            this.container = container;
+            this.dependencyResolver = dependencyResolver;
         }
 
-        public override IValidator CreateInstance(Type validatorType)
+        public override IValidator CreateInstance(Type validatorType) //todo
         {
-            IValidator validator = container.ResolveOptionalKeyed<IValidator>(validatorType);
-            return validator;
+            return dependencyResolver.GetService(validatorType) as IValidator;
         }
     }
 }

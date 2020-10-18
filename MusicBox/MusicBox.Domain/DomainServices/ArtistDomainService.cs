@@ -90,5 +90,10 @@ namespace MusicBox.Domain.DomainServices
         {
             return artistRepository.IsUniqueNewTitle(title);
         }
+
+        public bool IsUniqueTitle(int id, string title)
+        {
+            return artistRepository.IsUniqueTitle(id, title);
+        }
     }
 }

@@ -52,20 +52,27 @@ namespace MusicBox.App_Start
 
             //Register the API Validators(the custome validators used for FluentValidation)
             AssemblyScanner.FindValidatorsInAssemblyContaining<CreateArtistsVmValidator>()
-                                    .ForEach(result =>
-                                    {
-                                        builder.RegisterType(result.ValidatorType)
-                                        .Keyed<IValidator>(result.InterfaceType)
-                                        .As<IValidator>();
-                                    });
+                                  .ForEach(result =>
+                                  {
+                                      builder.RegisterType(result.ValidatorType)
+                                      .AsImplementedInterfaces()
+                                      .InstancePerLifetimeScope();
+                                  });
+                                  //.ForEach(result =>
+                                  //  {
+                                  //      builder.RegisterType(result.ValidatorType)
+                                  //      .Keyed<IValidator>(result.InterfaceType)
+                                  //      .As<IValidator>();
+                                  //  });
 
             var container = builder.Build();
 
-            DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
+            var dependencyResolver = new AutofacDependencyResolver(container);
+            DependencyResolver.SetResolver(dependencyResolver);
 
             FluentValidationModelValidatorProvider.Configure(config =>
             {
-                config.ValidatorFactory = new AutofacValidatorFactory(container);
+                config.ValidatorFactory = new AutofacValidatorFactory(dependencyResolver);
             });
         }
     }
