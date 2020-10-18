@@ -1,0 +1,155 @@
+﻿@using MusicBox.Areas.Admin.Models.Tracks
+@model CreateTracksViewModel
+
+@{
+    ViewBag.Title = "Create track";
+}
+
+@*<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>*@
+
+
+
+@*<link href="~/Content/jquery-ui.css" rel="stylesheet" type="text/css" />*@
+<link href="~/Content/jquery-ui.css" rel="stylesheet"  type="text/css"/>
+<script src="~/Scripts/jquery-3.5.1.min.js"></script>
+
+<script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
+
+@*<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>*@
+
+@*<script type="text/javascript">
+        $(function () {
+            $('#Artist').css("background-color", "red");
+        });
+    </script>*@
+
+@*<script type="text/javascript">
+    $(function () {
+        //$('#Artist').css("background-color", "red");
+        $('#Artist').on('change', function () {
+            $('#Artist').css("background-color", "red");
+        });
+    });
+</script>*@
+
+
+
+<script type="text/javascript">
+        //$(function () {
+        //    $("#Artist").on("change", function () {
+        //        this.css();
+        //    }});
+
+        //$(function () {
+        //    $('#Artist').css("background-color", "red");
+        //});
+
+        $(function () {
+
+            $("#Artist").on("change", function () {  //.blur()  - попробовать
+                let artist = $("#Artist").val();
+     
+
+                if (artist == "") {
+                    $("#AlbumId option:gt(0)").remove();
+                    $('#AlbumId').prop('disabled', true);
+
+                }
+                else {
+                    $.ajax({
+                        method: "POST",
+                        url: "/Admin/Album/GetAlbumsForArtist",
+                        data: { id: artist }
+                    })
+                        .done(function (albums) {
+                            $("#AlbumId option:gt(0)").remove();
+                            for (var i = 0; i < albums.length; i++) {
+                                $('#AlbumId').append('<option value=' + albums[i].Id + '>' + albums[i].Title + '</option>');
+                            }
+                            $('#AlbumId').prop('disabled', false);
+                        });
+                }
+            });
+
+           
+        });
+    </script>
+
+
+<h2>Create</h2>
+
+@using (Html.BeginForm("Create", "Track", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+
+    <div class="form-horizontal">
+        <h4>Track</h4>
+        <hr />
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Artist, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Artist, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.AlbumId, "Album", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.AlbumId, Model.SelectListAlbums, "Please select", htmlAttributes: new
+                {
+                    @class = "form-control", @disabled = true})
+                @*@Html.ValidationMessageFor(model => model.AlbumId, "", new { @class = "text-danger" })*@
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.GenreId, "Genre", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.GenreId, Model.SelectListGenres, "Please select", htmlAttributes: new { @class = "form-control" })
+                @*@Html.ValidationMessageFor(model => model.GenreId, "", new { @class = "text-danger" })*@
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.MoodId, "Mood", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.MoodId, Model.SelectListMoods, "Please select", htmlAttributes: new { @class = "form-control" })
+                @*@Html.ValidationMessageFor(model => model.MoodId, "", new { @class = "text-danger" })*@
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.UploadTrack, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+
+                <input id="Track" name="UploadTrack" type="file" accept="audio/*" required>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+
+@*@section scripts {
+
+        @Scripts.Render("~/bundles/jquery-ui")
+        @Scripts.Render("~/bundles/jqueryval")
+    }*@

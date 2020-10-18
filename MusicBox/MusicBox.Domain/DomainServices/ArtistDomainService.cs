@@ -1,4 +1,5 @@
 ﻿using MusicBox.Domain.DomainServices.Interfaces;
+using MusicBox.Domain.Interfaces;
 using MusicBox.Domain.Models.AdditionalModels;
 using MusicBox.Domain.Models.Entities;
 using MusicBox.Domain.Repositories;
@@ -13,26 +14,30 @@ namespace MusicBox.Domain.DomainServices
     {
         private readonly IArtistRepository artistRepository;
         private readonly IUnitOfWork unitOfWork;
-        private string pathDefaultImage = HostingEnvironment.MapPath("~/Files/Images/Artists/defaultArtistImage.jpg"); //todoM  как можно заменит? (картинка находиться в P-слое)
 
-        public ArtistDomainService(IArtistRepository artistRepository, IUnitOfWork unitOfWork)
+        private readonly IGetPathServices getDefaultImage;
+
+        public ArtistDomainService(IArtistRepository artistRepository, IUnitOfWork unitOfWork, IGetPathServices getDefaultImage)
         {
             this.artistRepository = artistRepository;
             this.unitOfWork = unitOfWork;
+            this.getDefaultImage = getDefaultImage;
 
         }
 
-        public void AddArtist(Artist artist)
+        public Artist AddArtist(Artist artist)
         {
-            if (artist.ArtistImage.Image is null)  // нет проверки на artist.ArtistImage.Image.Length < 1  -- проверить потом, чему равняется artist.ArtistImage.Image.Length п
+            if (artist.ArtistImage.Image is null)  
             {
                 OpenFileAndConvertToBytes(artist);
             }
-            artistRepository.Add(artist);
+            var result = artistRepository.AddWithEntityReturn(artist);
             unitOfWork.SaveChanges();
+            return result;
 
         }
 
+        
         public Artist GetArtistWithImage(int id)
         {
             return artistRepository.GetArtistWithImage(id);
@@ -44,6 +49,25 @@ namespace MusicBox.Domain.DomainServices
             return artistRepository.Get(id);
 
         }
+
+
+        public List<Album> GetAlbumsForArtist(int artistId)
+        {
+          return artistRepository.GetAlbumsForArtist(artistId);
+        }
+
+        public Artist GetArtistOrCreateNewIfHeNotExist(string artistTitle)
+        {
+            Artist atrist = artistRepository.Get(artistTitle); // проверка, есть ли такой артист , если нет, то возвращаем null  
+            if (atrist == null)
+            {
+                atrist = AddArtist(new Artist { Title = artistTitle ,ArtistImage = new ArtistImage()});
+            }
+            return atrist;
+
+        }
+
+
 
         public List<Artist> GetAtrists()
         {
@@ -74,9 +98,12 @@ namespace MusicBox.Domain.DomainServices
 
         }
 
+
+
+        
         private void OpenFileAndConvertToBytes(Artist artist)
         {
-            using (FileStream fileStream = new FileStream(pathDefaultImage, FileMode.Open))    // потом можно сделать дженерик в базовый класс(как в репозитории)
+            using (FileStream fileStream = new FileStream(getDefaultImage.GetPathDefaultArtistImage(), FileMode.Open))    // потом можно сделать дженерик в базовый класс(как в репозитории)
             {
                 using (var binaryReader = new BinaryReader(fileStream))
                 {

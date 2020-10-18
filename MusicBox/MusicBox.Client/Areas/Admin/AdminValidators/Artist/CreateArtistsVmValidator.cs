@@ -22,6 +22,7 @@ namespace MusicBox.Areas.Admin.AdminValidators.Artist
             .When(x => x.Image != null)
             .WithMessage("File size is larger than allowed");
 
+ 
             RuleFor(x => x.Image)
             .Must(x => x.ContentType.Equals("image/jpeg") || x.ContentType.Equals("image/jpg") || x.ContentType.Equals("image/png"))
             .When(x => x.Image != null)

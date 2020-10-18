@@ -1,7 +1,47 @@
-﻿
+﻿@using MusicBox.Areas.Admin.Models.Albums
+@using NonFactors.Mvc.Grid;
+
+@model IEnumerable<GetAlbumsViewModel>
+
+
 @{
     ViewBag.Title = "Index";
 }
 
 <h2>Index</h2>
 
+<p>
+    @Html.ActionLink("Create", "Create")
+</p>
+
+
+@(Html
+    .Grid(Model)
+    .Build(columns =>
+    {
+        columns.Add().RenderedAs((model, row) => row + 1).Titled("#").Sortable(false);
+
+        columns.Add(model => " <img src="+@Url.Action("RenderImage", new { id = model.Id })+" alt='' height=45 width=45 />  ").Sortable(false).Encoded(false); ;
+
+        columns.Add(model => model.Title).Titled("Name");
+        columns.Add(model => model.DateOfCreation.ToString("d")).Titled("Date of creation").Sortable(true);
+
+        columns.Add(model => model.Year).Titled("Album release year").Sortable(true);
+        columns.Add(model => model.NumberOfTracks).Titled("Number of tracks").Sortable(true);
+        columns.Add(model => model.ArtistName).Titled("Artist name ").Sortable(false);
+        columns.Add(model => Html.ActionLink("Details", "Details", new { id = model.Id }) + " | " +
+        Html.ActionLink("Edit", "Edit", new { id = model.Id }) + " | " +
+        Html.ActionLink("Delete", "Delete", new { id = model.Id })).Titled("Actions").Sortable(false).Encoded(false); ;
+    })
+    .Empty("No data found")
+    .Filterable()
+    .Sortable()
+    .Pageable()
+)
+
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/mvc-grid")
+}

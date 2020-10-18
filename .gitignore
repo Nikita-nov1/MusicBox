@@ -13,6 +13,9 @@
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
 
+# Uploading files to the server
+UploadedFiles/
+
 # Mono auto generated files
 mono_crash.*
 

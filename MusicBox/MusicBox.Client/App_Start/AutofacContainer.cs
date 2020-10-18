@@ -4,11 +4,13 @@ using FluentValidation;
 using FluentValidation.Mvc;
 using MusicBox.App_Start.Core;
 using MusicBox.Areas.Admin.AdminValidators.Artist;
+using MusicBox.Areas.Admin.PresentationServices;
 using MusicBox.Areas.Admin.PresentationServices.Interfaces;
 using MusicBox.Data.Context;
 using MusicBox.Data.Repositories;
 using MusicBox.Data.UnitOfWork;
 using MusicBox.Domain.DomainServices.Interfaces;
+using MusicBox.Domain.Interfaces;
 using MusicBox.Domain.Repositories;
 using MusicBox.Domain.UnitOfWork;
 using MusicBox.PresentationServices.Interfaces;
@@ -37,6 +39,8 @@ namespace MusicBox.App_Start
                .Where(t => typeof(IBaseAdminPresentationService).IsAssignableFrom(t))
                .AsImplementedInterfaces()
                .InstancePerDependency();
+
+            builder.RegisterType<GetPathServices>().As<IGetPathServices>().InstancePerLifetimeScope();
 
             builder.RegisterAssemblyTypes(typeof(IBaseDomainService).Assembly)
                .Where(t => typeof(IBaseDomainService).IsAssignableFrom(t))
@@ -68,6 +72,7 @@ namespace MusicBox.App_Start
             var container = builder.Build();
 
             var dependencyResolver = new AutofacDependencyResolver(container);
+
             DependencyResolver.SetResolver(dependencyResolver);
 
             FluentValidationModelValidatorProvider.Configure(config =>

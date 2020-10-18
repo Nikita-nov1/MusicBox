@@ -1,6 +1,5 @@
 ﻿using MusicBox.Domain.Repositories;
 using MusicBox.Domain.UnitOfWork;
-using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
@@ -31,8 +30,12 @@ namespace MusicBox.Data.Repositories
         {
             DbSet().Add(item);
         }
+        public virtual T AddWithEntityReturn(T item)
+        {
+            return DbSet().Add(item);
+        }
 
-        public virtual T Create()    
+        public virtual T Create()
         {
             return DbSet().Create();
         }

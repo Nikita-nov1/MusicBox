@@ -22,16 +22,9 @@ namespace MusicBox.Areas.Admin.PresentationServices
             this.artistImageDomainService = artistImageDomainService;
         }
 
-
-        public string GetPathDefaultArtistImage()  // todoM1 нужно ли отдельный класс для этого метода? (Возможно нужно в Presentation слое добавить консольное приложение)
-        {
-             return HostingEnvironment.MapPath("~/Files/Images/Artists/defaultArtistImage.jpg");
-        }
-
+        
         public void AddArtist(CreateArtistsViewModel artistVm)
         {
-            
-
             Artist artist = Mapper.Map<Artist>(artistVm);
             artist.ArtistImage.Image = ConvertToBytes(artistVm.Image);                                   
 
@@ -90,23 +83,12 @@ namespace MusicBox.Areas.Admin.PresentationServices
 
         public List<GetArtistsViewModel> GetArtists()
         {
-            List<GetArtistsViewModel> artistsViewModels = new List<GetArtistsViewModel>();
             List<ArtistStatistics> artistsStatistics = artistDomainService.GetArtistsStatistics();
 
-            artistsViewModels = Mapper.Map<List<GetArtistsViewModel>>(artistsStatistics);
+            return Mapper.Map<List<GetArtistsViewModel>>(artistsStatistics);      
 
-            return artistsViewModels;
         }
 
-        //private void Save(HttpPostedFileBase image)
-        //{
-        //    var contentType = Path.GetExtension(image.FileName);
-        //    var directoryToSave = HostingEnvironment.MapPath("~/UploadedFiles");
-
-        //    var pathToSave = Path.Combine(directoryToSave, Guid.NewGuid().ToString() + contentType);
-
-        //    image.SaveAs(pathToSave);
-
-        //}
+     
     }
 }

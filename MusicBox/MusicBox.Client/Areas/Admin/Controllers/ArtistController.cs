@@ -12,7 +12,7 @@ namespace MusicBox.Areas.Admin.Controllers
 {
     public class ArtistController : Controller
     {
-        readonly IArtistPresentationServices presentationServices;
+        private readonly IArtistPresentationServices presentationServices;
 
         public ArtistController(IArtistPresentationServices presentationServices)
         {
@@ -37,8 +37,6 @@ namespace MusicBox.Areas.Admin.Controllers
                 return null;
             }
         }
-
-
 
         // GET: Admin/Artist/Details/5
         public ActionResult Details(int id)

@@ -87,12 +87,17 @@
     <Compile Include="Configurations\TrackStatisticsConfiguration.cs" />
     <Compile Include="Context\IMusicBoxDbContext.cs" />
     <Compile Include="Context\MusicBoxDbContext.cs" />
-    <Compile Include="Migrations\202010130022217_FirstMigration.cs" />
-    <Compile Include="Migrations\202010130022217_FirstMigration.designer.cs">
-      <DependentUpon>202010130022217_FirstMigration.cs</DependentUpon>
+    <Compile Include="Migrations\202010151421425_AddFirstMigration.cs" />
+    <Compile Include="Migrations\202010151421425_AddFirstMigration.designer.cs">
+      <DependentUpon>202010151421425_AddFirstMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202010170036049_AddSecondMigration.cs" />
+    <Compile Include="Migrations\202010170036049_AddSecondMigration.designer.cs">
+      <DependentUpon>202010170036049_AddSecondMigration.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\AlbumImageRepository.cs" />
     <Compile Include="Repositories\AlbumRepository.cs" />
     <Compile Include="Repositories\ArtistImageRepository.cs" />
     <Compile Include="Repositories\ArtistRepository.cs" />
@@ -100,7 +105,9 @@
     <Compile Include="Repositories\GenreRepository.cs" />
     <Compile Include="Repositories\MoodRepository.cs" />
     <Compile Include="Repositories\PlaylistRepository.cs" />
+    <Compile Include="Repositories\TrackFileRepository.cs" />
     <Compile Include="Repositories\TrackRepository.cs" />
+    <Compile Include="Repositories\TrackStatisticsRepository.cs" />
     <Compile Include="UnitOfWork\UnitOfWork.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -114,8 +121,11 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202010130022217_FirstMigration.resx">
-      <DependentUpon>202010130022217_FirstMigration.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202010151421425_AddFirstMigration.resx">
+      <DependentUpon>202010151421425_AddFirstMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202010170036049_AddSecondMigration.resx">
+      <DependentUpon>202010170036049_AddSecondMigration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

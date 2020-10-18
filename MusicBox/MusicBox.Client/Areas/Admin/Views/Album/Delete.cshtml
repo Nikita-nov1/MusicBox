@@ -1,0 +1,57 @@
+﻿@using MusicBox.Areas.Admin.Models.Albums
+@model DeleteAlbumsViewModel
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete  @Model.Title</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+
+
+        <div class="col-md-10">
+            <img src=@Url.Action("RenderImage", new { id = Model.Id }) alt='' height=150 width=150 />   @* todo добавить mergen (оступ от картинки)*@
+
+        </div>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateOfCreation)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateOfCreation)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Year)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Year)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Artist)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Artist.Title)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.HiddenFor(model => model.Id)
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-danger" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>
+

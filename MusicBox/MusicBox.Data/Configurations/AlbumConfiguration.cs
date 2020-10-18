@@ -12,8 +12,8 @@ namespace MusicBox.Data.Configurations
             HasKey(c => c.Id);
 
             Property(c => c.DateOfCreation).IsRequired();
-           
-            Property(c => c.Title).HasMaxLength(30);
+
+            Property(c => c.Title).HasMaxLength(30).IsRequired(); 
             HasIndex(c => c.Title).IsUnique(true);
             
             Property(c => c.Year).IsOptional();
@@ -21,13 +21,15 @@ namespace MusicBox.Data.Configurations
             HasRequired<Artist>(a => a.Artist)
                 .WithMany(a => a.Albums)
                 .Map(m => m.MapKey("ArtistId"))
-                .WillCascadeOnDelete(false);
+                .WillCascadeOnDelete(true);
 
             HasMany<Track>(c => c.Tracks)
                 .WithOptional(c => c.Album)
                 .Map(m => m.MapKey("AlbumId"))
                 .WillCascadeOnDelete(false);
-          
+
+
+
 
         }
     }

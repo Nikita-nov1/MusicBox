@@ -20,7 +20,12 @@ namespace MusicBox.Data.Configurations
             HasRequired<Artist>(c => c.Artist)
                 .WithMany(c => c.Tracks)
                 .Map(m => m.MapKey("ArtistId"))
-                .WillCascadeOnDelete(false);
+                .WillCascadeOnDelete(true);
+
+
+
+            
+
 
         }
     }

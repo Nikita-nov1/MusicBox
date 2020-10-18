@@ -14,8 +14,7 @@ namespace MusicBox.Data.Configurations
             Property(c => c.CountOfCalls).IsRequired();
 
             HasRequired<Track>(c => c.Track)
-                .WithRequiredPrincipal(c => c.TrackStatistics)
-                .Map(m => m.MapKey("TrackStatisticsId"))
+                .WithRequiredDependent(c => c.TrackStatistics)
                 .WillCascadeOnDelete(true);
 
         }

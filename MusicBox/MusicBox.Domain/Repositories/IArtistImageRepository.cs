@@ -4,6 +4,6 @@ namespace MusicBox.Domain.Repositories
 {
     public interface IArtistImageRepository : IBaseRepository<ArtistImage>
     {
-        ArtistImage GetFirstOrDefault(object id);
+        ArtistImage GetFirstOrDefault(int id);
     }
 }
