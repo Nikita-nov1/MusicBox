@@ -6,6 +6,7 @@ using MusicBox.Domain.Repositories;
 using MusicBox.Domain.UnitOfWork;
 using System.Collections.Generic;
 using System.IO;
+using System.Web.Hosting;
 
 namespace MusicBox.Domain.DomainServices
 {
@@ -13,6 +14,7 @@ namespace MusicBox.Domain.DomainServices
     {
         private readonly IArtistRepository artistRepository;
         private readonly IUnitOfWork unitOfWork;
+
         private readonly IGetPathServices getDefaultImage;
 
         public ArtistDomainService(IArtistRepository artistRepository, IUnitOfWork unitOfWork, IGetPathServices getDefaultImage)
@@ -48,6 +50,7 @@ namespace MusicBox.Domain.DomainServices
 
         }
 
+
         public List<Album> GetAlbumsForArtist(int artistId)
         {
           return artistRepository.GetAlbumsForArtist(artistId);
@@ -63,6 +66,7 @@ namespace MusicBox.Domain.DomainServices
             return atrist;
 
         }
+
 
 
         public List<Artist> GetAtrists()
@@ -109,10 +113,14 @@ namespace MusicBox.Domain.DomainServices
             }
         }
 
+        public bool IsUniqueNewTitle(string title)
+        {
+            return artistRepository.IsUniqueNewTitle(title);
+        }
 
-
-
-
-
+        public bool IsUniqueTitle(int id, string title)
+        {
+            return artistRepository.IsUniqueTitle(id, title);
+        }
     }
 }

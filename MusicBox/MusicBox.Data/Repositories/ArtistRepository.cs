@@ -1,5 +1,4 @@
-﻿using MusicBox.Domain.DomainServices;
-using MusicBox.Domain.Models.AdditionalModels;
+﻿using MusicBox.Domain.Models.AdditionalModels;
 using MusicBox.Domain.Models.Entities;
 using MusicBox.Domain.Repositories;
 using MusicBox.Domain.UnitOfWork;
@@ -14,8 +13,8 @@ namespace MusicBox.Data.Repositories
         public ArtistRepository(IUnitOfWork unitOfWork)
             : base(unitOfWork)
         {
-
         }
+
         public Artist GetArtistWithImage(int id)
         {
             var entityArtist = Get(id);
@@ -23,6 +22,7 @@ namespace MusicBox.Data.Repositories
 
             return entityArtist;
         }
+
 
         public Artist Get(string artistTitle)
         {
@@ -51,8 +51,24 @@ namespace MusicBox.Data.Repositories
             .Include(x => x.Albums)
             .Include(x => x.Albums.Select(y => y.Tracks))
             .Include(x => x.Albums.Select(y => y.Artist))
-            .FirstOrDefault(x=>x.Id == id);
-       
+            .FirstOrDefault(x => x.Id == id);
+
+        }
+
+        public bool IsUniqueNewTitle(string title)
+        {
+            return !GetQueryableItems().Any(x => x.Title.Equals(title));
+        }
+
+        public bool IsUniqueTitle(int id, string title)
+        {
+            var artist = Get(id);
+            if (artist.Title.Equals(title))
+            {
+                return true;
+            }
+
+            else return !GetQueryableItems().Any(x => x.Title.Equals(title));
         }
 
         public List<Album> GetAlbumsForArtist(int artistId)
