@@ -72,7 +72,8 @@ namespace MusicBox.App_Start
             //.ForMember(dest => dest.Mood, opt => opt.Ignore())
             //.ForMember(dest => dest.Genre, opt => opt.Ignore());
 
-
+            cfg.CreateMap<Album, GetAlbumsForArtistVm>();
+             
 
 
 

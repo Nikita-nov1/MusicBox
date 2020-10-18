@@ -1,5 +1,6 @@
 ﻿using MusicBox.Areas.Admin.Models.Tracks;
 using MusicBox.Areas.Admin.PresentationServices.Interfaces;
+using MusicBox.Domain.Models.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -103,5 +104,13 @@ namespace MusicBox.Areas.Admin.Controllers
         //    return RedirectToAction("Index");
 
         //}
+
+        [HttpGet]
+        public ActionResult GetAlbumsForArtist(string artist)
+        {
+            var albums = new List<Album> { new Album() {Id = 1, Title = "Nikita" } }; // presentationServices.GetAlbumsForArtist(id);
+
+            return Json(albums, JsonRequestBehavior.AllowGet);
+        }
     }
 }

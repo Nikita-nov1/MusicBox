@@ -66,7 +66,7 @@ namespace MusicBox.Areas.Admin.PresentationServices
 
         private SelectList GetAlbumsSelectList()
         {
-            return new SelectList(albumDomainService.GetAlbums(), nameof(Album.Id), nameof(Album.Title));
+            return new SelectList(new List<Album>(), nameof(Album.Id), nameof(Album.Title));
 
         }
         private SelectList GetGenresSelectList()

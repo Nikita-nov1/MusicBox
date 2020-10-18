@@ -79,7 +79,11 @@ namespace MusicBox.Areas.Admin.PresentationServices
             albumDomainService.AddAlbum(album);
         }
 
-       
+        public List<GetAlbumsForArtistVm> GetAlbumsForArtist(int artistId)
+        {
+            return Mapper.Map<List<GetAlbumsForArtistVm>>(albumDomainService.GetAlbumsForArtist(artistId));
+            
+        }
 
 
 

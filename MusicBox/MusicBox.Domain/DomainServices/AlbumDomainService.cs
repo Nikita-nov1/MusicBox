@@ -13,13 +13,15 @@ namespace MusicBox.Domain.DomainServices
     {
         private readonly IAlbumRepository albumRepository;
         private readonly IGetPathServices getDefaultImage;
+        private readonly IArtistDomainService artistDomainService;
         private readonly IUnitOfWork unitOfWork;
 
 
-        public AlbumDomainService(IAlbumRepository albumRepository,IGetPathServices getDefaultImage, IUnitOfWork unitOfWork)
+        public AlbumDomainService(IAlbumRepository albumRepository,IGetPathServices getDefaultImage, IUnitOfWork unitOfWork, IArtistDomainService artistDomainService)
         {
             this.albumRepository = albumRepository;
             this.getDefaultImage = getDefaultImage;
+            this.artistDomainService = artistDomainService;
             this.unitOfWork = unitOfWork;
         }
 
@@ -32,6 +34,12 @@ namespace MusicBox.Domain.DomainServices
         public Album GetAlbum(int id)
         {
             return albumRepository.Get(id);
+
+        }
+
+        public List<Album> GetAlbumsForArtist(int artistId)
+        {
+            return artistDomainService.GetAlbumsForArtist(artistId);
         }
 
         public Album GetAlbumWhitArtist(int id)

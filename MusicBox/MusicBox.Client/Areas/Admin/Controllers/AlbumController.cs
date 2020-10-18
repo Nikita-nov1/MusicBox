@@ -106,5 +106,21 @@ namespace MusicBox.Areas.Admin.Controllers
             return RedirectToAction("Index");
 
         }
+
+        [HttpGet]
+        public ActionResult GetAlbumsForArtist(int id)
+        {
+            var cities = presentationServices.GetAlbumsForArtist(id);
+
+            return Json(cities, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public ActionResult GetAlbumsForArtist(string artist)
+        {
+            var albums = new List<Album> { new Album() { Id = 1, Title = "Nikita" } }; // presentationServices.GetAlbumsForArtist(id);
+
+            return Json(albums, JsonRequestBehavior.AllowGet);
+        }
     }
 }

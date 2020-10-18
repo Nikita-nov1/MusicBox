@@ -10,6 +10,7 @@ namespace MusicBox.Domain.Repositories
         Artist GetArtistWithImage(int id);
         Artist GetAtristWithTracksAndAlbumsWithAllAttachments(int id);
         Artist Get(string artistTitle);
+        List<Album> GetAlbumsForArtist(int artistId);
 
     }
 }

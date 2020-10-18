@@ -55,5 +55,10 @@ namespace MusicBox.Data.Repositories
        
         }
 
+        public List<Album> GetAlbumsForArtist(int artistId)
+        {
+            return GetQueryableItems().FirstOrDefault(c => c.Id == artistId).Albums;
+        }
+
     }
 }

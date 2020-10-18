@@ -48,6 +48,11 @@ namespace MusicBox.Domain.DomainServices
 
         }
 
+        public List<Album> GetAlbumsForArtist(int artistId)
+        {
+          return artistRepository.GetAlbumsForArtist(artistId);
+        }
+
         public Artist GetArtistOrCreateNewIfHeNotExist(string artistTitle)
         {
             Artist atrist = artistRepository.Get(artistTitle); // проверка, есть ли такой артист , если нет, то возвращаем null  
@@ -88,6 +93,8 @@ namespace MusicBox.Domain.DomainServices
             unitOfWork.SaveChanges();
 
         }
+
+
 
         
         private void OpenFileAndConvertToBytes(Artist artist)
