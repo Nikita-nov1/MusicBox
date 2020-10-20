@@ -30,6 +30,16 @@ namespace MusicBox.Data.Repositories
             Entry(entityAlbum).Reference(c => c.Artist).Load();
 
             return entityAlbum;
+
+        }
+
+        public Album GetAlbumWhitTracks(int id)
+        {
+            var entityAlbum = Get(id);
+            Entry(entityAlbum).Collection(c => c.Tracks).Load();
+
+            return entityAlbum;
+
         }
 
         public Album GetAlbumWhitArtist(int id)

@@ -11,6 +11,7 @@ namespace MusicBox.Domain.DomainServices.Interfaces
         List<ArtistStatistics> GetArtistsStatistics();
         Artist GetArtistWithImage(int id);
         Artist GetArtist(int id);
+        Artist GetArtist(string artistTitle);
         void EditArtist();
         void DeleteArtist(int id);
         Artist GetAtristWithTracksAndAlbumsWithAllAttachments(int id);
@@ -18,7 +19,9 @@ namespace MusicBox.Domain.DomainServices.Interfaces
         bool IsUniqueTitle(int id, string title);
 
         Artist GetArtistOrCreateNewIfHeNotExist(string artist);
-        List<Album> GetAlbumsForArtist(int artistId);
+        List<Album> GetAlbumsForArtist(string artistTitle); 
+        bool isExistsArtist(string artistTitle);
+
 
     }
 }

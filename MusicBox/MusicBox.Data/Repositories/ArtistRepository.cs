@@ -24,9 +24,21 @@ namespace MusicBox.Data.Repositories
         }
 
 
-        public Artist Get(string artistTitle)
+        public Artist GetFirstOrDefault(string artistTitle)
         {
             return GetQueryableItems().FirstOrDefault(c => c.Title == artistTitle);
+        }
+        public Artist GetArtistWhitTracks(int artistId)
+        {
+            var entityArtist = Get(artistId);
+            Entry(entityArtist).Collection(c => c.Tracks).Load();
+
+            return entityArtist;
+        }
+
+        public Artist GetArtist(string artistTitle)
+        {
+            return GetQueryableItems().Single(c => c.Title.Equals(artistTitle));
         }
 
         public List<ArtistStatistics> GetArtistsStatistics()
@@ -71,9 +83,14 @@ namespace MusicBox.Data.Repositories
             else return !GetQueryableItems().Any(x => x.Title.Equals(title));
         }
 
-        public List<Album> GetAlbumsForArtist(int artistId)
+        public bool isExistsArtist(string artistTitle)
         {
-            return GetQueryableItems().FirstOrDefault(c => c.Id == artistId).Albums;
+            return GetQueryableItems().Any(c => c.Title.Equals(artistTitle));
+        }
+
+        public List<Album> GetAlbumsForArtist(string artistTitle)
+        {
+            return GetQueryableItems().Include(x => x.Albums).First(c => c.Title.Equals(artistTitle)).Albums;
         }
 
     }

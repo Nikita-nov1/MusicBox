@@ -5,6 +5,7 @@ using MusicBox.Domain.Repositories;
 using MusicBox.Domain.UnitOfWork;
 using NAudio.Wave;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Web;
 
@@ -33,17 +34,12 @@ namespace MusicBox.Domain.DomainServices
             trackRepository.Add(track);
             unitOfWork.SaveChanges();
 
-            //public string DurationSong { get; set; }  // // -заполнение в DS
         }
 
-        //if (album.AlbumImage.Image is null)
-        //{
-        //    OpenFileAndConvertToBytes(album);
-        //}
-        //album.DateOfCreation = DateTime.Now;
-        //albumRepository.Add(album);
-        //unitOfWork.SaveChanges();
-
+        public List<Track> GetTracksWithAllAttachmentsExceptPlaylistsAndTrackFile()
+        {
+            return trackRepository.GetTracksWithAllAttachmentsExceptPlaylistsAndTrackFile();
+        }
 
         private string GetDurationSongMp3(string pathTrack)
         {
@@ -59,15 +55,15 @@ namespace MusicBox.Domain.DomainServices
 
         }
 
-        private string SaveTrack(HttpPostedFileBase image)
+        private string SaveTrack(HttpPostedFileBase track)
         {
 
-            var contentType = Path.GetExtension(image.FileName);
+            var contentType = Path.GetExtension(track.FileName);
             var directoryToSave = getPathServices.GetPathForSaveTracks();
 
             var pathToSave = Path.Combine(directoryToSave, Guid.NewGuid().ToString() + contentType);
 
-            image.SaveAs(pathToSave);
+            track.SaveAs(pathToSave);
             return pathToSave;
 
         }

@@ -58,6 +58,7 @@ namespace MusicBox.Areas.Admin.PresentationServices
         public void DeleteAlbum(int id)
         {
             albumDomainService.DeleteAlbum(id);
+
         }
 
         public AlbumImage GetImage(int albumId)
@@ -79,9 +80,17 @@ namespace MusicBox.Areas.Admin.PresentationServices
             albumDomainService.AddAlbum(album);
         }
 
-        public List<GetAlbumsForArtistVm> GetAlbumsForArtist(int artistId)
+        public (List<GetAlbumsForArtistVm>, bool isExistsArtist) GetAlbumsForArtist(string artistTitle)
         {
-            return Mapper.Map<List<GetAlbumsForArtistVm>>(albumDomainService.GetAlbumsForArtist(artistId));
+            var b = artistDomainService.isExistsArtist(artistTitle);
+
+            if (!b)
+            {
+                return (null, false);
+            }
+
+            var a = albumDomainService.GetAlbumsForArtist(artistTitle);
+            return (Mapper.Map<List<GetAlbumsForArtistVm>>(a),true);
             
         }
 

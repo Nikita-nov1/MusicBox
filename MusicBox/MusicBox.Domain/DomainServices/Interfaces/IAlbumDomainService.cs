@@ -12,7 +12,6 @@ namespace MusicBox.Domain.DomainServices.Interfaces
         void EditAlbum();
         void DeleteAlbum(int id);
         Album GetAlbum(int id);
-        List<Album> GetAlbumsForArtist(int artistId);
-
+        List<Album> GetAlbumsForArtist(string artistTitle);
     }
 }

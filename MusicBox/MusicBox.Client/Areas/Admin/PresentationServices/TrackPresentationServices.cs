@@ -48,13 +48,15 @@ namespace MusicBox.Areas.Admin.PresentationServices
 
         public List<GetTracksViewModel> GetTracks()
         {
-            throw new Exception();
+            List<Track> tracks = trackDomainService.GetTracksWithAllAttachmentsExceptPlaylistsAndTrackFile();
+            return Mapper.Map<List<GetTracksViewModel>>(tracks);
+
         }
 
         public void AddTrack(CreateTracksViewModel tracksVm)
         {
             Track track = Mapper.Map<Track>(tracksVm);
-            track.Artist = artistDomainService.GetArtistOrCreateNewIfHeNotExist(tracksVm.Artist);   // сделать потом проверку в валидаторе - сущетвует ли такой Артист?
+            track.Artist = artistDomainService.GetArtist(tracksVm.Artist);   
             track.Genre = genreDomainService.GetGenre(tracksVm.GenreId);
             track.Mood = moodDomainService.GetMood(tracksVm.MoodId);
             track.Album = albumDomainService.GetAlbum(tracksVm.AlbumId);

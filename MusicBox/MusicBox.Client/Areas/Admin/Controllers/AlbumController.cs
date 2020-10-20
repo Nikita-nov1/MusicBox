@@ -107,20 +107,12 @@ namespace MusicBox.Areas.Admin.Controllers
 
         }
 
-        [HttpGet]
-        public ActionResult GetAlbumsForArtist(int id)
-        {
-            var cities = presentationServices.GetAlbumsForArtist(id);
-
-            return Json(cities, JsonRequestBehavior.AllowGet);
-        }
-
         [HttpPost]
         public ActionResult GetAlbumsForArtist(string artist)
         {
-            var albums = new List<Album> { new Album() { Id = 1, Title = "Nikita" } }; // presentationServices.GetAlbumsForArtist(id);
+            (List<GetAlbumsForArtistVm>, bool isExistsArtist) albums = presentationServices.GetAlbumsForArtist(artist);
 
-            return Json(albums, JsonRequestBehavior.AllowGet);
+            return Json(albums);//, JsonRequestBehavior.AllowGet); // return Json(albums);
         }
     }
 }

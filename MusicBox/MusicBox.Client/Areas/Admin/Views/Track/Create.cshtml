@@ -5,75 +5,78 @@
     ViewBag.Title = "Create track";
 }
 
-@*<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>*@
-
-
-
-@*<link href="~/Content/jquery-ui.css" rel="stylesheet" type="text/css" />*@
 <link href="~/Content/jquery-ui.css" rel="stylesheet"  type="text/css"/>
 <script src="~/Scripts/jquery-3.5.1.min.js"></script>
 
 <script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
 
-@*<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>*@
-
-@*<script type="text/javascript">
-        $(function () {
-            $('#Artist').css("background-color", "red");
-        });
-    </script>*@
-
-@*<script type="text/javascript">
-    $(function () {
-        //$('#Artist').css("background-color", "red");
-        $('#Artist').on('change', function () {
-            $('#Artist').css("background-color", "red");
-        });
-    });
-</script>*@
-
-
 
 <script type="text/javascript">
-        //$(function () {
-        //    $("#Artist").on("change", function () {
-        //        this.css();
-        //    }});
-
-        //$(function () {
-        //    $('#Artist').css("background-color", "red");
-        //});
 
         $(function () {
 
-            $("#Artist").on("change", function () {  //.blur()  - попробовать
-                let artist = $("#Artist").val();
+            $("#Artist").on("blur", function () { 
+                let artistTitle = $("#Artist").val();
      
-
-                if (artist == "") {
+                if (artistTitle == "") {
                     $("#AlbumId option:gt(0)").remove();
                     $('#AlbumId').prop('disabled', true);
+                    $("#Link").empty();
 
                 }
                 else {
                     $.ajax({
                         method: "POST",
                         url: "/Admin/Album/GetAlbumsForArtist",
-                        data: { id: artist }
+                        data: { artist: artistTitle }
                     })
                         .done(function (albums) {
-                            $("#AlbumId option:gt(0)").remove();
-                            for (var i = 0; i < albums.length; i++) {
-                                $('#AlbumId').append('<option value=' + albums[i].Id + '>' + albums[i].Title + '</option>');
+                            if (albums.Item2) {
+                                if (albums.Item1.length == 0) {
+
+                                    ShowLinkForCreationAlbum();
+                                }
+                                else {
+                                    AddDropdownListForAlbum(albums);
+                                }
                             }
-                            $('#AlbumId').prop('disabled', false);
+                            else {
+                                ShowLinkForCreationArtist();
+                            }
+                            
                         });
                 }
             });
 
            
         });
+
+    function AddDropdownListForAlbum(albums) {
+        $("#AlbumId option:gt(0)").remove();
+        for (var i = 0; i < albums.Item1.length; i++) {
+            $('#AlbumId').append('<option value=' + albums.Item1[i].Id + '>' + albums.Item1[i].Title + '</option>');
+        }
+        $('#AlbumId').prop('disabled', false);
+        $("#Link").empty();
+
+    };
+
+    function ShowLinkForCreationArtist() {
+        $("#Link").empty();
+        $("#Link").append('<p> <font color="red"> This artist does not exist. </font > </p>') 
+            .append('Create <a href="/Admin/Artist/Create">artist</a>');
+        $('#AlbumId').prop('disabled', true);
+       
+    };
+
+    function ShowLinkForCreationAlbum() {
+        $("#Link").empty();
+        $("#Link").append('<p> <font color="red"> This artist has no albums. </font > </p>')
+            .append('Create <a href="/Admin/Album/Create">album</a>');
+        $('#AlbumId').prop('disabled', true);
+
+        };
+
     </script>
 
 
@@ -95,9 +98,14 @@
 
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Artist, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Artist, "Artist", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Artist, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+
+        <div class="form-group" >
+            <div class="col-md-10" id="Link">
             </div>
         </div>
 
@@ -128,7 +136,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.UploadTrack, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.UploadTrack, "Track", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
 
                 <input id="Track" name="UploadTrack" type="file" accept="audio/*" required>

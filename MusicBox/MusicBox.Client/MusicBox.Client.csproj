@@ -167,6 +167,8 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\AdminValidators\Album\CreateAlbumVmValidator.cs" />
+    <Compile Include="Areas\Admin\AdminValidators\Album\EditAlbumVmValidator.cs" />
     <Compile Include="Areas\Admin\AdminValidators\Artist\CreateArtistsVmValidator.cs" />
     <Compile Include="Areas\Admin\AdminValidators\Artist\EditArtistsVmValidator.cs" />
     <Compile Include="Areas\Admin\Controllers\AlbumController.cs" />

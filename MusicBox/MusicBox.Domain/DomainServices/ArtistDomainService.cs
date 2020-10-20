@@ -37,7 +37,11 @@ namespace MusicBox.Domain.DomainServices
 
         }
 
-        
+        public Artist GetArtist(string artistTitle)
+        {
+            return artistRepository.GetArtist(artistTitle);
+        }
+
         public Artist GetArtistWithImage(int id)
         {
             return artistRepository.GetArtistWithImage(id);
@@ -50,15 +54,20 @@ namespace MusicBox.Domain.DomainServices
 
         }
 
-
-        public List<Album> GetAlbumsForArtist(int artistId)
+        public bool isExistsArtist(string artistTitle)
         {
-          return artistRepository.GetAlbumsForArtist(artistId);
+            return artistRepository.isExistsArtist(artistTitle);
+        }
+
+
+        public List<Album> GetAlbumsForArtist(string artistTitle)
+        {
+          return artistRepository.GetAlbumsForArtist(artistTitle);
         }
 
         public Artist GetArtistOrCreateNewIfHeNotExist(string artistTitle)
         {
-            Artist atrist = artistRepository.Get(artistTitle); // проверка, есть ли такой артист , если нет, то возвращаем null  
+            Artist atrist = artistRepository.GetFirstOrDefault(artistTitle); 
             if (atrist == null)
             {
                 atrist = AddArtist(new Artist { Title = artistTitle ,ArtistImage = new ArtistImage()});
@@ -82,6 +91,8 @@ namespace MusicBox.Domain.DomainServices
 
         public void DeleteArtist(int id)
         {
+            RemoveAlbumLinkForAllTracks(id);
+
             artistRepository.DeleteById(id);
             unitOfWork.SaveChanges();
         }
@@ -98,21 +109,6 @@ namespace MusicBox.Domain.DomainServices
 
         }
 
-
-
-        
-        private void OpenFileAndConvertToBytes(Artist artist)
-        {
-            using (FileStream fileStream = new FileStream(getDefaultImage.GetPathDefaultArtistImage(), FileMode.Open))    // потом можно сделать дженерик в базовый класс(как в репозитории)
-            {
-                using (var binaryReader = new BinaryReader(fileStream))
-                {
-                    artist.ArtistImage.ContentType = Path.GetExtension(fileStream.Name);
-                    artist.ArtistImage.Image = binaryReader.ReadBytes((int)fileStream.Length);
-                }
-            }
-        }
-
         public bool IsUniqueNewTitle(string title)
         {
             return artistRepository.IsUniqueNewTitle(title);
@@ -122,5 +118,31 @@ namespace MusicBox.Domain.DomainServices
         {
             return artistRepository.IsUniqueTitle(id, title);
         }
+
+
+        private void OpenFileAndConvertToBytes(Artist artist)
+        {
+            using (FileStream fileStream = new FileStream(getDefaultImage.GetPathDefaultArtistImage(), FileMode.Open))    
+            {
+                using (var binaryReader = new BinaryReader(fileStream))
+                {
+                    artist.ArtistImage.ContentType = Path.GetExtension(fileStream.Name);
+                    artist.ArtistImage.Image = binaryReader.ReadBytes((int)fileStream.Length);
+                }
+            }
+        }
+
+        private void RemoveAlbumLinkForAllTracks(int artistId)
+        {
+            Artist artist = artistRepository.GetArtistWhitTracks(artistId);
+
+            foreach (var track in artist.Tracks)
+            {
+                track.Album = null;
+            }
+            unitOfWork.SaveChanges();
+        }
+
+        
     }
 }

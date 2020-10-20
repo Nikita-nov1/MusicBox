@@ -68,12 +68,15 @@ namespace MusicBox.App_Start
                     dest.TrackStatistics = new TrackStatistics();
                 })
                 .ForMember(dest => dest.Artist, opt => opt.Ignore());
-            //.ForMember(dest => dest.Album, opt => opt.Ignore())
-            //.ForMember(dest => dest.Mood, opt => opt.Ignore())
-            //.ForMember(dest => dest.Genre, opt => opt.Ignore());
 
             cfg.CreateMap<Album, GetAlbumsForArtistVm>();
-             
+
+            cfg.CreateMap<Track, GetTracksViewModel>()
+                .ForMember(dest => dest.Mood, opt => opt.MapFrom(scr => scr.Mood.Title))
+                .ForMember(dest => dest.Genre, opt => opt.MapFrom(scr => scr.Genre.Title))
+                .ForMember(dest => dest.Album, opt => opt.MapFrom(scr => scr.Album.Title))
+                .ForMember(dest => dest.Artist, opt => opt.MapFrom(scr => scr.Artist.Title))
+                .ForMember(dest => dest.CountOfCalls, opt => opt.MapFrom(scr => scr.TrackStatistics.CountOfCalls));
 
 
 

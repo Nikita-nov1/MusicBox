@@ -8,5 +8,6 @@ namespace MusicBox.Domain.Repositories
        List<Album> GetAllWithArtistAndTracks();
        Album GetAlbumWhitArtist(int id);
        Album GetAlbumWithImageAndArtist(int id);
+       Album GetAlbumWhitTracks(int id);
     }
 }

@@ -111,12 +111,6 @@
     <Compile Include="UnitOfWork\UnitOfWork.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MusicBox.Domain\MusicBox.Domain.csproj">
-      <Project>{519DDB3B-B8B9-44B2-AB28-4FE7B1A2E592}</Project>
-      <Name>MusicBox.Domain</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
@@ -127,6 +121,12 @@
     <EmbeddedResource Include="Migrations\202010170036049_AddSecondMigration.resx">
       <DependentUpon>202010170036049_AddSecondMigration.cs</DependentUpon>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MusicBox.Domain\MusicBox.Domain.csproj">
+      <Project>{519ddb3b-b8b9-44b2-ab28-4fe7b1a2e592}</Project>
+      <Name>MusicBox.Domain</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

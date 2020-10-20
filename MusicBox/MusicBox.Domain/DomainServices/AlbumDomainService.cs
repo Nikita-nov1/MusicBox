@@ -37,9 +37,9 @@ namespace MusicBox.Domain.DomainServices
 
         }
 
-        public List<Album> GetAlbumsForArtist(int artistId)
+        public List<Album> GetAlbumsForArtist(string artistTitle)
         {
-            return artistDomainService.GetAlbumsForArtist(artistId);
+            return artistDomainService.GetAlbumsForArtist(artistTitle);
         }
 
         public Album GetAlbumWhitArtist(int id)
@@ -74,8 +74,22 @@ namespace MusicBox.Domain.DomainServices
 
         public void DeleteAlbum(int id)
         {
+            RemoveAlbumLinkForAllTracks(id);
+
             albumRepository.DeleteById(id);
             unitOfWork.SaveChanges();
+        }
+
+        private void RemoveAlbumLinkForAllTracks(int albumId)
+        {
+            Album album = albumRepository.GetAlbumWhitTracks(albumId);
+
+            foreach (var track in album.Tracks)
+            {
+                track.Album = null;
+            }
+            unitOfWork.SaveChanges();
+
         }
 
         private void OpenFileAndConvertToBytes(Album album)

@@ -12,7 +12,7 @@ namespace MusicBox.Areas.Admin.PresentationServices.Interfaces
     {
         void AddAlbum(CreateAlbumsViewModel albumsVm);
         List<GetAlbumsViewModel> GetAlbums();
-        List<GetAlbumsForArtistVm> GetAlbumsForArtist(int Artistid);
+        (List<GetAlbumsForArtistVm>, bool isExistsArtist) GetAlbumsForArtist(string artistTitle); 
         AlbumImage GetImage(int albumId);
         EditAlbumsViewModel GetEditAlbumVm(int id);
         void EditAlbum(EditAlbumsViewModel albumsVm);
