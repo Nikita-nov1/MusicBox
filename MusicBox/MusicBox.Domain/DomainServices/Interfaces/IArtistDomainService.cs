@@ -14,14 +14,12 @@ namespace MusicBox.Domain.DomainServices.Interfaces
         Artist GetArtist(string artistTitle);
         void EditArtist();
         void DeleteArtist(int id);
-        Artist GetAtristWithTracksAndAlbumsWithAllAttachments(int id);
+        Artist GetAtristWithTracksAndAlbumsWithAllAttachments(int id); //to do исправить Atrist на Artist
         bool IsUniqueNewTitle(string title);
         bool IsUniqueTitle(int id, string title);
-
         Artist GetArtistOrCreateNewIfHeNotExist(string artist);
         List<Album> GetAlbumsForArtist(string artistTitle); 
-        bool isExistsArtist(string artistTitle);
-
-
+        bool IsExistsArtist(string artistTitle);
+        bool IsUniqueNewTitleArtistAlbum(string artistTitle, string albumTitle);
     }
 }

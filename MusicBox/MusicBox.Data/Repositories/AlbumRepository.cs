@@ -20,7 +20,6 @@ namespace MusicBox.Data.Repositories
                 .Include(c => c.Artist)
                 .Include(c => c.Tracks)
                 .ToList();
-            
         }
 
         public Album GetAlbumWithImageAndArtist(int id)
@@ -28,31 +27,37 @@ namespace MusicBox.Data.Repositories
             var entityAlbum = Get(id);
             Entry(entityAlbum).Reference(c => c.AlbumImage).Load();
             Entry(entityAlbum).Reference(c => c.Artist).Load();
-
             return entityAlbum;
-
         }
 
         public Album GetAlbumWhitTracks(int id)
         {
             var entityAlbum = Get(id);
             Entry(entityAlbum).Collection(c => c.Tracks).Load();
-
             return entityAlbum;
-
         }
 
         public Album GetAlbumWhitArtist(int id)
         {
             var entityAlbum = Get(id);
             Entry(entityAlbum).Reference(c => c.Artist).Load();
-
             return entityAlbum;
-
         }
 
-      
+        public bool IsUniqueNewTitle(string title)
+        {
+            return !GetQueryableItems().Any(x => x.Title.Equals(title));
+        }
 
+        public bool IsUniqueTitle(int id, string title)
+        {
+            var album = Get(id);
+            if (album.Title.Equals(title))
+            {
+                return true;
+            }
+
+            else return !GetQueryableItems().Any(x => x.Title.Equals(title));
+        }
     }
 }
-

@@ -1,7 +1,6 @@
 ﻿using FluentValidation;
 using MusicBox.Areas.Admin.Models.Artists;
 using MusicBox.Domain.DomainServices.Interfaces;
-using System;
 
 namespace MusicBox.Areas.Admin.AdminValidators.Artist
 {
@@ -14,9 +13,9 @@ namespace MusicBox.Areas.Admin.AdminValidators.Artist
             this.artistDomainService = artistDomainService;
 
             RuleFor(x => x.Title)
-                         .NotEmpty().WithMessage("Please specify a first name.")
-                         .MaximumLength(20).WithMessage("Title can have a maximum of 20 characters.")
-                         .Must(IsUniqueTitle).WithMessage("Title name already exists. Please modify Title name.");
+            .NotEmpty().WithMessage("Please specify a first name.")
+            .MaximumLength(20).WithMessage("Title can have a maximum of 20 characters.")
+            .Must(IsUniqueTitle).WithMessage("Title name already exists. Please modify Title name.");
 
             RuleFor(x => x.Image)
             .Must(x => x.ContentLength <= 10000)
@@ -34,6 +33,6 @@ namespace MusicBox.Areas.Admin.AdminValidators.Artist
         {
             return artistDomainService.IsUniqueTitle(editArtistViewModel.Id, title);
         }
-    
+
     }
 }

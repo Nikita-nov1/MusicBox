@@ -13,7 +13,7 @@ namespace MusicBox.App_Start.Core
             this.dependencyResolver = dependencyResolver;
         }
 
-        public override IValidator CreateInstance(Type validatorType) //todo
+        public override IValidator CreateInstance(Type validatorType)
         {
             return dependencyResolver.GetService(validatorType) as IValidator;
         }

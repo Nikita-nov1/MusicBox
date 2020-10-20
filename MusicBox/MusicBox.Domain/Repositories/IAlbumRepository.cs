@@ -9,5 +9,7 @@ namespace MusicBox.Domain.Repositories
        Album GetAlbumWhitArtist(int id);
        Album GetAlbumWithImageAndArtist(int id);
        Album GetAlbumWhitTracks(int id);
+       bool IsUniqueNewTitle(string title);
+       bool IsUniqueTitle(int id, string title);
     }
 }

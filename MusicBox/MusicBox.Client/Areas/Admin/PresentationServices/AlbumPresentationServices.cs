@@ -82,7 +82,7 @@ namespace MusicBox.Areas.Admin.PresentationServices
 
         public (List<GetAlbumsForArtistVm>, bool isExistsArtist) GetAlbumsForArtist(string artistTitle)
         {
-            var b = artistDomainService.isExistsArtist(artistTitle);
+            var b = artistDomainService.IsExistsArtist(artistTitle);
 
             if (!b)
             {

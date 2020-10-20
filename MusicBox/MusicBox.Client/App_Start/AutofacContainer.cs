@@ -54,7 +54,6 @@ namespace MusicBox.App_Start
 
             builder.RegisterFilterProvider();
 
-            //Register the API Validators(the custome validators used for FluentValidation)
             AssemblyScanner.FindValidatorsInAssemblyContaining<CreateArtistsVmValidator>()
                                   .ForEach(result =>
                                   {

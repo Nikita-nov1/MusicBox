@@ -6,7 +6,6 @@ using MusicBox.Domain.Repositories;
 using MusicBox.Domain.UnitOfWork;
 using System.Collections.Generic;
 using System.IO;
-using System.Web.Hosting;
 
 namespace MusicBox.Domain.DomainServices
 {
@@ -14,7 +13,6 @@ namespace MusicBox.Domain.DomainServices
     {
         private readonly IArtistRepository artistRepository;
         private readonly IUnitOfWork unitOfWork;
-
         private readonly IGetPathServices getDefaultImage;
 
         public ArtistDomainService(IArtistRepository artistRepository, IUnitOfWork unitOfWork, IGetPathServices getDefaultImage)
@@ -22,19 +20,17 @@ namespace MusicBox.Domain.DomainServices
             this.artistRepository = artistRepository;
             this.unitOfWork = unitOfWork;
             this.getDefaultImage = getDefaultImage;
-
         }
 
         public Artist AddArtist(Artist artist)
         {
-            if (artist.ArtistImage.Image is null)  
+            if (artist.ArtistImage.Image is null)
             {
                 OpenFileAndConvertToBytes(artist);
             }
             var result = artistRepository.AddWithEntityReturn(artist);
             unitOfWork.SaveChanges();
             return result;
-
         }
 
         public Artist GetArtist(string artistTitle)
@@ -45,46 +41,34 @@ namespace MusicBox.Domain.DomainServices
         public Artist GetArtistWithImage(int id)
         {
             return artistRepository.GetArtistWithImage(id);
-
         }
 
         public Artist GetArtist(int id)
         {
             return artistRepository.Get(id);
-
         }
-
-        public bool isExistsArtist(string artistTitle)
-        {
-            return artistRepository.isExistsArtist(artistTitle);
-        }
-
 
         public List<Album> GetAlbumsForArtist(string artistTitle)
         {
-          return artistRepository.GetAlbumsForArtist(artistTitle);
+            return artistRepository.GetAlbumsForArtist(artistTitle);
         }
 
         public Artist GetArtistOrCreateNewIfHeNotExist(string artistTitle)
         {
-            Artist atrist = artistRepository.GetFirstOrDefault(artistTitle); 
+            Artist atrist = artistRepository.GetFirstOrDefault(artistTitle);
             if (atrist == null)
             {
-                atrist = AddArtist(new Artist { Title = artistTitle ,ArtistImage = new ArtistImage()});
+                atrist = AddArtist(new Artist { Title = artistTitle, ArtistImage = new ArtistImage() });
             }
             return atrist;
-
         }
 
-
-
-        public List<Artist> GetAtrists()
+        public List<Artist> GetAtrists() //todo исправить
         {
             return artistRepository.GetAll();
-
         }
 
-        public Artist GetAtristWithTracksAndAlbumsWithAllAttachments(int id)
+        public Artist GetAtristWithTracksAndAlbumsWithAllAttachments(int id) //todo исправить
         {
             return artistRepository.GetAtristWithTracksAndAlbumsWithAllAttachments(id);
         }
@@ -100,13 +84,11 @@ namespace MusicBox.Domain.DomainServices
         public List<ArtistStatistics> GetArtistsStatistics()
         {
             return artistRepository.GetArtistsStatistics();
-
         }
 
         public void EditArtist()
         {
             unitOfWork.SaveChanges();
-
         }
 
         public bool IsUniqueNewTitle(string title)
@@ -119,10 +101,9 @@ namespace MusicBox.Domain.DomainServices
             return artistRepository.IsUniqueTitle(id, title);
         }
 
-
         private void OpenFileAndConvertToBytes(Artist artist)
         {
-            using (FileStream fileStream = new FileStream(getDefaultImage.GetPathDefaultArtistImage(), FileMode.Open))    
+            using (FileStream fileStream = new FileStream(getDefaultImage.GetPathDefaultArtistImage(), FileMode.Open))
             {
                 using (var binaryReader = new BinaryReader(fileStream))
                 {
@@ -143,6 +124,14 @@ namespace MusicBox.Domain.DomainServices
             unitOfWork.SaveChanges();
         }
 
-        
+        public bool IsExistsArtist(string artistTitle)
+        {
+            return artistRepository.IsExistsArtist(artistTitle);
+        }
+
+        public bool IsUniqueNewTitleArtistAlbum(string artistTitle, string albumTitle)
+        {
+            return artistRepository.IsUniqueNewTitleArtistAlbum(artistTitle, albumTitle);
+        }
     }
 }

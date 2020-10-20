@@ -19,20 +19,18 @@ namespace MusicBox.Data.Repositories
         {
             var entityArtist = Get(id);
             Entry(entityArtist).Reference(c => c.ArtistImage).Load();
-
             return entityArtist;
         }
-
 
         public Artist GetFirstOrDefault(string artistTitle)
         {
             return GetQueryableItems().FirstOrDefault(c => c.Title == artistTitle);
         }
+
         public Artist GetArtistWhitTracks(int artistId)
         {
             var entityArtist = Get(artistId);
             Entry(entityArtist).Collection(c => c.Tracks).Load();
-
             return entityArtist;
         }
 
@@ -48,14 +46,12 @@ namespace MusicBox.Data.Repositories
                 Artist = c,
                 NumberOfAlbums = c.Albums.Count(),
                 NumberOfTracks = c.Tracks.Count()
-
             }).ToList();
         }
 
         public Artist GetAtristWithTracksAndAlbumsWithAllAttachments(int id) // todo
         {
-           // var artist = Get(id);
-
+            // var artist = Get(id);
             return GetQueryableItems()
             .Include(x => x.Tracks)
             .Include(x => x.Tracks.Select(y => y.Genre))
@@ -64,7 +60,6 @@ namespace MusicBox.Data.Repositories
             .Include(x => x.Albums.Select(y => y.Tracks))
             .Include(x => x.Albums.Select(y => y.Artist))
             .FirstOrDefault(x => x.Id == id);
-
         }
 
         public bool IsUniqueNewTitle(string title)
@@ -83,15 +78,25 @@ namespace MusicBox.Data.Repositories
             else return !GetQueryableItems().Any(x => x.Title.Equals(title));
         }
 
-        public bool isExistsArtist(string artistTitle)
-        {
-            return GetQueryableItems().Any(c => c.Title.Equals(artistTitle));
-        }
-
         public List<Album> GetAlbumsForArtist(string artistTitle)
         {
             return GetQueryableItems().Include(x => x.Albums).First(c => c.Title.Equals(artistTitle)).Albums;
         }
 
+        public bool IsExistsArtist(string artistTitle)
+        {
+            return GetQueryableItems().Any(x => x.Title.Equals(artistTitle));
+        }
+
+        public bool IsUniqueNewTitleArtistAlbum(string artistTitle, string albumTitle)
+        {
+            var albumsForArtist = GetAlbumsForArtist(artistTitle);
+            if (!albumsForArtist.Equals(null))
+            {
+                return !albumsForArtist.Any(x => x.Title.Equals(albumTitle));
+            }
+
+            else return true;
+        }
     }
 }

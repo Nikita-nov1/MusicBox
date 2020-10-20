@@ -16,8 +16,7 @@ namespace MusicBox.Domain.DomainServices
         private readonly IArtistDomainService artistDomainService;
         private readonly IUnitOfWork unitOfWork;
 
-
-        public AlbumDomainService(IAlbumRepository albumRepository,IGetPathServices getDefaultImage, IUnitOfWork unitOfWork, IArtistDomainService artistDomainService)
+        public AlbumDomainService(IAlbumRepository albumRepository, IGetPathServices getDefaultImage, IUnitOfWork unitOfWork, IArtistDomainService artistDomainService)
         {
             this.albumRepository = albumRepository;
             this.getDefaultImage = getDefaultImage;
@@ -28,13 +27,11 @@ namespace MusicBox.Domain.DomainServices
         public List<Album> GetAlbums()
         {
             return albumRepository.GetAllWithArtistAndTracks();
-
         }
 
         public Album GetAlbum(int id)
         {
             return albumRepository.Get(id);
-
         }
 
         public List<Album> GetAlbumsForArtist(string artistTitle)
@@ -45,13 +42,11 @@ namespace MusicBox.Domain.DomainServices
         public Album GetAlbumWhitArtist(int id)
         {
             return albumRepository.GetAlbumWhitArtist(id);
-
         }
 
         public Album GetAlbumWithImageAndArtist(int id)
         {
             return albumRepository.GetAlbumWithImageAndArtist(id);
-
         }
 
         public void AddAlbum(Album album)
@@ -63,19 +58,16 @@ namespace MusicBox.Domain.DomainServices
             album.DateOfCreation = DateTime.Now;
             albumRepository.Add(album);
             unitOfWork.SaveChanges();
-
         }
 
         public void EditAlbum()
         {
             unitOfWork.SaveChanges();
-
         }
 
         public void DeleteAlbum(int id)
         {
             RemoveAlbumLinkForAllTracks(id);
-
             albumRepository.DeleteById(id);
             unitOfWork.SaveChanges();
         }
@@ -89,12 +81,11 @@ namespace MusicBox.Domain.DomainServices
                 track.Album = null;
             }
             unitOfWork.SaveChanges();
-
         }
 
         private void OpenFileAndConvertToBytes(Album album)
         {
-            using (FileStream fileStream = new FileStream(getDefaultImage.GetPathDefaultAlbumImage(), FileMode.Open))    
+            using (FileStream fileStream = new FileStream(getDefaultImage.GetPathDefaultAlbumImage(), FileMode.Open))
             {
                 using (var binaryReader = new BinaryReader(fileStream))
                 {
@@ -102,6 +93,16 @@ namespace MusicBox.Domain.DomainServices
                     album.AlbumImage.Image = binaryReader.ReadBytes((int)fileStream.Length);
                 }
             }
+        }
+
+        public bool IsUniqueNewTitle(string title)
+        {
+            return albumRepository.IsUniqueNewTitle(title);
+        }
+
+        public bool IsUniqueTitle(int id, string title)
+        {
+            return albumRepository.IsUniqueTitle(id, title);
         }
     }
 }
