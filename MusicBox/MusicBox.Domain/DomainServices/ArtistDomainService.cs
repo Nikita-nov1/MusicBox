@@ -63,14 +63,14 @@ namespace MusicBox.Domain.DomainServices
             return atrist;
         }
 
-        public List<Artist> GetAtrists() //todo исправить Atrist
+        public List<Artist> GetArtists() 
         {
             return artistRepository.GetAll();
         }
 
-        public Artist GetAtristWithTracksAndAlbumsWithAllAttachments(int id) //todo исправить Atrist
+        public Artist GetArtistWithTracksAndAlbumsWithAllAttachments(int id) 
         {
-            return artistRepository.GetAtristWithTracksAndAlbumsWithAllAttachments(id);
+            return artistRepository.GetArtistWithTracksAndAlbumsWithAllAttachments(id);
         }
 
         public void DeleteArtist(int id)

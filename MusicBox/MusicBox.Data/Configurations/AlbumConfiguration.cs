@@ -14,7 +14,7 @@ namespace MusicBox.Data.Configurations
             Property(c => c.DateOfCreation).IsRequired();
 
             Property(c => c.Title).HasMaxLength(30).IsRequired(); 
-            HasIndex(c => c.Title).IsUnique(true);
+            HasIndex(c => c.Title).IsUnique(false);
             
             Property(c => c.Year).IsOptional();
 

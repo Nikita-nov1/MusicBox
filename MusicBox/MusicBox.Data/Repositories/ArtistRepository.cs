@@ -49,9 +49,8 @@ namespace MusicBox.Data.Repositories
             }).ToList();
         }
 
-        public Artist GetAtristWithTracksAndAlbumsWithAllAttachments(int id) // todo исправить Atrist
+        public Artist GetArtistWithTracksAndAlbumsWithAllAttachments(int id) 
         {
-            // var artist = Get(id);
             return GetQueryableItems()
             .Include(x => x.Tracks)
             .Include(x => x.Tracks.Select(y => y.Genre))
