@@ -95,14 +95,9 @@ namespace MusicBox.Domain.DomainServices
             }
         }
 
-        public bool IsUniqueNewTitle(string title)
+        public bool IsIdExists(int id)
         {
-            return albumRepository.IsUniqueNewTitle(title);
-        }
-
-        public bool IsUniqueTitle(int id, string title)
-        {
-            return albumRepository.IsUniqueTitle(id, title);
+            return albumRepository.IsIdExists(id);
         }
     }
 }

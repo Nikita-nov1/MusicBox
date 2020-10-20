@@ -13,7 +13,6 @@ namespace MusicBox.Domain.DomainServices.Interfaces
         void DeleteAlbum(int id);
         Album GetAlbum(int id);
         List<Album> GetAlbumsForArtist(string artistTitle);
-        bool IsUniqueNewTitle(string title);
-        bool IsUniqueTitle(int id, string title);
+        bool IsIdExists(int id);
     }
 }

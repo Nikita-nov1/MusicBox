@@ -44,20 +44,9 @@ namespace MusicBox.Data.Repositories
             return entityAlbum;
         }
 
-        public bool IsUniqueNewTitle(string title)
+        public bool IsIdExists(int id)
         {
-            return !GetQueryableItems().Any(x => x.Title.Equals(title));
-        }
-
-        public bool IsUniqueTitle(int id, string title)
-        {
-            var album = Get(id);
-            if (album.Title.Equals(title))
-            {
-                return true;
-            }
-
-            else return !GetQueryableItems().Any(x => x.Title.Equals(title));
+            return GetQueryableItems().Any(x => x.Id == id);
         }
     }
 }

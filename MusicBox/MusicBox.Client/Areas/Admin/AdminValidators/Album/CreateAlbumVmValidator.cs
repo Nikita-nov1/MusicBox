@@ -7,12 +7,10 @@ namespace MusicBox.Areas.Admin.AdminValidators.Album
 {
     public class CreateAlbumVmValidator : AbstractValidator<CreateAlbumsViewModel>
     {
-        private readonly IAlbumDomainService albumDomainService;
         private readonly IArtistDomainService artistDomainService;
 
-        public CreateAlbumVmValidator(IAlbumDomainService albumDomainService, IArtistDomainService artistDomainService)
+        public CreateAlbumVmValidator(IArtistDomainService artistDomainService)
         {
-            this.albumDomainService = albumDomainService;
             this.artistDomainService = artistDomainService;
 
             RuleFor(x => x.Title)

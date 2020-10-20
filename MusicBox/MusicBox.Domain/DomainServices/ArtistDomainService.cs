@@ -63,12 +63,12 @@ namespace MusicBox.Domain.DomainServices
             return atrist;
         }
 
-        public List<Artist> GetAtrists() //todo исправить
+        public List<Artist> GetAtrists() //todo исправить Atrist
         {
             return artistRepository.GetAll();
         }
 
-        public Artist GetAtristWithTracksAndAlbumsWithAllAttachments(int id) //todo исправить
+        public Artist GetAtristWithTracksAndAlbumsWithAllAttachments(int id) //todo исправить Atrist
         {
             return artistRepository.GetAtristWithTracksAndAlbumsWithAllAttachments(id);
         }

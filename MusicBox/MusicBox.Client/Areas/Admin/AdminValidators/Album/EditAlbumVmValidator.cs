@@ -15,10 +15,13 @@ namespace MusicBox.Areas.Admin.AdminValidators.Album
             this.albumDomainService = albumDomainService;
             this.artistDomainService = artistDomainService;
 
+            RuleFor(x => x.Id)
+            .Must(IsIdExists).WithMessage("This Id doesn't exists.");
+
             RuleFor(x => x.Title)
             .NotEmpty().WithMessage("Please specify a title name.")
             .MaximumLength(30).WithMessage("Title can have a maximum of 30 characters.")
-            .Must(IsUniqueTitle).WithMessage("Title name already exists. Please modify Title name.");
+            .Must(IsUniqueNewTitleArtistAlbum).WithMessage("Title name already exists. Please modify Title name.");
 
             RuleFor(x => x.Year)
             .Must(x => x >= 1900 & x <= DateTime.Now.Year)
@@ -34,14 +37,24 @@ namespace MusicBox.Areas.Admin.AdminValidators.Album
             .Must(x => x.ContentType.Equals("image/jpeg") || x.ContentType.Equals("image/jpg") || x.ContentType.Equals("image/png"))
             .When(x => x.Image != null)
             .WithMessage("File type is not allowed");
+
+            RuleFor(x => x.Artist)
+            .Must(IsExistsArtist).WithMessage("This artist doesn't exists.");
         }
 
-        private bool IsUniqueTitle(EditAlbumsViewModel editAlbumViewModel, string title)
+        private bool IsIdExists(int id)
         {
-            return albumDomainService.IsUniqueTitle(editAlbumViewModel.Id, title);
+            return albumDomainService.IsIdExists(id);
         }
 
-        //Id - Должен существовать в бд
-        //Artist  - Должен существовать в бд,
+        private bool IsUniqueNewTitleArtistAlbum(EditAlbumsViewModel editAlbumsViewModel, string title)
+        {
+            return artistDomainService.IsUniqueNewTitleArtistAlbum(editAlbumsViewModel.Artist, title);
+        }
+
+        private bool IsExistsArtist(string artistTitle)
+        {
+            return artistDomainService.IsExistsArtist(artistTitle);
+        }
     }
 }
