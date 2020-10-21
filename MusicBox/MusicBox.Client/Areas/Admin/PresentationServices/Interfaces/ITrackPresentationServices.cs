@@ -1,9 +1,5 @@
 ﻿using MusicBox.Areas.Admin.Models.Tracks;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MusicBox.Areas.Admin.PresentationServices.Interfaces
 {
@@ -11,7 +7,10 @@ namespace MusicBox.Areas.Admin.PresentationServices.Interfaces
     {
         CreateTracksViewModel GetCreateTrackVm();
         List<GetTracksViewModel> GetTracks();
-
         void AddTrack(CreateTracksViewModel tracksVm);
+        EditTracksViewModel GetEditTrackVm(int id);
+        void EditTrack(EditTracksViewModel trackVm);
+        DeleteTracksViewModel GetDeleteTrackVm(int id);
+        void DeleteTrack(int id);
     }
 }

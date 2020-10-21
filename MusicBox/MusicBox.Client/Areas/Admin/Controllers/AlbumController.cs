@@ -1,11 +1,8 @@
 ﻿using MusicBox.Areas.Admin.Models.Albums;
 using MusicBox.Areas.Admin.PresentationServices.Interfaces;
 using MusicBox.Domain.Models.Entities;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
 
 namespace MusicBox.Areas.Admin.Controllers
@@ -39,18 +36,17 @@ namespace MusicBox.Areas.Admin.Controllers
             }
         }
 
+        public ActionResult Details(int id)
+        {
+            return View(presentationServices.GetDetailsAlbumVm(id));
 
-
-        //// GET: Admin/Artist/Details/5
-        //public ActionResult Details(int id)
-        //{
-        //    return View(presentationServices.GetDetailsArtistsViewModel(id));
-        //}
+        }
 
         [HttpGet]
         public ActionResult Create()
         {
             return View();
+
         }
 
         [HttpPost]
@@ -91,7 +87,7 @@ namespace MusicBox.Areas.Admin.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            return View(presentationServices.GetDeleteAlbumtVm((int)id)); 
+            return View(presentationServices.GetDeleteAlbumVm((int)id));
         }
 
         [HttpPost, ActionName("Delete")]

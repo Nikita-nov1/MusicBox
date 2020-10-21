@@ -36,9 +36,37 @@ namespace MusicBox.Domain.DomainServices
 
         }
 
+        public void EditTrack(Track track ,HttpPostedFileBase uploadTrack)
+        {
+            if (uploadTrack != null)
+            {
+                track.TrackFile.TrackLocation = SaveTrack(uploadTrack);   
+                track.DurationSong = GetDurationSongMp3(track.TrackFile.TrackLocation);
+            }
+            unitOfWork.SaveChanges();
+
+        }
+
+        public void DeleteTrack(int id)
+        {
+            trackRepository.DeleteById(id);
+            unitOfWork.SaveChanges();
+
+        }
+
         public List<Track> GetTracksWithAllAttachmentsExceptPlaylistsAndTrackFile()
         {
             return trackRepository.GetTracksWithAllAttachmentsExceptPlaylistsAndTrackFile();
+        }
+
+        public Track GetTrackWithAllAttachmentsExceptPlaylistsAndTrackFileAndTrackStatistics(int trackId)
+        {
+            return trackRepository.GetTrackWithAllAttachmentsExceptPlaylistsAndTrackFileAndTrackStatistics(trackId);
+        }
+
+        public Track GetTrackWithAllAttachmentsExceptPlaylistsAndTrackStatistics(int trackId)
+        {
+            return trackRepository.GetTrackWithAllAttachmentsExceptPlaylistsAndTrackStatistics(trackId);
         }
 
         private string GetDurationSongMp3(string pathTrack)
@@ -54,6 +82,7 @@ namespace MusicBox.Domain.DomainServices
             return result;
 
         }
+
 
         private string SaveTrack(HttpPostedFileBase track)
         {

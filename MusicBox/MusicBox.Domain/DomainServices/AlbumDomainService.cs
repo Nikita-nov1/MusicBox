@@ -32,11 +32,25 @@ namespace MusicBox.Domain.DomainServices
         public Album GetAlbum(int id)
         {
             return albumRepository.Get(id);
+
         }
 
         public List<Album> GetAlbumsForArtist(string artistTitle)
         {
             return artistDomainService.GetAlbumsForArtist(artistTitle);
+
+        }
+
+        public List<Album> GetAlbumsForArtist(int artistId)
+        {
+            return artistDomainService.GetAlbumsForArtist(artistId);
+
+        }
+
+        public Album GetAlbumAndHisTracksWithAllAttachments(int id)
+        {
+            return albumRepository.GetAlbumAndHisTracksWithAllAttachments(id);
+
         }
 
         public Album GetAlbumWhitArtist(int id)
@@ -47,6 +61,7 @@ namespace MusicBox.Domain.DomainServices
         public Album GetAlbumWithImageAndArtist(int id)
         {
             return albumRepository.GetAlbumWithImageAndArtist(id);
+
         }
 
         public void AddAlbum(Album album)
@@ -58,6 +73,7 @@ namespace MusicBox.Domain.DomainServices
             album.DateOfCreation = DateTime.Now;
             albumRepository.Add(album);
             unitOfWork.SaveChanges();
+
         }
 
         public void EditAlbum()

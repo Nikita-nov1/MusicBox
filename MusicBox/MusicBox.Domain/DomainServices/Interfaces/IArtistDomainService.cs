@@ -18,7 +18,8 @@ namespace MusicBox.Domain.DomainServices.Interfaces
         bool IsUniqueNewTitle(string title);
         bool IsUniqueTitle(int id, string title);
         Artist GetArtistOrCreateNewIfHeNotExist(string artist);
-        List<Album> GetAlbumsForArtist(string artistTitle); 
+        List<Album> GetAlbumsForArtist(string artistTitle);
+        List<Album> GetAlbumsForArtist(int artistId);
         bool IsExistsArtist(string artistTitle);
         bool IsUniqueNewTitleArtistAlbum(string artistTitle, string albumTitle);
     }

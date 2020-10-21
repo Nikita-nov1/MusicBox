@@ -53,6 +53,11 @@ namespace MusicBox.Domain.DomainServices
             return artistRepository.GetAlbumsForArtist(artistTitle);
         }
 
+        public List<Album> GetAlbumsForArtist(int artistId)
+        {
+            return artistRepository.GetAlbumsForArtist(artistId);
+        }
+
         public Artist GetArtistOrCreateNewIfHeNotExist(string artistTitle)
         {
             Artist atrist = artistRepository.GetFirstOrDefault(artistTitle);

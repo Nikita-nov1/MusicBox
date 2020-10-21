@@ -1,10 +1,6 @@
 ﻿using MusicBox.Areas.Admin.Models.Tracks;
 using MusicBox.Areas.Admin.PresentationServices.Interfaces;
-using MusicBox.Domain.Models.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+using System.Net;
 using System.Web.Mvc;
 
 namespace MusicBox.Areas.Admin.Controllers
@@ -23,21 +19,6 @@ namespace MusicBox.Areas.Admin.Controllers
         {
             return View(presentationServices.GetTracks());
         }
-
-        //public ActionResult RenderImage(int id)  // todo доделать async
-        //{
-        //    AlbumImage albumImage = presentationServices.GetImage(id);
-        //    if (albumImage.Image != null && !string.IsNullOrEmpty(albumImage.ContentType))
-        //    {
-        //        return File(albumImage.Image, albumImage.ContentType);
-        //    }
-        //    else
-        //    {
-        //        return null;
-        //    }
-        //}
-
-
 
         ////// GET: Admin/Artist/Details/5
         ////public ActionResult Details(int id)
@@ -63,47 +44,47 @@ namespace MusicBox.Areas.Admin.Controllers
             return View();
         }
 
-        //[HttpGet]
-        //public ActionResult Edit(int id)
-        //{
-        //    return View(presentationServices.GetEditAlbumVm(id));
-        //}
+        [HttpGet]
+        public ActionResult Edit(int id)
+        {
+            return View(presentationServices.GetEditTrackVm(id));
+        }
 
-        //[HttpPost]
-        //public ActionResult Edit(EditAlbumsViewModel albumsVm)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        presentationServices.EditAlbum(albumsVm);
-        //        return RedirectToAction("Index");
-        //    }
+        [HttpPost]
+        public ActionResult Edit(EditTracksViewModel trackVm)
+        {
+            if (ModelState.IsValid)
+            {
+                presentationServices.EditTrack(trackVm);
+                return RedirectToAction("Index");
+            }
 
-        //    return View(albumsVm);
-        //}
+            return View(trackVm);
+        }
 
-        //[HttpGet]
-        //public ActionResult Delete(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
+        [HttpGet]
+        public ActionResult Delete(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
 
-        //    return View(presentationServices.GetDeleteAlbumtVm((int)id));
-        //}
+            return View(presentationServices.GetDeleteTrackVm((int)id));
+        }
 
-        //[HttpPost, ActionName("Delete")]
-        //public ActionResult DeleteConfirmed(int id)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        presentationServices.DeleteAlbum(id);
-        //        return RedirectToAction("Index");
-        //    }
+        [HttpPost, ActionName("Delete")]
+        public ActionResult DeleteConfirmed(int id)
+        {
+            if (ModelState.IsValid)
+            {
+                presentationServices.DeleteTrack(id);
+                return RedirectToAction("Index");
+            }
 
-        //    return RedirectToAction("Index");
+            return RedirectToAction("Index");
 
-        //}
+        }
 
     }
 }

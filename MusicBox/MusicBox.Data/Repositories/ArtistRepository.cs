@@ -58,7 +58,7 @@ namespace MusicBox.Data.Repositories
             .Include(x => x.Albums)
             .Include(x => x.Albums.Select(y => y.Tracks))
             .Include(x => x.Albums.Select(y => y.Artist))
-            .FirstOrDefault(x => x.Id == id);
+            .Single(x => x.Id == id);
         }
 
         public bool IsUniqueNewTitle(string title)
@@ -79,9 +79,18 @@ namespace MusicBox.Data.Repositories
 
         public List<Album> GetAlbumsForArtist(string artistTitle)
         {
-            return GetQueryableItems().Include(x => x.Albums).First(c => c.Title.Equals(artistTitle)).Albums;
+            return GetQueryableItems().Include(x => x.Albums).Single(c => c.Title.Equals(artistTitle)).Albums;
         }
 
+        public List<Album> GetAlbumsForArtist(int artistId)
+        {
+            var artist = Get(artistId);
+            Entry(artist).Collection(c => c.Albums).Load();
+
+            return artist.Albums;
+
+        }
+        
         public bool IsExistsArtist(string artistTitle)
         {
             return GetQueryableItems().Any(x => x.Title.Equals(artistTitle));

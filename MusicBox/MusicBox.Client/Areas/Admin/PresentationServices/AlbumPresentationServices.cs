@@ -12,6 +12,7 @@ namespace MusicBox.Areas.Admin.PresentationServices
         private readonly IAlbumDomainService albumDomainService;
         private readonly IArtistDomainService artistDomainService;
         private readonly IAlbumImageDomainService albumImageDomainService;
+
         public AlbumPresentationServices(IAlbumDomainService albumDomainService, IArtistDomainService artistDomainService, IAlbumImageDomainService albumImageDomainService)
         {
             this.albumDomainService = albumDomainService;
@@ -48,11 +49,16 @@ namespace MusicBox.Areas.Admin.PresentationServices
 
         }
 
-        public DeleteAlbumsViewModel GetDeleteAlbumtVm(int id)
+        public DeleteAlbumsViewModel GetDeleteAlbumVm(int id)
         {
             Album album = albumDomainService.GetAlbumWhitArtist(id);
             return Mapper.Map<DeleteAlbumsViewModel>(album);
 
+        }
+
+        public DetailsAlbumsViewModel GetDetailsAlbumVm(int id)
+        {
+            return Mapper.Map<DetailsAlbumsViewModel>(albumDomainService.GetAlbumAndHisTracksWithAllAttachments(id));
         }
 
         public void DeleteAlbum(int id)
@@ -82,15 +88,12 @@ namespace MusicBox.Areas.Admin.PresentationServices
 
         public (List<GetAlbumsForArtistVm>, bool isExistsArtist) GetAlbumsForArtist(string artistTitle)
         {
-            var b = artistDomainService.IsExistsArtist(artistTitle);
-
-            if (!b)
+            if (!artistDomainService.IsExistsArtist(artistTitle))
             {
                 return (null, false);
             }
 
-            var a = albumDomainService.GetAlbumsForArtist(artistTitle);
-            return (Mapper.Map<List<GetAlbumsForArtistVm>>(a),true);
+            return (Mapper.Map<List<GetAlbumsForArtistVm>>(albumDomainService.GetAlbumsForArtist(artistTitle)), true);
             
         }
 

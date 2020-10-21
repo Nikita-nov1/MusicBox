@@ -1,0 +1,57 @@
+﻿@using MusicBox.Areas.Admin.Models.Albums
+@model DetailsAlbumsViewModel
+
+@{
+    ViewBag.Title = "Album details";
+}
+
+<h2> Album details: @Model.Title </h2>
+
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+
+        <div class="col-md-10">
+            <img src=@Url.Action("RenderImage", new { id = Model.Id }) alt='' height=150 width=150 />   @* todo добавить mergen (оступ от картинки)*@
+        </div>
+
+        <dt>
+            @Html.LabelFor(model => model.Title, "Name")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Year)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Year)
+        </dd>
+
+        <dt>
+            @Html.LabelFor(model => model.DateOfCreation, "Date of creation")
+        </dt>
+
+        <dd>
+            @Model.DateOfCreation.ToString("d")
+        </dd>
+
+    </dl>
+
+</div>
+
+@*@Html.Partial("PartialForDetails", Model.Tracks)*@
+@{
+    Html.RenderPartial("PartialForDetails", Model.Tracks);
+}
+
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
+
+

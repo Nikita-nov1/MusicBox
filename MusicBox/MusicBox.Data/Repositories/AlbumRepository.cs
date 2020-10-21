@@ -44,6 +44,18 @@ namespace MusicBox.Data.Repositories
             return entityAlbum;
         }
 
+        public Album GetAlbumAndHisTracksWithAllAttachments(int id)
+        {
+            return GetQueryableItems()
+            .Include(x => x.Artist)
+            .Include(x => x.Tracks)
+            .Include(x => x.Tracks.Select(y => y.Genre))
+            .Include(x => x.Tracks.Select(y => y.Mood))
+            .Include(x => x.Tracks.Select(y => y.TrackStatistics))
+            .Single(x => x.Id == id);
+
+        }
+
         public bool IsIdExists(int id)
         {
             return GetQueryableItems().Any(x => x.Id == id);

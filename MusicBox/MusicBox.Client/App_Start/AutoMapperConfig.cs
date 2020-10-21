@@ -4,10 +4,6 @@ using MusicBox.Areas.Admin.Models.Artists;
 using MusicBox.Areas.Admin.Models.Tracks;
 using MusicBox.Domain.Models.AdditionalModels;
 using MusicBox.Domain.Models.Entities;
-using MusicBox.ExtensionMethods;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Web;
 
 namespace MusicBox.App_Start
@@ -32,7 +28,7 @@ namespace MusicBox.App_Start
                 .ForMember(dest => dest.Image, opt => opt.Ignore());
 
 
-            cfg.CreateMap<EditArtistsViewModel, Artist>()            //todo  можно ли сделать такие условия, чтобы мапились только те значения, которые отличаются от первоначальных?    
+            cfg.CreateMap<EditArtistsViewModel, Artist>()           
                .ForMember(dest => dest.Id, opt => opt.Ignore())
                .AfterMap((src, dest) => ChangeArtistImage(src.Image, dest));
 
@@ -61,6 +57,10 @@ namespace MusicBox.App_Start
 
             cfg.CreateMap<Album, DeleteAlbumsViewModel>();
 
+            cfg.CreateMap<Album, GetAlbumsForArtistVm>();
+
+            cfg.CreateMap<Album, DetailsAlbumsViewModel>();
+            
             cfg.CreateMap<CreateTracksViewModel, Track>()
                 .BeforeMap((src, dest) =>
                 {
@@ -69,8 +69,6 @@ namespace MusicBox.App_Start
                 })
                 .ForMember(dest => dest.Artist, opt => opt.Ignore());
 
-            cfg.CreateMap<Album, GetAlbumsForArtistVm>();
-
             cfg.CreateMap<Track, GetTracksViewModel>()
                 .ForMember(dest => dest.Mood, opt => opt.MapFrom(scr => scr.Mood.Title))
                 .ForMember(dest => dest.Genre, opt => opt.MapFrom(scr => scr.Genre.Title))
@@ -78,6 +76,22 @@ namespace MusicBox.App_Start
                 .ForMember(dest => dest.Artist, opt => opt.MapFrom(scr => scr.Artist.Title))
                 .ForMember(dest => dest.CountOfCalls, opt => opt.MapFrom(scr => scr.TrackStatistics.CountOfCalls));
 
+
+            cfg.CreateMap<Track, EditTracksViewModel>()
+                .ForMember(dest => dest.MoodId, opt => opt.MapFrom(scr => scr.Mood.Id))
+                .ForMember(dest => dest.GenreId, opt => opt.MapFrom(scr => scr.Genre.Id))
+                .ForMember(dest => dest.AlbumId, opt => opt.MapFrom(scr => scr.Album.Id))
+                .ForMember(dest => dest.Artist, opt => opt.MapFrom(scr => scr.Artist.Title));
+
+            cfg.CreateMap<EditTracksViewModel, Track>()
+               .ForMember(dest => dest.Id, opt => opt.Ignore())
+               .ForMember(dest => dest.Artist, opt => opt.Ignore());
+
+            cfg.CreateMap<Track, DeleteTracksViewModel>()
+                .ForMember(dest => dest.Mood, opt => opt.MapFrom(scr => scr.Mood.Title))
+                .ForMember(dest => dest.Genre, opt => opt.MapFrom(scr => scr.Genre.Title))
+                .ForMember(dest => dest.Album, opt => opt.MapFrom(scr => scr.Album.Title))
+                .ForMember(dest => dest.Artist, opt => opt.MapFrom(scr => scr.Artist.Title));
 
 
         }
@@ -96,7 +110,7 @@ namespace MusicBox.App_Start
             {
                 artist.ArtistImage.ContentType = image.ContentType;
             }
-          
+
         }
 
         private static void SetContentTypeForAlbumImage(HttpPostedFileBase image, Album album)

@@ -1,0 +1,53 @@
+﻿@using MusicBox.Domain.Models.Entities
+@using System.Collections.Generic
+
+@model IEnumerable<Track>
+
+<h3>All tracks: </h3>
+
+<table class="table">
+        <tr>
+            <th>
+                @Html.Label("Name")
+            </th>
+            <th>
+                @Html.Label("Mood")
+            </th>
+            <th>
+                @Html.Label("Genre")
+            </th>
+            <th>
+                @Html.Label("Duration song")
+            </th>
+            <th>
+                @Html.Label("Date of creation")
+            </th>
+            <th>
+                @Html.Label("Count of calls")
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Mood.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Genre.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DurationSong)
+                </td>
+                <td>
+                    @item.DateOfCreation.ToString("d")
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TrackStatistics.CountOfCalls)
+                </td>
+            </tr>
+        }
+    </table>

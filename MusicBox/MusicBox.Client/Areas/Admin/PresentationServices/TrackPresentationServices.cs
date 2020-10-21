@@ -3,10 +3,7 @@ using MusicBox.Areas.Admin.Models.Tracks;
 using MusicBox.Areas.Admin.PresentationServices.Interfaces;
 using MusicBox.Domain.DomainServices.Interfaces;
 using MusicBox.Domain.Models.Entities;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace MusicBox.Areas.Admin.PresentationServices
@@ -23,8 +20,8 @@ namespace MusicBox.Areas.Admin.PresentationServices
 
 
         public TrackPresentationServices(ITrackDomainService trackDomainService, ITrackFileDomainService trackFileDomainService,
-            ITrackStatisticsDomainService trackStatisticsDomainService,IAlbumDomainService albumDomainService,
-            IGenreDomainService genreDomainService, IMoodDomainService moodDomainService,IArtistDomainService artistDomainService )
+            ITrackStatisticsDomainService trackStatisticsDomainService, IAlbumDomainService albumDomainService,
+            IGenreDomainService genreDomainService, IMoodDomainService moodDomainService, IArtistDomainService artistDomainService)
         {
             this.trackDomainService = trackDomainService;
             this.trackFileDomainService = trackFileDomainService;
@@ -40,10 +37,29 @@ namespace MusicBox.Areas.Admin.PresentationServices
         {
             return new CreateTracksViewModel
             {
-                SelectListAlbums = GetAlbumsSelectList(),
+                SelectListAlbums = GetEmptyAlbumsSelectList(),
                 SelectListGenres = GetGenresSelectList(),
                 SelectListMoods = GetMoodsSelectList()
             };
+        }
+
+        public EditTracksViewModel GetEditTrackVm(int id)
+        {
+            Track track = trackDomainService.GetTrackWithAllAttachmentsExceptPlaylistsAndTrackFileAndTrackStatistics(id);
+            EditTracksViewModel trackVm = Mapper.Map<EditTracksViewModel>(track);
+            trackVm.SelectListGenres = GetGenresSelectList();
+            trackVm.SelectListMoods = GetMoodsSelectList();
+            trackVm.SelectListAlbums = GetAlbumsSelectList(track.Artist.Id);
+
+            return trackVm;
+
+        }
+
+        public DeleteTracksViewModel GetDeleteTrackVm(int id)
+        {
+            Track track = trackDomainService.GetTrackWithAllAttachmentsExceptPlaylistsAndTrackFileAndTrackStatistics(id);
+            return Mapper.Map<DeleteTracksViewModel>(track);
+            
         }
 
         public List<GetTracksViewModel> GetTracks()
@@ -53,27 +69,51 @@ namespace MusicBox.Areas.Admin.PresentationServices
 
         }
 
-        public void AddTrack(CreateTracksViewModel tracksVm)
+        public void AddTrack(CreateTracksViewModel trackVm)
         {
-            Track track = Mapper.Map<Track>(tracksVm);
-            track.Artist = artistDomainService.GetArtist(tracksVm.Artist);   
-            track.Genre = genreDomainService.GetGenre(tracksVm.GenreId);
-            track.Mood = moodDomainService.GetMood(tracksVm.MoodId);
-            track.Album = albumDomainService.GetAlbum(tracksVm.AlbumId);
-            
+            Track track = Mapper.Map<Track>(trackVm);
+            track.Artist = artistDomainService.GetArtist(trackVm.Artist);
+            track.Genre = genreDomainService.GetGenre(trackVm.GenreId);
+            track.Mood = moodDomainService.GetMood(trackVm.MoodId);
+            track.Album = albumDomainService.GetAlbum(trackVm.AlbumId);
 
-            trackDomainService.AddTrack(track, tracksVm.UploadTrack);
- 
+
+            trackDomainService.AddTrack(track, trackVm.UploadTrack);
+
         }
 
-        private SelectList GetAlbumsSelectList()
+        public void EditTrack(EditTracksViewModel trackVm)
+        {
+            Track track = trackDomainService.GetTrackWithAllAttachmentsExceptPlaylistsAndTrackStatistics(trackVm.Id);
+            track = Mapper.Map<EditTracksViewModel, Track>(trackVm, track);
+            track.Artist = artistDomainService.GetArtist(trackVm.Artist);
+            track.Genre = genreDomainService.GetGenre(trackVm.GenreId);
+            track.Mood = moodDomainService.GetMood(trackVm.MoodId);
+            track.Album = albumDomainService.GetAlbum(trackVm.AlbumId);
+
+            trackDomainService.EditTrack(track, trackVm.UploadTrack);
+
+        }
+
+        public void DeleteTrack(int id)
+        {
+            trackDomainService.DeleteTrack(id);
+        }
+
+        private SelectList GetAlbumsSelectList(int artistId)
+        {
+            return new SelectList(albumDomainService.GetAlbumsForArtist(artistId), nameof(Album.Id), nameof(Album.Title));
+
+        }
+
+        private SelectList GetEmptyAlbumsSelectList()
         {
             return new SelectList(new List<Album>(), nameof(Album.Id), nameof(Album.Title));
 
         }
         private SelectList GetGenresSelectList()
         {
-            return new SelectList(genreDomainService.GetGenres(), nameof(Genre.Id), nameof(Genre.Title)); 
+            return new SelectList(genreDomainService.GetGenres(), nameof(Genre.Id), nameof(Genre.Title));
 
         }
 

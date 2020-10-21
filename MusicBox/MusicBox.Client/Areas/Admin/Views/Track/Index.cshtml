@@ -28,7 +28,7 @@
         columns.Add(model => model.Genre).Titled("Genre").Sortable(true);
         columns.Add(model => model.DurationSong).Titled("Duration song").Sortable(true);
         columns.Add(model => model.DateOfCreation.ToString("d")).Titled("Date of creation").Sortable(true);
-        columns.Add(model => model.CountOfCalls).Titled("Artist name ").Sortable(true);
+        columns.Add(model => model.CountOfCalls).Titled("Count of calls").Sortable(true);
 
         columns.Add(model => Html.ActionLink("Details", "Details", new { id = model.Id }) + " | " +
         Html.ActionLink("Edit", "Edit", new { id = model.Id }) + " | " +

@@ -19,6 +19,7 @@ namespace MusicBox.Areas.Admin.Controllers
             this.presentationServices = presentationServices;
         }
 
+
         // GET: Admin/Artist
         public ActionResult Index()
         {

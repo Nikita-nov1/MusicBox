@@ -55,8 +55,8 @@ namespace MusicBox.Areas.Admin.PresentationServices
         public DetailsArtistsViewModel GetDetailsArtistsViewModel(int id)
         {
             var artist = artistDomainService.GetArtistWithTracksAndAlbumsWithAllAttachments(id);
-            var result = Mapper.Map<DetailsArtistsViewModel>(artist);
-            return result;
+            return Mapper.Map<DetailsArtistsViewModel>(artist);
+
         }
 
         public DeleteArtistsViewModel GetDeleteArtistVm(int id)
