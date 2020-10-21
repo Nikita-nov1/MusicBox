@@ -4,11 +4,11 @@ using MusicBox.Domain.DomainServices.Interfaces;
 
 namespace MusicBox.Areas.Admin.AdminValidators.Artist
 {
-    public class EditArtistsVmValidator : AbstractValidator<EditArtistsViewModel>
+    public class EditArtistVmValidator : AbstractValidator<EditArtistsViewModel>
     {
         private readonly IArtistDomainService artistDomainService;
 
-        public EditArtistsVmValidator(IArtistDomainService artistDomainService)
+        public EditArtistVmValidator(IArtistDomainService artistDomainService)
         {
             this.artistDomainService = artistDomainService;
 

@@ -40,6 +40,19 @@ namespace MusicBox.Data.Repositories
 
         }
 
+        public Track GetTrackWithAllAttachmentsExceptPlaylistsAndTrackFile(int trackId)
+        {
+            var entityTrack = Get(trackId);
+            Entry(entityTrack).Reference(c => c.Album).Load();
+            Entry(entityTrack).Reference(c => c.Artist).Load();
+            Entry(entityTrack).Reference(c => c.Mood).Load();
+            Entry(entityTrack).Reference(c => c.Genre).Load();
+            Entry(entityTrack).Reference(c => c.TrackStatistics).Load();
+
+            return entityTrack;
+
+        }
+
         public List<Track> GetTracksWithAllAttachmentsExceptPlaylistsAndTrackFile()
         {
             return GetQueryableItems()

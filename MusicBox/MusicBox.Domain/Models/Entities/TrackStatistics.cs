@@ -8,7 +8,7 @@ namespace MusicBox.Domain.Models.Entities
 {
     public class TrackStatistics  
     {
-        public int Id { get; set; }     //Уточнить, как правильно поставить связь этой табл с табл Track (какой Pk/Fk)
+        public int Id { get; set; }     
         public int CountOfCalls { get; set; }
         public Track Track { get; set; }
     }

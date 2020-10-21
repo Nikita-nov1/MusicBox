@@ -20,11 +20,10 @@ namespace MusicBox.Areas.Admin.Controllers
             return View(presentationServices.GetTracks());
         }
 
-        ////// GET: Admin/Artist/Details/5
-        ////public ActionResult Details(int id)
-        ////{
-        ////    return View(presentationServices.GetDetailsArtistsViewModel(id));
-        ////}
+        public ActionResult Details(int id)
+        {
+            return View(presentationServices.GetDetailsTrackVm(id));
+        }
 
         [HttpGet]
         public ActionResult Create()

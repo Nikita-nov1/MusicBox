@@ -59,6 +59,11 @@ namespace MusicBox.Domain.DomainServices
             return trackRepository.GetTracksWithAllAttachmentsExceptPlaylistsAndTrackFile();
         }
 
+        public Track GetTrackWithAllAttachmentsExceptPlaylistsAndTrackFile(int trackId)
+        {
+            return trackRepository.GetTrackWithAllAttachmentsExceptPlaylistsAndTrackFile(trackId);
+        }
+
         public Track GetTrackWithAllAttachmentsExceptPlaylistsAndTrackFileAndTrackStatistics(int trackId)
         {
             return trackRepository.GetTrackWithAllAttachmentsExceptPlaylistsAndTrackFileAndTrackStatistics(trackId);

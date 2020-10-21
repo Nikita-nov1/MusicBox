@@ -62,6 +62,12 @@ namespace MusicBox.Areas.Admin.PresentationServices
             
         }
 
+        public DetailsTracksViewModel GetDetailsTrackVm(int id)
+        {
+            Track track = trackDomainService.GetTrackWithAllAttachmentsExceptPlaylistsAndTrackFile(id);
+            return Mapper.Map<DetailsTracksViewModel>(track);
+        }
+
         public List<GetTracksViewModel> GetTracks()
         {
             List<Track> tracks = trackDomainService.GetTracksWithAllAttachmentsExceptPlaylistsAndTrackFile();

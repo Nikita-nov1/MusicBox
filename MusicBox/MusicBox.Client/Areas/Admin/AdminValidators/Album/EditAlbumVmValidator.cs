@@ -16,7 +16,7 @@ namespace MusicBox.Areas.Admin.AdminValidators.Album
             this.artistDomainService = artistDomainService;
 
             RuleFor(x => x.Id)
-            .Must(IsIdExists).WithMessage("This Id doesn't exists.");
+            .Must(IsIdExists);
 
             RuleFor(x => x.Title)
             .NotEmpty().WithMessage("Please specify a title name.")

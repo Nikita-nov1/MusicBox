@@ -54,7 +54,7 @@ namespace MusicBox.App_Start
 
             builder.RegisterFilterProvider();
 
-            AssemblyScanner.FindValidatorsInAssemblyContaining<CreateArtistsVmValidator>()
+            AssemblyScanner.FindValidatorsInAssemblyContaining<CreateArtistVmValidator>()
                                   .ForEach(result =>
                                   {
                                       builder.RegisterType(result.ValidatorType)

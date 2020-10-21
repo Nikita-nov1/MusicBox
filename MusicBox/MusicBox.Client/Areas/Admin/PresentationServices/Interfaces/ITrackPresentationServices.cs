@@ -12,5 +12,6 @@ namespace MusicBox.Areas.Admin.PresentationServices.Interfaces
         void EditTrack(EditTracksViewModel trackVm);
         DeleteTracksViewModel GetDeleteTrackVm(int id);
         void DeleteTrack(int id);
+        DetailsTracksViewModel GetDetailsTrackVm(int id);
     }
 }

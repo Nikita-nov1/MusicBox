@@ -169,8 +169,10 @@
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\AdminValidators\Album\CreateAlbumVmValidator.cs" />
     <Compile Include="Areas\Admin\AdminValidators\Album\EditAlbumVmValidator.cs" />
-    <Compile Include="Areas\Admin\AdminValidators\Artist\CreateArtistsVmValidator.cs" />
-    <Compile Include="Areas\Admin\AdminValidators\Artist\EditArtistsVmValidator.cs" />
+    <Compile Include="Areas\Admin\AdminValidators\Artist\CreateArtistVmValidator.cs" />
+    <Compile Include="Areas\Admin\AdminValidators\Artist\EditArtistVmValidator.cs" />
+    <Compile Include="Areas\Admin\AdminValidators\Track\CreateTrackVmValidator.cs" />
+    <Compile Include="Areas\Admin\AdminValidators\Track\EditTrackVmValidator.cs" />
     <Compile Include="Areas\Admin\Controllers\AlbumController.cs" />
     <Compile Include="Areas\Admin\Controllers\ArtistController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
@@ -311,6 +313,7 @@
     <Content Include="Areas\Admin\Views\Album\PartialForDetails.cshtml" />
     <Content Include="Areas\Admin\Views\Album\dsdsd.cshtml" />
     <Content Include="Areas\Admin\Views\Home\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Track\Details.cshtml" />
     <None Include="Scripts\jquery-3.5.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.5.1.js" />
     <Content Include="Scripts\jquery-3.5.1.min.js" />
