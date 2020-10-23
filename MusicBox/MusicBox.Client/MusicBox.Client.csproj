@@ -314,6 +314,8 @@
     <Content Include="Areas\Admin\Views\Album\dsdsd.cshtml" />
     <Content Include="Areas\Admin\Views\Home\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Track\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Artist\PartialForDetailsTracks.cshtml" />
+    <Content Include="Areas\Admin\Views\Artist\PartialForDetailsAlbums.cshtml" />
     <None Include="Scripts\jquery-3.5.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.5.1.js" />
     <Content Include="Scripts\jquery-3.5.1.min.js" />

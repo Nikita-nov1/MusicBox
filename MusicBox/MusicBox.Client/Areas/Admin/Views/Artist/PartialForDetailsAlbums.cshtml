@@ -1,0 +1,36 @@
+﻿@using MusicBox.Domain.Models.Entities
+@using System.Collections.Generic
+
+@model IEnumerable<Album>
+
+<h3>All albums: </h3>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.Label("Name")
+        </th>
+        <th>
+            @Html.Label("Date of creation")
+        </th>
+        <th>
+            @Html.Label("Year")
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @item.DateOfCreation.ToString("d")
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Year)
+            </td>
+        </tr>
+    }
+</table>
+

@@ -1,33 +1,41 @@
-﻿@using MusicBox.Domain.Models.Entities
-@model MusicBox.Areas.Admin.Models.Artists.DetailsArtistsViewModel
-
+﻿@using MusicBox.Areas.Admin.Models.Artists
+@model DetailsArtistsViewModel
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Artist details";
 }
 
-<h2>Details</h2>
+<h2> Artist details: @Model.Title </h2>
 
-@{ 
-    foreach (var album in Model.Albums)
-    {
-        Console.WriteLine(album);
-        foreach (var track in album.Tracks)
-        {
-            Console.WriteLine(track);
-        }
-    }
+<div>
+    <hr />
+    <dl class="dl-horizontal">
 
-    Console.WriteLine("Треки без альбомов");
+        <div class="col-md-10">
+            <img src=@Url.Action("RenderImage", new { id = Model.Id }) alt='' height=150 width=150 />   @* todo добавить mergen (оступ от картинки)*@
+        </div>
 
-    List<Track> tracksWithoutAlbum = Model.Tracks.Where(c => c.Album == null).ToList();
+        <dt>
+            @Html.LabelFor(model => model.Title, "Name")
+        </dt>
 
-    foreach (var track in tracksWithoutAlbum)
-    {
-        Console.WriteLine(track);
-    }
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
 
-    // сделать 1 PartialView для Console.WriteLine(track);
-    // сделать 1 PartialView для Console.WriteLine(album);
+    </dl>
 
+</div>
+
+@{
+    Html.RenderPartial("PartialForDetailsAlbums", Model.Albums);
 }
+
+@{
+    Html.RenderPartial("PartialForDetailsTracks", Model.Tracks);
+}
+
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
