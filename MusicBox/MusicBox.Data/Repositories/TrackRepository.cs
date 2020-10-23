@@ -64,5 +64,10 @@ namespace MusicBox.Data.Repositories
                 .ToList();
 
         }
+
+        public bool IsIdExists(int id)
+        {
+            return GetQueryableItems().Any(x => x.Id.Equals(id));
+        }
     }
 }

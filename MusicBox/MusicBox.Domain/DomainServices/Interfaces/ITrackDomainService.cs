@@ -13,5 +13,6 @@ namespace MusicBox.Domain.DomainServices.Interfaces
         Track GetTrackWithAllAttachmentsExceptPlaylistsAndTrackStatistics(int trackId);
         void EditTrack(Track track ,HttpPostedFileBase uploadTrack);
         void DeleteTrack(int id);
+        bool IsIdExists(int id);
     }
 }

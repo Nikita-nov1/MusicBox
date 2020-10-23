@@ -27,7 +27,7 @@ namespace MusicBox.Data.Repositories
             return GetQueryableItems().FirstOrDefault(c => c.Title == artistTitle);
         }
 
-        public Artist GetArtistWhitTracks(int artistId)
+        public Artist GetArtistWhitTracks(int artistId) //todo replace GetArtistWhitTracks on GetArtistWithTracks
         {
             var entityArtist = Get(artistId);
             Entry(entityArtist).Collection(c => c.Tracks).Load();
@@ -102,6 +102,17 @@ namespace MusicBox.Data.Repositories
             {
                 var albumsForArtist = GetAlbumsForArtist(artistTitle);
                 return !albumsForArtist.Any(x => x.Title.Equals(albumTitle));
+            }
+
+            else return true;
+        }
+
+        public bool IsUniqueNewTitleArtistTrack(string artistTitle, string trackTitle)
+        {
+            if (IsExistsArtist(artistTitle).Equals(true))
+            {
+                var tracksForArtist = GetQueryableItems().Include(x => x.Tracks).Single(c => c.Title.Equals(artistTitle)).Tracks;
+                return !tracksForArtist.Any(x => x.Title.Equals(trackTitle));
             }
 
             else return true;

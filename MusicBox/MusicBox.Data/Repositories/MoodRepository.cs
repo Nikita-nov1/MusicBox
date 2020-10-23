@@ -1,6 +1,7 @@
 ﻿using MusicBox.Domain.Models.Entities;
 using MusicBox.Domain.Repositories;
 using MusicBox.Domain.UnitOfWork;
+using System.Linq;
 
 namespace MusicBox.Data.Repositories
 {
@@ -10,6 +11,11 @@ namespace MusicBox.Data.Repositories
             : base(unitOfWork)
         {
 
+        }
+
+        public bool IsExistsMood(int id)
+        {
+            return GetQueryableItems().Any(x => x.Id.Equals(id));
         }
     }
 }

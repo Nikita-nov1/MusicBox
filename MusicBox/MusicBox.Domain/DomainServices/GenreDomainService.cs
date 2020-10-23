@@ -24,5 +24,9 @@ namespace MusicBox.Domain.DomainServices
             return genreRepository.Get(id);
         }
 
+        public bool IsExistsGenre(int id)
+        {
+            return genreRepository.IsExistsGenre(id);
+        }
     }
 }

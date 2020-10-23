@@ -7,5 +7,6 @@ namespace MusicBox.Domain.DomainServices.Interfaces
     {
         List<Mood> GetMoods();
         Mood GetMood(int id);
+        bool IsExistsMood(int id);
     }
 }

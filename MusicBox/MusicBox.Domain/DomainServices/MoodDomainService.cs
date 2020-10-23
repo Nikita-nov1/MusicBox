@@ -24,5 +24,9 @@ namespace MusicBox.Domain.DomainServices
             return moodRepository.Get(id);
         }
 
+        public bool IsExistsMood(int id)
+        {
+            return moodRepository.IsExistsMood(id);
+        }
     }
 }

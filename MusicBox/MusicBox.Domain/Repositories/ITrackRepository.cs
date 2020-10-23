@@ -9,5 +9,6 @@ namespace MusicBox.Domain.Repositories
         Track GetTrackWithAllAttachmentsExceptPlaylistsAndTrackFile(int trackId);
         Track GetTrackWithAllAttachmentsExceptPlaylistsAndTrackFileAndTrackStatistics(int trackId);
         Track GetTrackWithAllAttachmentsExceptPlaylistsAndTrackStatistics(int trackId);
+        bool IsIdExists(int id);
     }
 }

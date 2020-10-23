@@ -101,6 +101,11 @@ namespace MusicBox.Domain.DomainServices
             return pathToSave;
 
         }
+
+        public bool IsIdExists(int id)
+        {
+            return trackRepository.IsIdExists(id);
+        }
     }
 }
 

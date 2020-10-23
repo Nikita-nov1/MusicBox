@@ -7,5 +7,6 @@ namespace MusicBox.Domain.DomainServices.Interfaces
     {
         List<Genre> GetGenres();
         Genre GetGenre(int id);
+        bool IsExistsGenre(int id);
     }
 }
