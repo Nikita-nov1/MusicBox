@@ -19,5 +19,6 @@ namespace MusicBox.Domain.Repositories
         bool IsExistsArtist(string artistTitle);
         bool IsUniqueNewTitleArtistAlbum(string artistTitle, string albumTitle);
         bool IsUniqueNewTitleArtistTrack(string artistTitle, string trackTitle);
+        bool IsUniqueTitleArtistAlbum(string currentAlbumTitle, string artistTitle, string albumTitle);
     }
 }

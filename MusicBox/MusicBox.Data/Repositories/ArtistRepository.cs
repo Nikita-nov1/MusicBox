@@ -49,7 +49,7 @@ namespace MusicBox.Data.Repositories
             }).ToList();
         }
 
-        public Artist GetArtistWithTracksAndAlbumsWithAllAttachments(int id) 
+        public Artist GetArtistWithTracksAndAlbumsWithAllAttachments(int id)
         {
             return GetQueryableItems()
             .Include(x => x.Tracks)
@@ -90,7 +90,7 @@ namespace MusicBox.Data.Repositories
             return artist.Albums;
 
         }
-        
+
         public bool IsExistsArtist(string artistTitle)
         {
             return GetQueryableItems().Any(x => x.Title.Equals(artistTitle));
@@ -113,6 +113,17 @@ namespace MusicBox.Data.Repositories
             {
                 var tracksForArtist = GetQueryableItems().Include(x => x.Tracks).Single(c => c.Title.Equals(artistTitle)).Tracks;
                 return !tracksForArtist.Any(x => x.Title.Equals(trackTitle));
+            }
+
+            else return true;
+        }
+
+        public bool IsUniqueTitleArtistAlbum(string currentAlbumTitle, string artistTitle, string albumTitle)
+        {
+            if (IsExistsArtist(artistTitle).Equals(true) & !currentAlbumTitle.Equals(albumTitle))
+            {
+                var albumsForArtist = GetAlbumsForArtist(artistTitle);
+                return !albumsForArtist.Any(x => x.Title.Equals(albumTitle));
             }
 
             else return true;

@@ -97,9 +97,10 @@ namespace MusicBox.App_Start
                 .ForMember(dest => dest.Mood, opt => opt.MapFrom(scr => scr.Mood.Title))
                 .ForMember(dest => dest.Genre, opt => opt.MapFrom(scr => scr.Genre.Title))
                 .ForMember(dest => dest.Album, opt => opt.MapFrom(scr => scr.Album.Title))
-                .ForMember(dest => dest.Artist, opt => opt.MapFrom(scr => scr.Artist.Title));
+                .ForMember(dest => dest.Artist, opt => opt.MapFrom(scr => scr.Artist.Title))
+                .ForMember(dest => dest.CountOfCalls, opt => opt.MapFrom(scr => scr.TrackStatistics.CountOfCalls));
 
-            
+
         }
 
         private static void ChangeArtistImage(HttpPostedFileBase image, Artist dest)

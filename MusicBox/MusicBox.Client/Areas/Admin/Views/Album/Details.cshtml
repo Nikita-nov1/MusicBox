@@ -5,7 +5,7 @@
     ViewBag.Title = "Album details";
 }
 
-<h2> Album details: @Model.Title </h2>
+<h2> Album details: @Model.Artist.Title - "@Model.Title"</h2>
 
 <div>
     <hr />
@@ -16,7 +16,7 @@
         </div>
 
         <dt>
-            @Html.LabelFor(model => model.Title, "Name")
+            @Html.LabelFor(model => model.Title, "Album title")
         </dt>
 
         <dd>
@@ -24,7 +24,15 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Year)
+            @Html.LabelFor(model => model.Artist.Title, "Album artist")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Artist.Title)
+        </dd>
+
+        <dt>
+            @Html.LabelFor(model => model.Year, "Album year")
         </dt>
 
         <dd>
@@ -32,7 +40,7 @@
         </dd>
 
         <dt>
-            @Html.LabelFor(model => model.DateOfCreation, "Date of creation")
+            @Html.LabelFor(model => model.DateOfCreation, "Album date of creation")
         </dt>
 
         <dd>
@@ -49,5 +57,5 @@
 
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back to Albums", "Index")
 </p>

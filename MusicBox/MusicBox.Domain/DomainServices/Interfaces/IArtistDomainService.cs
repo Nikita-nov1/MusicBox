@@ -23,5 +23,6 @@ namespace MusicBox.Domain.DomainServices.Interfaces
         bool IsExistsArtist(string artistTitle);
         bool IsUniqueNewTitleArtistAlbum(string artistTitle, string albumTitle);
         bool IsUniqueNewTitleArtistTrack(string artistTitle, string trackTitle);
+        bool IsUniqueTitleArtistAlbum(string currentAlbumTitle, string artistTitle, string albumTitle);
     }
 }

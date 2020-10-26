@@ -1,11 +1,10 @@
-﻿
-@model MusicBox.Areas.Admin.Models.Albums.CreateAlbumsViewModel
+﻿@model MusicBox.Areas.Admin.Models.Albums.CreateAlbumsViewModel
 
 @{
     ViewBag.Title = "Create album";
 }
 
-<h2>Create</h2>
+<h2>Create album</h2>
 
 @using (Html.BeginForm("Create", "Album", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
@@ -14,7 +13,7 @@
     <h4>Album</h4>
     <hr />
     <div class="form-group">
-        @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.LabelFor(model => model.Title, "Album title", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
@@ -22,7 +21,7 @@
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(model => model.Year, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.LabelFor(model => model.Year, "Album year", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             @Html.EditorFor(model => model.Year, new { htmlAttributes = new { @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.Year, "", new { @class = "text-danger" })
@@ -30,7 +29,7 @@
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(model => model.Artist, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.LabelFor(model => model.Artist, "Album artist", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             @Html.EditorFor(model => model.Artist, new { htmlAttributes = new { @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.Artist, "", new { @class = "text-danger" })
@@ -38,7 +37,7 @@
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(model => model.Image, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.LabelFor(model => model.Image, "Album image (max - 10 kb)", htmlAttributes: new { @class = "control-label col-md-2" })
         @Html.ValidationMessageFor(model => model.Image, "", new { @class = "text-danger" })
         <div class="col-md-10">
 
@@ -57,7 +56,7 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back to Albums", "Index")
 </div>
 
 

@@ -13,19 +13,19 @@ namespace MusicBox.Areas.Admin.AdminValidators.Artist
             this.artistDomainService = artistDomainService;
 
             RuleFor(x => x.Title)
-                .NotEmpty().WithMessage("Please specify a first name.")
-                .MaximumLength(20).WithMessage("Title can have a maximum of 20 characters.")
-                .Must(IsUniqueNewTitle).WithMessage("Title name already exists. Please modify Title name.");
+                .NotEmpty().WithMessage("Please specify a title for the artist.")
+                .MaximumLength(30).WithMessage("A title for the artist can have a maximum of 30 characters.")
+                .Must(IsUniqueNewTitle).WithMessage("An artist title already exists. Please modify an artist title.");
 
             RuleFor(x => x.Image)
                 .Must(x => x.ContentLength <= 10_240)
                 .When(x => x.Image != null)
-                .WithMessage("File size is larger than allowed");
+                .WithMessage("The image file for the artist is too large.");
 
             RuleFor(x => x.Image)
                 .Must(x => x.ContentType.Equals("image/jpeg") || x.ContentType.Equals("image/jpg") || x.ContentType.Equals("image/png"))
                 .When(x => x.Image != null)
-                .WithMessage("File type is not allowed");
+                .WithMessage("This file type for the artist image is not allowed.");
         }
 
         private bool IsUniqueNewTitle(string title)

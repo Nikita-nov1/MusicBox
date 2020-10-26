@@ -21,12 +21,12 @@ namespace MusicBox.Areas.Admin.AdminValidators.Track
             this.albumDomainService = albumDomainService;
 
             RuleFor(x => x.Title)
-                .NotEmpty().WithMessage("Please specify a title name for track.")
-                .MaximumLength(20).WithMessage("Title name for track can have a maximum of 20 characters.")
-                .Must(IsUniqueNewTitleArtistTrack).WithMessage("Track's title name for this artist already exists. Please modify track's title name.");
+                .NotEmpty().WithMessage("Please specify a title for the track.")
+                .MaximumLength(30).WithMessage("A title for the track can have a maximum of 30 characters.")
+                .Must(IsUniqueNewTitleArtistTrack).WithMessage("A track title for this artist already exists. Please modify a track title.");
 
             RuleFor(x => x.Artist)
-                .NotEmpty().WithMessage("Please specify an artist's title.")
+                .NotEmpty().WithMessage("Please specify an artist title for the track.")
                 .Must(IsExistsArtist).WithMessage("This artist doesn't exists.");
 
             RuleFor(x => x.AlbumId)
@@ -41,11 +41,11 @@ namespace MusicBox.Areas.Admin.AdminValidators.Track
             RuleFor(x => x.UploadTrack)
                 .NotEmpty().WithMessage("You need to download the track.")
                 .Must(x => x.ContentLength <= 52_428_800)
-                .WithMessage("File size is larger than allowed");
+                .WithMessage("The track file is too large.");
 
             RuleFor(x => x.UploadTrack)
                 .Must(x => x.ContentType.Equals("audio/mpeg") || x.ContentType.Equals("audio/ogg") || x.ContentType.Equals("audio/vnd.wav"))
-                .WithMessage("File type is not allowed");
+                .WithMessage("This file type for the track file is not allowed.");
         }
 
         private bool IsExistsGenre(int id)

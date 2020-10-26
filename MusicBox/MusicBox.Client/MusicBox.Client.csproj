@@ -311,7 +311,6 @@
     <Content Include="Areas\Admin\Views\Track\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\Album\Details.cshtml" />
     <Content Include="Areas\Admin\Views\Album\PartialForDetails.cshtml" />
-    <Content Include="Areas\Admin\Views\Album\dsdsd.cshtml" />
     <Content Include="Areas\Admin\Views\Home\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Track\Details.cshtml" />
     <Content Include="Areas\Admin\Views\Artist\PartialForDetailsTracks.cshtml" />

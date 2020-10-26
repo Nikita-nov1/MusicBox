@@ -6,7 +6,7 @@
 }
 
 
-<h2>Edit album: @Model.Title </h2>
+<h2>Edit album: @Model.Artist - "@Model.Title"</h2>
 
 
 @using (Html.BeginForm("Edit", "Album", FormMethod.Post, new { enctype = "multipart/form-data" }))
@@ -16,7 +16,7 @@
     @Html.HiddenFor(model => model.Id)
 
     <div class="form-group">
-        @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.LabelFor(model => model.Title, "Album title", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
@@ -24,7 +24,7 @@
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(model => model.Year, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.LabelFor(model => model.Year, "Album year", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             @Html.EditorFor(model => model.Year, new { htmlAttributes = new { @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.Year, "", new { @class = "text-danger" })
@@ -32,7 +32,7 @@
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(model => model.Artist, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.LabelFor(model => model.Artist, "Album artist", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             @Html.EditorFor(model => model.Artist, new { htmlAttributes = new { @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.Artist, "", new { @class = "text-danger" })
@@ -40,7 +40,7 @@
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(model => model.Image, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.LabelFor(model => model.Image, "Album image", htmlAttributes: new { @class = "control-label col-md-2" })
         @Html.ValidationMessageFor(model => model.Image, "", new { @class = "text-danger" })
         <div class="col-md-10">
             <img src=@Url.Action("RenderImage", new { id = Model.Id }) alt='' height=100 width=100 />   @* todo добавить mergen (оступ от картинки)*@
@@ -63,7 +63,7 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back to Albums", "Index")
 </div>
 
 @section Scripts {

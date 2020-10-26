@@ -14,12 +14,14 @@ namespace MusicBox.Domain.DomainServices
         private readonly IArtistRepository artistRepository;
         private readonly IUnitOfWork unitOfWork;
         private readonly IGetPathServices getDefaultImage;
+        //private readonly IAlbumDomainService albumDomainService;
 
-        public ArtistDomainService(IArtistRepository artistRepository, IUnitOfWork unitOfWork, IGetPathServices getDefaultImage)
+        public ArtistDomainService(IArtistRepository artistRepository, IUnitOfWork unitOfWork, IGetPathServices getDefaultImage/*, IAlbumDomainService albumDomainService*/)
         {
             this.artistRepository = artistRepository;
             this.unitOfWork = unitOfWork;
             this.getDefaultImage = getDefaultImage;
+            //this.albumDomainService = albumDomainService;
         }
 
         public Artist AddArtist(Artist artist)
@@ -142,6 +144,11 @@ namespace MusicBox.Domain.DomainServices
         public bool IsUniqueNewTitleArtistTrack(string artistTitle, string trackTitle)
         {
             return artistRepository.IsUniqueNewTitleArtistTrack(artistTitle, trackTitle);
+        }
+
+        public bool IsUniqueTitleArtistAlbum(string currentAlbumTitle, string artistTitle, string albumTitle)
+        {
+            return artistRepository.IsUniqueTitleArtistAlbum(currentAlbumTitle, artistTitle, albumTitle);
         }
     }
 }
