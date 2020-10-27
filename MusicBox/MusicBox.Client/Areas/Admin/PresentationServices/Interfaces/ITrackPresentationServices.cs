@@ -9,6 +9,7 @@ namespace MusicBox.Areas.Admin.PresentationServices.Interfaces
         List<GetTracksViewModel> GetTracks();
         void AddTrack(CreateTracksViewModel tracksVm);
         EditTracksViewModel GetEditTrackVm(int id);
+        EditTracksViewModel GetEditTrackVm(EditTracksViewModel trackVm);
         void EditTrack(EditTracksViewModel trackVm);
         DeleteTracksViewModel GetDeleteTrackVm(int id);
         void DeleteTrack(int id);

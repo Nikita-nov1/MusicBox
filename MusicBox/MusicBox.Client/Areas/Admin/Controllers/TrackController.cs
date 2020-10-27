@@ -57,7 +57,7 @@ namespace MusicBox.Areas.Admin.Controllers
                 presentationServices.EditTrack(trackVm);
                 return RedirectToAction("Index");
             }
-
+            presentationServices.GetEditTrackVm(trackVm);
             return View(trackVm);
         }
 

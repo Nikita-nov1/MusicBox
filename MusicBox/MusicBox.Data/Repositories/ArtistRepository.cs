@@ -55,7 +55,9 @@ namespace MusicBox.Data.Repositories
             .Include(x => x.Tracks)
             .Include(x => x.Tracks.Select(y => y.Genre))
             .Include(x => x.Tracks.Select(y => y.Mood))
+            .Include(x => x.Tracks.Select(y => y.TrackStatistics))
             .Include(x => x.Albums)
+            .Include(x => x.Albums.Select(y => y.Tracks))
             .Include(x => x.Albums.Select(y => y.Tracks))
             .Include(x => x.Albums.Select(y => y.Artist))
             .Single(x => x.Id == id);

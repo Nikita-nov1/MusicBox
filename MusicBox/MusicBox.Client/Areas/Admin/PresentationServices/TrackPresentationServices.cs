@@ -55,6 +55,17 @@ namespace MusicBox.Areas.Admin.PresentationServices
 
         }
 
+        public EditTracksViewModel GetEditTrackVm(EditTracksViewModel trackVm)
+        {
+            trackVm.SelectListGenres = GetGenresSelectList();
+            trackVm.SelectListMoods = GetMoodsSelectList();
+            trackVm.SelectListAlbums = GetAlbumsSelectList(artistDomainService.GetArtist(trackVm.Artist).Id);
+
+            return trackVm;
+
+        }
+
+
         public DeleteTracksViewModel GetDeleteTrackVm(int id)
         {
             Track track = trackDomainService.GetTrackWithAllAttachmentsExceptPlaylistsAndTrackFileAndTrackStatistics(id);

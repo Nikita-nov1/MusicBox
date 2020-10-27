@@ -10,48 +10,46 @@
 <link href="~/Content/jquery-ui.css" rel="stylesheet" type="text/css" />
 <script src="~/Scripts/jquery-3.5.1.min.js"></script>
 
-<script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
-
 
 <script type="text/javascript">
 
-        $(function () {
+    $(function () {
 
-            $("#Artist").on("blur", function () {
-                let artistTitle = $("#Artist").val();
+        $("#Artist").on("blur", function () {
+            let artistTitle = $("#Artist").val();
 
-                if (artistTitle == "") {
-                    $("#AlbumId option:gt(0)").remove();
-                    $('#AlbumId').prop('disabled', true);
-                    $("#Link").empty();
+            if (artistTitle == "") {
+                $("#AlbumId option:gt(0)").remove();
+                $('#AlbumId').prop('disabled', true);
+                $("#Link").empty();
 
-                }
-                else {
-                    $.ajax({
-                        method: "POST",
-                        url: "/Admin/Album/GetAlbumsForArtist",
-                        data: { artist: artistTitle }
-                    })
-                        .done(function (albums) {
-                            if (albums.Item2) {
-                                if (albums.Item1.length == 0) {
+            }
+            else {
+                $.ajax({
+                    method: "POST",
+                    url: "/Admin/Album/GetAlbumsForArtist",
+                    data: { artist: artistTitle }
+                })
+                    .done(function (albums) {
+                        if (albums.Item2) {
+                            if (albums.Item1.length == 0) {
 
-                                    ShowLinkForCreationAlbum();
-                                }
-                                else {
-                                    AddDropdownListForAlbum(albums);
-                                }
+                                ShowLinkForCreationAlbum();
                             }
                             else {
-                                ShowLinkForCreationArtist();
+                                AddDropdownListForAlbum(albums);
                             }
+                        }
+                        else {
+                            ShowLinkForCreationArtist();
+                        }
 
-                        });
-                }
-            });
-
-
+                    });
+            }
         });
+
+
+    });
 
     function AddDropdownListForAlbum(albums) {
         $("#AlbumId option:gt(0)").remove();
@@ -79,7 +77,7 @@
         $("#AlbumId option:gt(0)").remove();
         $('#AlbumId').prop('disabled', true);
 
-        };
+    };
 
 </script>
 
@@ -108,7 +106,7 @@
             </div>
         </div>
 
-        <div class="form-group" >
+        <div class="form-group">
             <div class="col-md-10" id="Link">
             </div>
         </div>
@@ -160,6 +158,9 @@
     @Html.ActionLink("Back to Tracks", "Index")
 </div>
 
-@section Scripts {
-        @Scripts.Render("~/bundles/jqueryval")
-    }
+
+@section scripts {
+
+    @Scripts.Render("~/bundles/jquery-ui")
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -108,7 +108,7 @@ namespace MusicBox.Areas.Admin.Controllers
         {
             (List<GetAlbumsForArtistVm>, bool isExistsArtist) albums = presentationServices.GetAlbumsForArtist(artist);
 
-            return Json(albums);//, JsonRequestBehavior.AllowGet); // return Json(albums);
+            return Json(albums);
         }
     }
 }
