@@ -4,6 +4,7 @@ using MusicBox.Domain.UnitOfWork;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 
 namespace MusicBox.Data.Repositories
 {
@@ -59,6 +60,16 @@ namespace MusicBox.Data.Repositories
         public bool IsIdExists(int id)
         {
             return GetQueryableItems().Any(x => x.Id.Equals(id));
+        }
+
+        public bool IsUniqueTitleArtistAlbum(int albumId, string artistTitle, string albumTitle)
+        {
+            return !GetQueryableItems().Any(x => x.Title.Equals(albumTitle) && x.Artist.Title.Equals(artistTitle) && !x.Id.Equals(albumId));
+        }
+
+        public bool IsUniqueNewTitleArtistAlbum(string artistTitle, string albumTitle)
+        {
+            return !GetQueryableItems().Any(x => x.Title.Equals(albumTitle) && x.Artist.Title.Equals(artistTitle));
         }
     }
 }

@@ -1,12 +1,12 @@
 ﻿@model MusicBox.Areas.Admin.Models.Tracks.DetailsTracksViewModel
 
 <div>
-    <h4>Track:  @Model.Title</h4>
+    <h4>Track:  @Model.Artist - "@Model.Album" - "@Model.Title"</h4>
     <hr />
     <dl class="dl-horizontal">
 
         <dt>
-            @Html.LabelFor(model => model.DateOfCreation, "Date of creation")
+            @Html.LabelFor(model => model.DateOfCreation, "Track date of creation")
         </dt>
 
         <dd>
@@ -14,7 +14,7 @@
         </dd>
 
         <dt>
-            @Html.LabelFor(model => model.DurationSong, "Duration song")
+            @Html.LabelFor(model => model.DurationSong, "Track duration")
         </dt>
 
         <dd>
@@ -22,7 +22,7 @@
         </dd>
 
         <dt>
-            @Html.LabelFor(model => model.CountOfCalls, "Count of calls")
+            @Html.LabelFor(model => model.CountOfCalls, "Track count")
         </dt>
 
         <dd>
@@ -30,7 +30,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Artist)
+            @Html.LabelFor(model => model.Artist, "Track artist")
         </dt>
 
         <dd>
@@ -38,7 +38,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Album)
+            @Html.LabelFor(model => model.Album, "Track album")
         </dt>
 
         <dd>
@@ -46,7 +46,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Mood)
+            @Html.LabelFor(model => model.Mood, "Track mood")
         </dt>
 
         <dd>
@@ -54,7 +54,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Genre)
+            @Html.LabelFor(model => model.Genre, "Track genre")
         </dt>
 
         <dd>
@@ -65,5 +65,5 @@
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back to Tracks", "Index")
 </p>

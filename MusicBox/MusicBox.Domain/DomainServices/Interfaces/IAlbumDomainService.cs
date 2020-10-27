@@ -17,5 +17,7 @@ namespace MusicBox.Domain.DomainServices.Interfaces
         List<Album> GetAlbumsForArtist(int artistId);
         bool IsIdExists(int id);
         string GetAlbumTitle(int id);
+        bool IsUniqueTitleArtistAlbum(int albumId, string artistTitle, string albumTitle);
+        bool IsUniqueNewTitleArtistAlbum(string artistTitle, string albumTitle);
     }
 }

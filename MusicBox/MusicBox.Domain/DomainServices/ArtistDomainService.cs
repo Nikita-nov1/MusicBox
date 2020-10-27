@@ -136,19 +136,9 @@ namespace MusicBox.Domain.DomainServices
             return artistRepository.IsExistsArtist(artistTitle);
         }
 
-        public bool IsUniqueNewTitleArtistAlbum(string artistTitle, string albumTitle)
-        {
-            return artistRepository.IsUniqueNewTitleArtistAlbum(artistTitle, albumTitle);
-        }
-
         public bool IsUniqueNewTitleArtistTrack(string artistTitle, string trackTitle)
         {
             return artistRepository.IsUniqueNewTitleArtistTrack(artistTitle, trackTitle);
-        }
-
-        public bool IsUniqueTitleArtistAlbum(string currentAlbumTitle, string artistTitle, string albumTitle)
-        {
-            return artistRepository.IsUniqueTitleArtistAlbum(currentAlbumTitle, artistTitle, albumTitle);
         }
     }
 }

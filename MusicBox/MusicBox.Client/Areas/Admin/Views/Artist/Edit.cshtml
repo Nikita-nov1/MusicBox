@@ -6,7 +6,7 @@
 }
 
 
-<h2>Edit artist: @Model.Title </h2>
+<h2>Edit artist @Model.Title</h2>
 
 
 @using (Html.BeginForm("Edit", "Artist", FormMethod.Post, new { enctype = "multipart/form-data" }))
@@ -16,7 +16,7 @@
     @Html.HiddenFor(model => model.Id)
 
     <div class="form-group">
-        @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.LabelFor(model => model.Title, "Artist title", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
@@ -25,7 +25,7 @@
 
 
     <div class="form-group">
-        @Html.LabelFor(model => model.Image, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.LabelFor(model => model.Image, "Artist image (max - 10 kb)", htmlAttributes: new { @class = "control-label col-md-2" })
         @Html.ValidationMessageFor(model => model.Image, "", new { @class = "text-danger" })
         <div class="col-md-10">
             <img src=@Url.Action("RenderImage", new { id = Model.Id }) alt='' height=100 width=100 />   @* todo добавить mergen (оступ от картинки)*@
@@ -48,7 +48,7 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back to Artists", "Index")
 </div>
 
 @section Scripts {

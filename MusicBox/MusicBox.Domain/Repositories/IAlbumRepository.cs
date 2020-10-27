@@ -11,5 +11,7 @@ namespace MusicBox.Domain.Repositories
        Album GetAlbumWhitTracks(int id);
        Album GetAlbumAndHisTracksWithAllAttachments(int id);
        bool IsIdExists(int id);
+       bool IsUniqueTitleArtistAlbum(int albumId, string artistTitle, string albumTitle);
+       bool IsUniqueNewTitleArtistAlbum(string artistTitle, string albumTitle);
     }
 }

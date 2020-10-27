@@ -8,10 +8,12 @@ namespace MusicBox.Areas.Admin.AdminValidators.Album
     public class CreateAlbumVmValidator : AbstractValidator<CreateAlbumsViewModel>
     {
         private readonly IArtistDomainService artistDomainService;
+        private readonly IAlbumDomainService albumDomainService;
 
-        public CreateAlbumVmValidator(IArtistDomainService artistDomainService)
+        public CreateAlbumVmValidator(IArtistDomainService artistDomainService, IAlbumDomainService albumDomainService)
         {
             this.artistDomainService = artistDomainService;
+            this.albumDomainService = albumDomainService;
 
             RuleFor(x => x.Title)
                 .NotEmpty().WithMessage("Please specify a title for the album.")
@@ -39,7 +41,7 @@ namespace MusicBox.Areas.Admin.AdminValidators.Album
 
         private bool IsUniqueNewTitleArtistAlbum(CreateAlbumsViewModel createAlbumsViewModel, string title)
         {
-            return artistDomainService.IsUniqueNewTitleArtistAlbum(createAlbumsViewModel.Artist, title);
+            return albumDomainService.IsUniqueNewTitleArtistAlbum(createAlbumsViewModel.Artist, title);
         }
 
         private bool IsExistsArtist(string artistTitle)

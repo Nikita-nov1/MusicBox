@@ -96,34 +96,12 @@ namespace MusicBox.Data.Repositories
             return GetQueryableItems().Any(x => x.Title.Equals(artistTitle));
         }
 
-        public bool IsUniqueNewTitleArtistAlbum(string artistTitle, string albumTitle)
-        {
-            if (IsExistsArtist(artistTitle).Equals(true))
-            {
-                var albumsForArtist = GetAlbumsForArtist(artistTitle);
-                return !albumsForArtist.Any(x => x.Title.Equals(albumTitle));
-            }
-
-            else return true;
-        }
-
         public bool IsUniqueNewTitleArtistTrack(string artistTitle, string trackTitle)
         {
             if (IsExistsArtist(artistTitle).Equals(true))
             {
                 var tracksForArtist = GetQueryableItems().Include(x => x.Tracks).Single(c => c.Title.Equals(artistTitle)).Tracks;
                 return !tracksForArtist.Any(x => x.Title.Equals(trackTitle));
-            }
-
-            else return true;
-        }
-
-        public bool IsUniqueTitleArtistAlbum(string currentAlbumTitle, string artistTitle, string albumTitle)
-        {
-            if (IsExistsArtist(artistTitle).Equals(true) & !currentAlbumTitle.Equals(albumTitle))
-            {
-                var albumsForArtist = GetAlbumsForArtist(artistTitle);
-                return !albumsForArtist.Any(x => x.Title.Equals(albumTitle));
             }
 
             else return true;

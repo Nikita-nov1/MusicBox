@@ -3,15 +3,16 @@
 
 @model IEnumerable<GetTracksViewModel>
 
+<script src="~/Scripts/jquery-3.5.1.min.js"></script>
 
 @{
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Tracks</h2>
 
 <p>
-    @Html.ActionLink("Create", "Create")
+    @Html.ActionLink("Create track", "Create")
 </p>
 
 
@@ -21,14 +22,14 @@
     {
         columns.Add().RenderedAs((model, row) => row + 1).Titled("#").Sortable(false);
 
-        columns.Add(model => model.Title).Titled("Name");
-        columns.Add(model => model.Artist).Titled("Artist name").Sortable(true);
-        columns.Add(model => model.Album).Titled("Album").Sortable(true);
-        columns.Add(model => model.Mood).Titled("Mood").Sortable(true);
-        columns.Add(model => model.Genre).Titled("Genre").Sortable(true);
-        columns.Add(model => model.DurationSong).Titled("Duration song").Sortable(true);
-        columns.Add(model => model.DateOfCreation.ToString("d")).Titled("Date of creation").Sortable(true);
-        columns.Add(model => model.CountOfCalls).Titled("Count of calls").Sortable(true);
+        columns.Add(model => model.Title).Titled("Track title");
+        columns.Add(model => model.Artist).Titled("Track artist").Sortable(true);
+        columns.Add(model => model.Album).Titled("Track album").Sortable(true);
+        columns.Add(model => model.Mood).Titled("Track mood").Sortable(true);
+        columns.Add(model => model.Genre).Titled("Track genre").Sortable(true);
+        columns.Add(model => model.DurationSong).Titled("Track duration").Sortable(true);
+        columns.Add(model => model.DateOfCreation.ToString("d")).Titled("Track date of creation").Sortable(true);
+        columns.Add(model => model.CountOfCalls).Titled("Track count").Sortable(true);
 
         columns.Add(model => Html.ActionLink("Details", "Details", new { id = model.Id }) + " | " +
         Html.ActionLink("Edit", "Edit", new { id = model.Id }) + " | " +
@@ -40,7 +41,11 @@
     .Pageable()
 )
 
-
+<script type="text/javascript">
+    $(function () {
+        $("#body-container").css("max-width", "1420px");
+    });
+</script>
 
 
 @section Scripts {

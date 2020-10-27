@@ -114,5 +114,15 @@ namespace MusicBox.Domain.DomainServices
         {
             return albumRepository.IsIdExists(id);
         }
+
+        public bool IsUniqueTitleArtistAlbum(int albumId, string artistTitle, string albumTitle)
+        {
+            return albumRepository.IsUniqueTitleArtistAlbum(albumId, artistTitle, albumTitle);
+        }
+
+        public bool IsUniqueNewTitleArtistAlbum(string artistTitle, string albumTitle)
+        {
+            return albumRepository.IsUniqueNewTitleArtistAlbum(artistTitle, albumTitle);
+        }
     }
 }

@@ -5,7 +5,7 @@
     ViewBag.Title = "Edit";
 }
 
-<h2>Edit track: @Model.Title </h2>
+<h2>Edit track: @Model.Artist - "@Model.Title"</h2>
 
 <link href="~/Content/jquery-ui.css" rel="stylesheet" type="text/css" />
 <script src="~/Scripts/jquery-3.5.1.min.js"></script>
@@ -91,14 +91,14 @@
         @Html.HiddenFor(model => model.Id)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Title, "Name", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Title, "Track title", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Artist, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Artist, "Track artist", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Artist, new { htmlAttributes = new { @class = "form-control" } })
             </div>
@@ -110,7 +110,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.AlbumId, "Album", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.AlbumId, "Track album", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownListFor(model => model.AlbumId, Model.SelectListAlbums, "Please select", htmlAttributes: new { @class = "form-control" })
 
@@ -119,7 +119,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.GenreId, "Genre", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.GenreId, "Track genre", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownListFor(model => model.GenreId, Model.SelectListGenres, "Please select", htmlAttributes: new { @class = "form-control" })
                 @*@Html.ValidationMessageFor(model => model.GenreId, "", new { @class = "text-danger" })*@
@@ -127,7 +127,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.MoodId, "Mood", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.MoodId, "Track mood", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownListFor(model => model.MoodId, Model.SelectListMoods, "Please select", htmlAttributes: new { @class = "form-control" })
                 @*@Html.ValidationMessageFor(model => model.MoodId, "", new { @class = "text-danger" })*@
@@ -135,7 +135,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.UploadTrack, "Change track...", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.UploadTrack, "Track file (max - 50 mb)", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
 
                 <input id="Track" name="UploadTrack" type="file" accept="audio/*" >
@@ -153,7 +153,7 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back to Tracks", "Index")
 </div>
 
 @*@section Scripts {

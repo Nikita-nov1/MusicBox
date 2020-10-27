@@ -49,8 +49,7 @@ namespace MusicBox.Areas.Admin.AdminValidators.Album
 
         private bool IsUniqueTitleArtistAlbum(EditAlbumsViewModel editAlbumsViewModel, string title)
         {
-            var currentAlbumTitle = albumDomainService.GetAlbumTitle(editAlbumsViewModel.Id);
-            return artistDomainService.IsUniqueTitleArtistAlbum(currentAlbumTitle, editAlbumsViewModel.Artist, title);
+            return albumDomainService.IsUniqueTitleArtistAlbum(editAlbumsViewModel.Id, editAlbumsViewModel.Artist, title);
         }
 
         private bool IsExistsArtist(string artistTitle)
