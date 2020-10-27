@@ -10,10 +10,9 @@ namespace MusicBox.Controllers
 {
     public class HomeController : Controller
     {
-        private IMusicBoxDbContext db;
-        public HomeController(IMusicBoxDbContext db)
+        
+        public HomeController()
         {
-            this.db = db;
         }
 
         public ActionResult Index()

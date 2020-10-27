@@ -3,7 +3,7 @@
 
 @model IEnumerable<GetTracksViewModel>
 
-
+<script src="~/Scripts/jquery-3.5.1.min.js"></script>
 @{
     ViewBag.Title = "Index";
 }
@@ -41,7 +41,11 @@
 )
 
 
-
+<script type="text/javascript">
+    $(function () {
+        $("#body-container").css("max-width", "1420px");
+    });
+</script>
 
 @section Scripts {
     @Scripts.Render("~/bundles/mvc-grid")

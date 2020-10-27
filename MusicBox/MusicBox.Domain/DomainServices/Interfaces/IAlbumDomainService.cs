@@ -6,7 +6,9 @@ namespace MusicBox.Domain.DomainServices.Interfaces
     public interface IAlbumDomainService : IBaseDomainService
     {
         void AddAlbum(Album album);
-        List<Album> GetAlbums();
+        List<Album> GetAlbumsWithArtistAndTracks();
+        List<Album> GetAlbumsWithArtist();
+        List<Track> GetAllTracksForAlbumWhitArtist(int albumId);
         Album GetAlbumWhitArtist(int id);
         Album GetAlbumWithImageAndArtist(int id);
         Album GetAlbumAndHisTracksWithAllAttachments(int id);

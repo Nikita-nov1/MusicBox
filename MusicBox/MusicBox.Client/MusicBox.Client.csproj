@@ -202,6 +202,8 @@
     <Compile Include="Areas\Admin\PresentationServices\Interfaces\IBaseAdminPresentationService.cs" />
     <Compile Include="Areas\Admin\PresentationServices\Interfaces\ITrackPresentationServices.cs" />
     <Compile Include="Areas\Admin\PresentationServices\TrackPresentationServices.cs" />
+    <Compile Include="Controllers\AlbumController.cs" />
+    <Compile Include="Controllers\ArtistController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\TrackController.cs" />
     <Compile Include="ExtensionMethods\MappingExpressionExtension.cs" />
@@ -209,6 +211,14 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\CreateStorage.cs" />
+    <Compile Include="Models\Album\GetAlbumsForClientViewModel.cs" />
+    <Compile Include="Models\Artist\GetArtistsForClientViewModel.cs" />
+    <Compile Include="Models\Track\GetTrackInformationViewModel.cs" />
+    <Compile Include="Models\Track\GetTracksForClientViewModel.cs" />
+    <Compile Include="PresentationServices\AlbumPresentationServices.cs" />
+    <Compile Include="PresentationServices\ArtistPresentationServices.cs" />
+    <Compile Include="PresentationServices\Interfaces\IAlbumPresentationServices.cs" />
+    <Compile Include="PresentationServices\Interfaces\IArtistPresentationServices.cs" />
     <Compile Include="PresentationServices\Interfaces\IBasePresentationService.cs" />
     <Compile Include="PresentationServices\Interfaces\ITrackPresentationService.cs" />
     <Compile Include="PresentationServices\TrackPresentationService.cs" />
@@ -221,6 +231,7 @@
     <Content Include="Content\bootstrap-reboot.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\images\play.png" />
     <Content Include="Content\jquery-ui.css" />
     <Content Include="Content\MvcGrid\mvc-grid.css" />
     <Content Include="Content\themes\base\accordion.css" />
@@ -311,7 +322,6 @@
     <Content Include="Areas\Admin\Views\Track\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\Album\Details.cshtml" />
     <Content Include="Areas\Admin\Views\Album\PartialForDetails.cshtml" />
-    <Content Include="Areas\Admin\Views\Album\dsdsd.cshtml" />
     <Content Include="Areas\Admin\Views\Home\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Track\Details.cshtml" />
     <None Include="Scripts\jquery-3.5.1.intellisense.js" />
@@ -322,6 +332,8 @@
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery-ui-1.12.1.js" />
     <Content Include="Scripts\jquery-ui-1.12.1.min.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -329,6 +341,7 @@
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\MvcGrid\mvc-grid-additional.js" />
     <Content Include="Scripts\MvcGrid\mvc-grid.js" />
+    <Content Include="Scripts\Player\AudioPlayer.js" />
     <Content Include="Scripts\popper-utils.js" />
     <Content Include="Scripts\popper-utils.min.js" />
     <Content Include="Scripts\popper.js" />
@@ -426,12 +439,16 @@
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\Shared\MvcGrid\_Pager.cshtml" />
     <Content Include="Views\Shared\MvcGrid\_Grid.cshtml" />
+    <Content Include="Views\Album\Index.cshtml" />
+    <Content Include="Views\Album\DsplayAlbumPartial.cshtml" />
+    <Content Include="Views\Track\TracksAjaxPartialForAlbum.cshtml" />
+    <Content Include="Views\Artist\Index.cshtml" />
+    <Content Include="Views\Artist\DsplayArtistPartial.cshtml" />
+    <Content Include="Views\Track\TracksAjaxPartialForArtist.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
-    <Folder Include="Models\" />
-    <Folder Include="Views\Track\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

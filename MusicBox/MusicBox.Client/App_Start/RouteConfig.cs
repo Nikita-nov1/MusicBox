@@ -17,7 +17,7 @@ namespace MusicBox
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional },
-                new[] { "MusicBox.Areas.Admin.Controllers" }
+                new[] { "MusicBox.Controllers" }
             );
         }
     }

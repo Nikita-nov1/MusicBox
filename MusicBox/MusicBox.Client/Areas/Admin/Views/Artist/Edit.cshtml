@@ -27,7 +27,7 @@
     <div class="form-group">
         @Html.LabelFor(model => model.Image, htmlAttributes: new { @class = "control-label col-md-2" })
         @Html.ValidationMessageFor(model => model.Image, "", new { @class = "text-danger" })
-        <div class="col-md-10">
+        <div class="col-md-10 mb-3">
             <img src=@Url.Action("RenderImage", new { id = Model.Id }) alt='' height=100 width=100 />   @* todo добавить mergen (оступ от картинки)*@
 
         </div>

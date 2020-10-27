@@ -13,6 +13,8 @@ namespace MusicBox.Data.Configurations
 
             Property(c => c.TrackLocation).IsRequired().HasMaxLength(200);
 
+            Property(c => c.ContentType).IsRequired().HasMaxLength(50);
+
             HasRequired<Track>(c => c.Track)
                 .WithRequiredDependent(c => c.TrackFile)
                 .WillCascadeOnDelete(true);

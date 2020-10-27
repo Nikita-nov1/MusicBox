@@ -8,6 +8,7 @@ namespace MusicBox.Domain.DomainServices.Interfaces
     {
         Artist AddArtist(Artist artist);
         List<Artist> GetArtists();
+        List<Track> GetAllTracksForArtistWhitArtist(int artistId);
         List<ArtistStatistics> GetArtistsStatistics();
         Artist GetArtistWithImage(int id);
         Artist GetArtist(int id);

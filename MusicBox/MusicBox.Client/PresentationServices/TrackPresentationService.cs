@@ -1,4 +1,7 @@
-﻿using MusicBox.Domain.DomainServices.Interfaces;
+﻿using AutoMapper;
+using MusicBox.Domain.DomainServices.Interfaces;
+using MusicBox.Domain.Models.Entities;
+using MusicBox.Models.Track;
 using MusicBox.PresentationServices.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -11,18 +14,29 @@ namespace MusicBox.PresentationServices
     {
         private readonly ITrackDomainService trackDomainService;
 
+
         public TrackPresentationService(ITrackDomainService trackDomainService)
         {
             this.trackDomainService = trackDomainService;
         }
 
-        //public List<UserViewModel> GetByNameWithRole(string name)
-        //{
-        //    var users = userDomainService.GetByNameWithRole(name);
+        public List<GetTracksForClientViewModel> GetTracksVmForAlbum(int albumId)
+        {
+            var tracks = trackDomainService.GetAllTracksForAlbumWhitArtist(albumId);
+            return Mapper.Map<List<GetTracksForClientViewModel>>(tracks);
+        }
 
-        //    var usersViewModel = Mapper.Map<List<UserViewModel>>(users);
+        public List<GetTracksForClientViewModel> GetTracksVmForArtist(int artistId)
+        {
+            var tracks = trackDomainService.GetAllTracksForArtistWhitArtist(artistId);
+            return Mapper.Map<List<GetTracksForClientViewModel>>(tracks);
+        }
 
-        //    return usersViewModel;
-        //}
+        public GetTrackInformationViewModel GetTrackInformationForPlay(int trackId)
+        {
+            Track track = trackDomainService.GetTrackWithAllAttachmentsExceptPlaylistsAndTrackStatisticsForPlay(trackId);
+            return Mapper.Map<GetTrackInformationViewModel>(track);
+        }
+
     }
 }

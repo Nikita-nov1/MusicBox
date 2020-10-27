@@ -22,7 +22,7 @@ namespace MusicBox.Areas.Admin.PresentationServices
 
         public List<GetAlbumsViewModel> GetAlbums()
         {
-            List<Album> albums  = albumDomainService.GetAlbums();
+            List<Album> albums  = albumDomainService.GetAlbumsWithArtistAndTracks();
             return Mapper.Map<List<GetAlbumsViewModel>>(albums);   
 
         }

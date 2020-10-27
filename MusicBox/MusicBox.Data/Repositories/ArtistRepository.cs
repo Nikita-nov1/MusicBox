@@ -90,7 +90,12 @@ namespace MusicBox.Data.Repositories
             return artist.Albums;
 
         }
-        
+
+        public List<Track> GetTracksForArtist(int artistId)
+        {
+            return GetQueryableItems().Include(x => x.Tracks).Single(c => c.Id.Equals(artistId)).Tracks;
+        }
+
         public bool IsExistsArtist(string artistTitle)
         {
             return GetQueryableItems().Any(x => x.Title.Equals(artistTitle));

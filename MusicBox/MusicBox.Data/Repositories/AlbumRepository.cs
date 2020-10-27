@@ -22,6 +22,23 @@ namespace MusicBox.Data.Repositories
                 .ToList();
         }
 
+        public List<Album> GetAlbumsWithArtist()
+        {
+            return GetQueryableItems()
+                .Include(c => c.Artist)
+                .ToList();
+        }
+
+        public List<Track> GetAllTracksForAlbumWhitArtist(int albumId)
+        {
+            return GetQueryableItems()
+                .Include(x => x.Artist)
+                .Include(q => q.Tracks)
+                .Single(q => q.Id.Equals(albumId)).Tracks;
+            
+          
+        }
+
         public Album GetAlbumWithImageAndArtist(int id)
         {
             var entityAlbum = Get(id);
