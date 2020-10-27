@@ -116,6 +116,19 @@ namespace MusicBox.App_Start
             cfg.CreateMap<Artist, GetArtistsForClientViewModel>();
 
 
+            cfg.CreateMap<Album, GetAlbumsForClientViewModel>()
+                .ForMember(dest => dest.ArtistName, opt => opt.MapFrom(scr => scr.Artist.Title));
+
+            cfg.CreateMap<Track, GetTrackInformationViewModel>()
+                .ForMember(dest => dest.TrackLocation, opt => opt.MapFrom(scr => scr.TrackFile.TrackLocation))
+                .ForMember(dest => dest.ContentType, opt => opt.MapFrom(scr => scr.TrackFile.ContentType));
+
+            cfg.CreateMap<Track, GetTracksForClientViewModel>()
+                .ForMember(dest => dest.ArtistName, opt => opt.MapFrom(scr => scr.Artist.Title));
+
+            cfg.CreateMap<Artist, GetArtistsForClientViewModel>();
+
+
 
         }
 
