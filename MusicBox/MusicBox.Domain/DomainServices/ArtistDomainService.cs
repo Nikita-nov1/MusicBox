@@ -93,6 +93,11 @@ namespace MusicBox.Domain.DomainServices
             return artistRepository.GetArtistsStatistics();
         }
 
+        public List<Track> GetAllTracksForArtistWhitArtist(int artistId)
+        {
+            return artistRepository.GetTracksForArtist(artistId);
+        }
+
         public void EditArtist()
         {
             unitOfWork.SaveChanges();

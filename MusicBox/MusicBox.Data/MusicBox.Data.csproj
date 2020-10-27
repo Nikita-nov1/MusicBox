@@ -99,6 +99,10 @@
     <Compile Include="Migrations\202010201332187_FixAlbumTitleIsNotUniqueMigration.designer.cs">
       <DependentUpon>202010201332187_FixAlbumTitleIsNotUniqueMigration.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202010261323281_AddConteTypeForTrackMigration.cs" />
+    <Compile Include="Migrations\202010261323281_AddConteTypeForTrackMigration.designer.cs">
+      <DependentUpon>202010261323281_AddConteTypeForTrackMigration.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\AlbumImageRepository.cs" />
@@ -127,6 +131,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202010201332187_FixAlbumTitleIsNotUniqueMigration.resx">
       <DependentUpon>202010201332187_FixAlbumTitleIsNotUniqueMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202010261323281_AddConteTypeForTrackMigration.resx">
+      <DependentUpon>202010261323281_AddConteTypeForTrackMigration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

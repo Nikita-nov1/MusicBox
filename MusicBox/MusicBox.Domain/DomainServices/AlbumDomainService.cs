@@ -24,9 +24,14 @@ namespace MusicBox.Domain.DomainServices
             this.unitOfWork = unitOfWork;
         }
 
-        public List<Album> GetAlbums()
+        public List<Album> GetAlbumsWithArtistAndTracks()
         {
             return albumRepository.GetAllWithArtistAndTracks();
+        }
+
+        public List<Album> GetAlbumsWithArtist()
+        {
+            return albumRepository.GetAlbumsWithArtist();
         }
 
         public Album GetAlbum(int id)
@@ -52,6 +57,11 @@ namespace MusicBox.Domain.DomainServices
         public Album GetAlbumAndHisTracksWithAllAttachments(int id)
         {
             return albumRepository.GetAlbumAndHisTracksWithAllAttachments(id);
+        }
+
+        public List<Track> GetAllTracksForAlbumWhitArtist(int albumId)
+        {
+            return albumRepository.GetAllTracksForAlbumWhitArtist(albumId);
         }
 
         public Album GetAlbumWhitArtist(int id)

@@ -1,0 +1,56 @@
+﻿@using MusicBox.Models.Track
+
+@model List<GetTracksForClientViewModel>
+
+
+<div class="row ">
+    <div class="col-12 mt-4">
+        <h2>Треки: </h2>
+    </div>
+</div>
+
+
+<div class="row h-100  ml-0">
+
+    @foreach (var track in Model)
+    {
+        <div class="col-12 mt-1 pl-0 " style="height: 50px">
+            <div class="media border p-a border-0">
+                <button type="button" class="trackPlay btn border-0 pl-1" value="@track.Id">
+                    <img src="~/Content/images/play.png" alt="" class="mr-2 mt-2 rounded-circle" style="width:50px;"> @*// поменять картинку на плей с яд*@
+                </button>
+                <div class="media-body pt-4">
+                    <p5><strong>@track.Title</strong><small><i> - @track.ArtistName </i></small> <span class="ml-5">@track.DurationSong</span></p5>
+                </div>
+            </div>
+        </div>
+    }
+
+
+</div>
+
+
+
+<script type="text/javascript">
+    $(function () {
+
+        $(".trackPlay").on("click", function () {
+            let trackId = $(this).attr("value");
+            $.ajax({
+                method: "POST",
+                url: "/Track/GetTrackInformation",
+                data: { trackId: trackId }
+            })
+                .done(function (track) {     
+
+                    $("#player").empty();
+                    var audio = $("<audio></audio>").attr('controls', 'controls').attr('style', 'width:100%');
+                    $("#player").append(audio);
+                    var source = $("<source/>").attr('type', track.ContentType).attr('src', track.TrackLocation);
+                    $("#player audio").append(source);
+
+                    $("#player audio source").parent()[0].play(); 
+                });
+        });
+    });
+</script>

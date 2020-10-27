@@ -1,0 +1,23 @@
+﻿@using MusicBox.Models.Artist
+
+@model List<GetArtistsForClientViewModel>
+
+@{
+    ViewBag.Title = "Artists";
+}
+
+<div class="row">
+
+    @foreach (var artist in Model)
+    {
+        Html.RenderPartial("DsplayArtistPartial", artist);
+    }
+
+</div>
+
+
+@section tracks{
+    <div id="userSection">
+
+    </div>
+}

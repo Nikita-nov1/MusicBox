@@ -10,15 +10,10 @@
 <h3>Are you sure you want to delete this?</h3>
 <div>
     <hr />
-    <dl class="dl-horizontal">
-        
+    <div class="col-md-10 mb-3">
+        <img src=@Url.Action("RenderImage", new { id = Model.Id }) alt='' height=150 width=150 />   @* todo добавить mergen (оступ от картинки)*@
 
-        <div class="col-md-10">
-            <img src=@Url.Action("RenderImage", new { id = Model.Id }) alt='' height=150 width=150 />   @* todo добавить mergen (оступ от картинки)*@
-
-        </div>
-
-    </dl>
+    </div>
 
     @using (Html.BeginForm())
     {

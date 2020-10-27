@@ -14,6 +14,7 @@ namespace MusicBox.Domain.Repositories
         Artist GetFirstOrDefault(string artistTitle);
         List<Album> GetAlbumsForArtist(string artistTitle);
         List<Album> GetAlbumsForArtist(int artistId);
+        List<Track> GetTracksForArtist(int artistId);
         Artist GetArtist(string artistTitle);
         Artist GetArtistWhitTracks(int artistId);
         bool IsExistsArtist(string artistTitle);

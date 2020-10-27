@@ -1,0 +1,22 @@
+﻿@using MusicBox.Models.Artist
+
+@model GetArtistsForClientViewModel
+
+<div class="col-lg-3 col-md-4 mb-4">
+    <div class="card h-100 border-0">
+
+        @Ajax.RouteLink("Все песни", new { controller = "Track", action = "TracksAjaxPartialForArtist", artistId = Model.Id },
+             new AjaxOptions { UpdateTargetId = "userSection", HttpMethod = "Post" }, htmlAttributes: new { @id = "image" })
+        <img class="card-img-top" src="@Url.Action("RenderImage", new { id = Model.Id })" alt="" style="width:100%">
+        <div class="card-body">
+            <h5 class="card-title">@Model.Title</h5>
+        </div>
+    </div>
+</div>
+
+
+@section scripts{
+    @Scripts.Render("~/bundles/jquery")
+
+}
+

@@ -4,6 +4,9 @@ using MusicBox.Areas.Admin.Models.Artists;
 using MusicBox.Areas.Admin.Models.Tracks;
 using MusicBox.Domain.Models.AdditionalModels;
 using MusicBox.Domain.Models.Entities;
+using MusicBox.Models.Album;
+using MusicBox.Models.Artist;
+using MusicBox.Models.Track;
 using System.Web;
 
 namespace MusicBox.App_Start
@@ -99,6 +102,19 @@ namespace MusicBox.App_Start
                 .ForMember(dest => dest.Album, opt => opt.MapFrom(scr => scr.Album.Title))
                 .ForMember(dest => dest.Artist, opt => opt.MapFrom(scr => scr.Artist.Title))
                 .ForMember(dest => dest.CountOfCalls, opt => opt.MapFrom(scr => scr.TrackStatistics.CountOfCalls));
+
+            cfg.CreateMap<Album, GetAlbumsForClientViewModel>()
+                .ForMember(dest => dest.ArtistName, opt => opt.MapFrom(scr => scr.Artist.Title));
+
+            cfg.CreateMap<Track, GetTrackInformationViewModel>()
+                .ForMember(dest => dest.TrackLocation, opt => opt.MapFrom(scr => scr.TrackFile.TrackLocation))
+                .ForMember(dest => dest.ContentType, opt => opt.MapFrom(scr => scr.TrackFile.ContentType));
+
+            cfg.CreateMap<Track, GetTracksForClientViewModel>()
+                .ForMember(dest => dest.ArtistName, opt => opt.MapFrom(scr => scr.Artist.Title));
+
+            cfg.CreateMap<Artist, GetArtistsForClientViewModel>();
+
 
 
         }

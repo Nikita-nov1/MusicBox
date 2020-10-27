@@ -8,7 +8,10 @@ namespace MusicBox.Domain.DomainServices.Interfaces
     {
         void AddTrack(Track track, HttpPostedFileBase uploadTrack);
         List<Track> GetTracksWithAllAttachmentsExceptPlaylistsAndTrackFile();
+        List<Track> GetAllTracksForAlbumWhitArtist(int albumId);
+        List<Track> GetAllTracksForArtistWhitArtist(int artistId);
         Track GetTrackWithAllAttachmentsExceptPlaylistsAndTrackFile(int trackId);
+        Track GetTrackWithAllAttachmentsExceptPlaylistsAndTrackStatisticsForPlay(int trackId);
         Track GetTrackWithAllAttachmentsExceptPlaylistsAndTrackFileAndTrackStatistics(int trackId);
         Track GetTrackWithAllAttachmentsExceptPlaylistsAndTrackStatistics(int trackId);
         void EditTrack(Track track ,HttpPostedFileBase uploadTrack);
