@@ -64,11 +64,6 @@ namespace MusicBox.Domain.DomainServices
             return albumRepository.GetAllTracksForAlbumWhitArtist(albumId);
         }
 
-        public List<Track> GetAllTracksForAlbumWhitArtist(int albumId)
-        {
-            return albumRepository.GetAllTracksForAlbumWhitArtist(albumId);
-        }
-
         public Album GetAlbumWhitArtist(int id)
         {
             return albumRepository.GetAlbumWhitArtist(id);
