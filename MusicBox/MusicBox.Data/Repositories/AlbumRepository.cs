@@ -4,7 +4,6 @@ using MusicBox.Domain.UnitOfWork;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
 
 namespace MusicBox.Data.Repositories
 {
@@ -36,8 +35,8 @@ namespace MusicBox.Data.Repositories
                 .Include(x => x.Artist)
                 .Include(q => q.Tracks)
                 .Single(q => q.Id.Equals(albumId)).Tracks;
-            
-          
+
+
         }
 
         public Album GetAlbumWithImageAndArtist(int id)

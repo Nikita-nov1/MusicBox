@@ -20,7 +20,6 @@ namespace MusicBox.Domain.DomainServices
         private readonly ITrackStatisticsDomainService trackStatisticsDomainService;
         private readonly IArtistDomainService artistDomainService;
 
-
         public TrackDomainService(ITrackRepository trackRepository, IUnitOfWork unitOfWork, IGetPathServices getPathServices, IAlbumDomainService albumDomainService,
             ITrackStatisticsDomainService trackStatisticsDomainService, IArtistDomainService artistDomainService)
         {
@@ -30,7 +29,6 @@ namespace MusicBox.Domain.DomainServices
             this.albumDomainService = albumDomainService;
             this.trackStatisticsDomainService = trackStatisticsDomainService;
             this.artistDomainService = artistDomainService;
-
         }
 
         public void AddTrack(Track track, HttpPostedFileBase uploadTrack)
@@ -39,10 +37,8 @@ namespace MusicBox.Domain.DomainServices
             track.DateOfCreation = DateTime.Now;
             track.TrackFile.ContentType = uploadTrack.ContentType;
             track.DurationSong = GetDurationSongMp3(track.TrackFile.TrackLocation);
-
             trackRepository.Add(track);
             unitOfWork.SaveChanges();
-
         }
 
         public void EditTrack(Track track ,HttpPostedFileBase uploadTrack)
@@ -54,14 +50,12 @@ namespace MusicBox.Domain.DomainServices
                 track.DurationSong = GetDurationSongMp3(track.TrackFile.TrackLocation);
             }
             unitOfWork.SaveChanges();
-
         }
 
         public void DeleteTrack(int id)
         {
             trackRepository.DeleteById(id);
             unitOfWork.SaveChanges();
-
         }
 
         public List<Track> GetTracksWithAllAttachmentsExceptPlaylistsAndTrackFile()
@@ -72,7 +66,6 @@ namespace MusicBox.Domain.DomainServices
         public List<Track> GetAllTracksForAlbumWhitArtist(int albumId)
         {
              return albumDomainService.GetAllTracksForAlbumWhitArtist(albumId);
-
         }
 
         public List<Track> GetAllTracksForArtistWhitArtist(int artistId)
@@ -146,6 +139,16 @@ namespace MusicBox.Domain.DomainServices
         public bool IsIdExists(int id)
         {
             return trackRepository.IsIdExists(id);
+        }
+
+        public bool IsUniqueNewTitleArtistTrack(string artistTitle, string trackTitle)
+        {
+            return trackRepository.IsUniqueNewTitleArtistTrack(artistTitle, trackTitle);
+        }
+
+        public bool IsUniqueTitleArtistTrack(int trackId, string artistTitle, string trackTitle)
+        {
+            return trackRepository.IsUniqueTitleArtistTrack(trackId, artistTitle, trackTitle);
         }
     }
 }

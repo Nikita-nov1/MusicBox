@@ -6,6 +6,7 @@ namespace MusicBox.Areas.Admin.PresentationServices.Interfaces
     public interface ITrackPresentationServices : IBaseAdminPresentationService
     {
         CreateTracksViewModel GetCreateTrackVm();
+        CreateTracksViewModel GetCreateTrackVm(CreateTracksViewModel tracksVm);
         List<GetTracksViewModel> GetTracks();
         void AddTrack(CreateTracksViewModel tracksVm);
         EditTracksViewModel GetEditTrackVm(int id);

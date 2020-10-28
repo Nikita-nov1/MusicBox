@@ -27,28 +27,29 @@ namespace MusicBox.Areas.Admin.AdminValidators.Track
             RuleFor(x => x.Title)
                 .NotEmpty().WithMessage("Please specify a title for the track.")
                 .MaximumLength(30).WithMessage("A title for the track can have a maximum of 30 characters.")
-                .Must(IsUniqueNewTitleArtistTrack).WithMessage("A track title for this artist already exists. Please modify a track title.");
+                .Must(IsUniqueTitleArtistTrack).WithMessage("A track title for this artist already exists. Please modify a track title.");
 
             RuleFor(x => x.Artist)
                 .NotEmpty().WithMessage("Please specify an artist title for the track.")
                 .Must(IsExistsArtist).WithMessage("This artist doesn't exists.");
 
-            //RuleFor(x => x.AlbumId)
-            //    .Must(IsExistsArtistsAlbum).WithMessage("This artist doesn't have this album.");
+            RuleFor(x => x.AlbumId)
+                .NotEmpty().WithMessage("Please specify an artist album for the track.")
+                .Must(IsExistsArtistsAlbum).WithMessage("This artist doesn't have this album.");
 
             RuleFor(x => x.MoodId)
+                .NotEmpty().WithMessage("Please specify an artist mood for the track.")
                 .Must(IsExistsMood).WithMessage("This mood doesn't exists.");
 
             RuleFor(x => x.GenreId)
+                .NotEmpty().WithMessage("Please specify an artist genre for the track.")
                 .Must(IsExistsGenre).WithMessage("This genre doesn't exists.");
 
             RuleFor(x => x.UploadTrack)
-                .Must(x => x.ContentLength <= 52_428_800)
-                .WithMessage("The track file is too large.")
+                .Must(x => x.ContentLength <= 52_428_800).WithMessage("The track file is too large.")
                 .Must(x => x.ContentType.Equals("audio/mpeg") || x.ContentType.Equals("audio/ogg") || x.ContentType.Equals("audio/vnd.wav"))
                 .WithMessage("This file type for the track file is not allowed.")
                 .When(x => x.UploadTrack != null);
-                
         }
 
         private bool IsIdExists(int id)
@@ -71,9 +72,9 @@ namespace MusicBox.Areas.Admin.AdminValidators.Track
             return albumDomainService.IsIdExists(id);
         }
 
-        private bool IsUniqueNewTitleArtistTrack(EditTracksViewModel editTracksViewModel, string title)
+        private bool IsUniqueTitleArtistTrack(EditTracksViewModel editTracksViewModel, string title)
         {
-            return artistDomainService.IsUniqueNewTitleArtistTrack(editTracksViewModel.Artist, title);
+            return trackDomainService.IsUniqueTitleArtistTrack(editTracksViewModel.Id, editTracksViewModel.Artist, title);
         }
 
         private bool IsExistsArtist(string artistTitle)

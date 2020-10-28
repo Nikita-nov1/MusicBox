@@ -18,14 +18,10 @@ namespace MusicBox.Areas.Admin.AdminValidators.Artist
                 .Must(IsUniqueTitle).WithMessage("An artist title already exists. Please modify an artist title.");
 
             RuleFor(x => x.Image)
-                .Must(x => x.ContentLength <= 10_240)
-                .When(x => x.Image != null)
-                .WithMessage("The image file for the artist is too large.");
-
-            RuleFor(x => x.Image)
+                .Must(x => x.ContentLength <= 10_240).WithMessage("The image file for the artist is too large.")
                 .Must(x => x.ContentType.Equals("image/jpeg") || x.ContentType.Equals("image/jpg") || x.ContentType.Equals("image/png"))
-                .When(x => x.Image != null)
-                .WithMessage("This file type for the artist image is not allowed.");
+                .WithMessage("This file type for the artist image is not allowed.")
+                .When(x => x.Image != null);
         }
 
         private bool IsUniqueTitle(EditArtistsViewModel editArtistViewModel, string title)

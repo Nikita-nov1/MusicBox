@@ -17,5 +17,7 @@ namespace MusicBox.Domain.DomainServices.Interfaces
         void EditTrack(Track track ,HttpPostedFileBase uploadTrack);
         void DeleteTrack(int id);
         bool IsIdExists(int id);
+        bool IsUniqueNewTitleArtistTrack(string artist, string title);
+        bool IsUniqueTitleArtistTrack(int id, string artist, string title);
     }
 }

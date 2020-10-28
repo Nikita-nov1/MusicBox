@@ -70,13 +70,7 @@ namespace MusicBox.Data.Repositories
 
         public bool IsUniqueTitle(int id, string title)
         {
-            var artist = Get(id);
-            if (artist.Title.Equals(title))
-            {
-                return true;
-            }
-
-            else return !GetQueryableItems().Any(x => x.Title.Equals(title));
+            return !GetQueryableItems().Any(x => x.Title.Equals(title) && !x.Id.Equals(id));
         }
 
         public List<Album> GetAlbumsForArtist(string artistTitle)
@@ -101,17 +95,6 @@ namespace MusicBox.Data.Repositories
         public bool IsExistsArtist(string artistTitle)
         {
             return GetQueryableItems().Any(x => x.Title.Equals(artistTitle));
-        }
-
-        public bool IsUniqueNewTitleArtistTrack(string artistTitle, string trackTitle)
-        {
-            if (IsExistsArtist(artistTitle).Equals(true))
-            {
-                var tracksForArtist = GetQueryableItems().Include(x => x.Tracks).Single(c => c.Title.Equals(artistTitle)).Tracks;
-                return !tracksForArtist.Any(x => x.Title.Equals(trackTitle));
-            }
-
-            else return true;
         }
     }
 }

@@ -21,19 +21,14 @@ namespace MusicBox.Areas.Admin.AdminValidators.Album
                 .Must(IsUniqueNewTitleArtistAlbum).WithMessage("An album title for this artist already exists. Please modify an album title.");
 
             RuleFor(x => x.Year)
-                .Must(x => x >= 1900 & x <= DateTime.Now.Year)
-                .When(x => x != null)
-                .WithMessage("An album year must be between 1900 and the current year.");
+                .Must(x => x >= 1900 & x <= DateTime.Now.Year).WithMessage("An album year must be between 1900 and the current year.")
+                .When(x => x != null);
 
             RuleFor(x => x.Image)
-                .Must(x => x.ContentLength <= 10_240)
-                .When(x => x.Image != null)
-                .WithMessage("The image file for the album is too large.");
-
-            RuleFor(x => x.Image)
+                .Must(x => x.ContentLength <= 10_240).WithMessage("The image file for the album is too large.")
                 .Must(x => x.ContentType.Equals("image/jpeg") || x.ContentType.Equals("image/jpg") || x.ContentType.Equals("image/png"))
-                .When(x => x.Image != null)
-                .WithMessage("This file type for the album image is not allowed.");
+                .WithMessage("This file type for the album image is not allowed.")
+                .When(x => x.Image != null);
 
             RuleFor(x => x.Artist)
                 .Must(IsExistsArtist).WithMessage("This artist doesn't exists.");

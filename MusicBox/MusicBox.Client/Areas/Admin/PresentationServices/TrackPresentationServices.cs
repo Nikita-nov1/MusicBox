@@ -43,6 +43,15 @@ namespace MusicBox.Areas.Admin.PresentationServices
             };
         }
 
+        public CreateTracksViewModel GetCreateTrackVm(CreateTracksViewModel tracksVm)
+        {
+            tracksVm.SelectListAlbums = GetAlbumsSelectList(artistDomainService.GetArtist(tracksVm.Artist).Id);
+            tracksVm.SelectListGenres = GetGenresSelectList();
+            tracksVm.SelectListMoods = GetMoodsSelectList();
+            return tracksVm;
+
+        }
+
         public EditTracksViewModel GetEditTrackVm(int id)
         {
             Track track = trackDomainService.GetTrackWithAllAttachmentsExceptPlaylistsAndTrackFileAndTrackStatistics(id);

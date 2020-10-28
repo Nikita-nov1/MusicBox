@@ -18,6 +18,5 @@ namespace MusicBox.Domain.Repositories
         Artist GetArtist(string artistTitle);
         Artist GetArtistWhitTracks(int artistId);
         bool IsExistsArtist(string artistTitle);
-        bool IsUniqueNewTitleArtistTrack(string artistTitle, string trackTitle);
     }
 }

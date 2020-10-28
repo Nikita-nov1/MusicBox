@@ -69,5 +69,15 @@ namespace MusicBox.Data.Repositories
         {
             return GetQueryableItems().Any(x => x.Id.Equals(id));
         }
+
+        public bool IsUniqueNewTitleArtistTrack(string artistTitle, string trackTitle)
+        {
+            return !GetQueryableItems().Any(x => x.Title.Equals(trackTitle) && x.Artist.Title.Equals(artistTitle));
+        }
+
+        public bool IsUniqueTitleArtistTrack(int trackId, string artistTitle, string trackTitle)
+        {
+            return !GetQueryableItems().Any(x => x.Title.Equals(trackTitle) && x.Artist.Title.Equals(artistTitle) && !x.Id.Equals(trackId));
+        }
     }
 }
