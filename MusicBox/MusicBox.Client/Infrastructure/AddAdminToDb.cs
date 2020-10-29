@@ -20,7 +20,7 @@ namespace MusicBox.Infrastructure
         {
             var userManager = new AppUserManager(new UserStore<User>(context));
 
-            User admin1 = new User
+            User nikita = new User
             {
                 FirstName = "Никита",
                 LastName = "Новицкий",
@@ -31,13 +31,35 @@ namespace MusicBox.Infrastructure
             };
             string password = "123456nik";
 
-            var result = userManager.Create(admin1, password);
+            var result1 = userManager.Create(nikita, password);
 
-            if (result.Succeeded)
+            if (result1.Succeeded)
             {
-                userManager.AddToRole(admin1.Id, "Admin");
-                userManager.AddToRole(admin1.Id, "User");
+                userManager.AddToRole(nikita.Id, "Admin");
+                userManager.AddToRole(nikita.Id, "User");
             }
+
+
+
+
+            User alexey = new User
+            {
+                FirstName = "Алексей",
+                LastName = "Кузьмицкий",
+                UserName = "SuperUser1",
+                Email = "alexey@mail.ru",
+                DateBorn = new DateTime(1980, 10, 25),
+                UserImage = new UserImage(),
+            };
+            password = "123456alexey";
+            var result2 = userManager.Create(alexey, password);
+
+            if (result2.Succeeded)
+            {
+                userManager.AddToRole(alexey.Id, "Admin");
+                userManager.AddToRole(alexey.Id, "User");
+            }
+
 
         }
     }
