@@ -24,6 +24,8 @@ namespace MusicBox
             });
 
             CreateStorage.CreateUploadedFiles();
+
+            new AddAdminToDb();
         }
     }
 }

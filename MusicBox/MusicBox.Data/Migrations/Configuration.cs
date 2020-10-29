@@ -1,23 +1,28 @@
-﻿namespace MusicBox.Data.Migrations
-{
-    using System;
-    using System.Data.Entity;
-    using System.Data.Entity.Migrations;
-    using System.Linq;
+﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using MusicBox.Data.Context;
+using MusicBox.Domain.Models.Entities.Identity;
+using System.Data.Entity.Migrations;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<MusicBox.Data.Context.MusicBoxDbContext>
+namespace MusicBox.Data.Migrations
+{
+    internal sealed class Configuration : DbMigrationsConfiguration<MusicBoxDbContext>
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = true;
+            AutomaticMigrationsEnabled = false;
         }
 
-        protected override void Seed(MusicBox.Data.Context.MusicBoxDbContext context)
+        protected override void Seed(MusicBoxDbContext context)
         {
-            //  This method will be called after migrating to the latest version.
+            var roleStore = new RoleStore<Role>(context);
+            var roleManager = new RoleManager<Role>(roleStore);
+            roleManager.Create(new Role { Name = "Admin", Description = "Administrator" });
+            roleManager.Create(new Role { Name = "User", Description = "User" });
 
-            //  You can use the DbSet<T>.AddOrUpdate() helper extension method
-            //  to avoid creating duplicate seed data.
+            context.SaveChanges();
+           
+
         }
     }
 }

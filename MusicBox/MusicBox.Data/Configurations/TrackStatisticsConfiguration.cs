@@ -3,7 +3,7 @@ using System.Data.Entity.ModelConfiguration;
 
 namespace MusicBox.Data.Configurations
 {
-    class TrackStatisticsConfiguration : EntityTypeConfiguration<TrackStatistics>
+    public class TrackStatisticsConfiguration : EntityTypeConfiguration<TrackStatistics>
     {
         public TrackStatisticsConfiguration()
         {
