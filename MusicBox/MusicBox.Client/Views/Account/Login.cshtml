@@ -2,6 +2,7 @@
 
 @{
     ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_LayoutPersonalAccount.cshtml";
 }
 
 <div class="row">
@@ -36,6 +37,12 @@
                 </div>
             }
         </section>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        @Html.ActionLink("Регистрация", "Register", "Account")
     </div>
 </div>
 

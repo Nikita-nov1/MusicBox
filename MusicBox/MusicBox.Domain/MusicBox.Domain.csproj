@@ -131,11 +131,13 @@
     <Compile Include="DomainServices\Interfaces\ITrackDomainService.cs" />
     <Compile Include="DomainServices\Interfaces\ITrackFileDomainService.cs" />
     <Compile Include="DomainServices\Interfaces\ITrackStatisticsDomainService.cs" />
+    <Compile Include="DomainServices\Interfaces\IUserDomainService.cs" />
     <Compile Include="DomainServices\MoodDomainService.cs" />
     <Compile Include="DomainServices\PlaylistDomainService.cs" />
     <Compile Include="DomainServices\TrackDomainService.cs" />
     <Compile Include="DomainServices\TrackFileDomainService.cs" />
     <Compile Include="DomainServices\TrackStatisticsDomainService.cs" />
+    <Compile Include="DomainServices\UserDomainService.cs" />
     <Compile Include="Interfaces\IGetPathServices.cs" />
     <Compile Include="Models\AdditionalModels\ArtistStatistics.cs" />
     <Compile Include="Models\Entities\Album.cs" />
@@ -167,6 +169,7 @@
     <Compile Include="Repositories\ITrackFileRepository.cs" />
     <Compile Include="Repositories\ITrackRepository.cs" />
     <Compile Include="Repositories\ITrackStatisticsRepository.cs" />
+    <Compile Include="Repositories\IUserRepository.cs" />
     <Compile Include="UnitOfWork\IUnitOfWork.cs" />
   </ItemGroup>
   <ItemGroup>

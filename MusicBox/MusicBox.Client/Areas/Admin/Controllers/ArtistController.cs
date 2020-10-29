@@ -10,6 +10,7 @@ using System.Web.Mvc;
 
 namespace MusicBox.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class ArtistController : Controller
     {
         private readonly IArtistPresentationServices presentationServices;

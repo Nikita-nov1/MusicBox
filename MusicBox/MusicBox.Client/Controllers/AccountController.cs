@@ -1,11 +1,14 @@
-﻿using Microsoft.AspNet.Identity;
+﻿using AutoMapper;
+using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using MusicBox.App_Start.Core;
 using MusicBox.Domain.Models.Entities;
 using MusicBox.Domain.Models.Entities.Identity;
 using MusicBox.Models.User;
+using MusicBox.PresentationServices.Interfaces;
 using System;
+using System.Collections.Generic;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
@@ -15,6 +18,13 @@ namespace MusicBox.Controllers
 {
     public class AccountController : Controller
     {
+        private readonly IUserPresentationServices presentationServices;
+
+        public AccountController(IUserPresentationServices presentationServices)
+        {
+            this.presentationServices = presentationServices;
+        }
+
         private AppUserManager UserManager
         {
             get
@@ -30,17 +40,43 @@ namespace MusicBox.Controllers
             }
         }
 
+        [HttpGet]
+        public async Task<ActionResult> Index()
+        {
+            User user = await UserManager.FindByNameAsync(User.Identity.Name);
+            return View(Mapper.Map<GetUserViewModel>(user));
+
+        }
+
+        [HttpGet]
         public ActionResult Register()
         {
             return View();
         }
+
         [HttpPost]
         public async Task<ActionResult> Register(RegisterUserViewModel model)
         {
             if (ModelState.IsValid)
             {
-                User user = new User { FirstName = model.FirstName, LastName = model.LastName, UserName = model.UserName, Email = model.Email, DateBorn = model.DateBorn, UserImage = new UserImage() };
+                User user = new User
+                {
+                    FirstName = model.FirstName,
+                    LastName = model.LastName,
+                    UserName = model.UserName,
+                    Email = model.Email,
+                    DateBorn = model.DateBorn,
+                    UserImage = new UserImage(),
+                    
+                };
+                
+
                 IdentityResult result = await UserManager.CreateAsync(user, model.Password);
+                //user = await UserManager.FindByNameAsync(User.Identity.Name);
+                //user.Playlists = new List<Playlist>();
+                //user.Playlists.Add(new Playlist() { PlaylistImage = new PlaylistImage() });
+
+                //result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
                     await UserManager.AddToRoleAsync(user.Id, "User");
@@ -57,7 +93,7 @@ namespace MusicBox.Controllers
             return View(model);
         }
 
-
+        [HttpGet]
         public ActionResult Login(string returnUrl)
         {
             ViewBag.returnUrl = returnUrl;
@@ -94,6 +130,7 @@ namespace MusicBox.Controllers
 
 
         }
+        [HttpGet]
         public ActionResult Logout()
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
@@ -122,6 +159,7 @@ namespace MusicBox.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+        [HttpGet]
         public async Task<ActionResult> Edit()
         {
             User user = await UserManager.FindByNameAsync(User.Identity.Name);
@@ -141,6 +179,7 @@ namespace MusicBox.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit(EditViewModel model)
         {
             User user = await UserManager.FindByNameAsync(User.Identity.Name);

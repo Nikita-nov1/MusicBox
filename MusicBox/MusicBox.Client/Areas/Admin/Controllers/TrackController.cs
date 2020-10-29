@@ -5,6 +5,7 @@ using System.Web.Mvc;
 
 namespace MusicBox.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class TrackController : Controller
     {
         private readonly ITrackPresentationServices presentationServices;

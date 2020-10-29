@@ -90,6 +90,11 @@ namespace MusicBox.Domain.DomainServices
 
         }
 
+        public Track GetTarck(int trackId)
+        {
+            return trackRepository.Get(trackId);
+        }
+
         public Track GetTrackWithAllAttachmentsExceptPlaylistsAndTrackStatisticsForPlay(int trackId)
         {
             Track track = trackRepository.GetTrackWithAllAttachmentsExceptPlaylistsAndTrackStatistics(trackId);

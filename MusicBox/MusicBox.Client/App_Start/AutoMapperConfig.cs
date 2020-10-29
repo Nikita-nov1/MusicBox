@@ -4,9 +4,11 @@ using MusicBox.Areas.Admin.Models.Artists;
 using MusicBox.Areas.Admin.Models.Tracks;
 using MusicBox.Domain.Models.AdditionalModels;
 using MusicBox.Domain.Models.Entities;
+using MusicBox.Domain.Models.Entities.Identity;
 using MusicBox.Models.Album;
 using MusicBox.Models.Artist;
 using MusicBox.Models.Track;
+using MusicBox.Models.User;
 using System.Web;
 
 namespace MusicBox.App_Start
@@ -127,6 +129,10 @@ namespace MusicBox.App_Start
                 .ForMember(dest => dest.ArtistName, opt => opt.MapFrom(scr => scr.Artist.Title));
 
             cfg.CreateMap<Artist, GetArtistsForClientViewModel>();
+
+            cfg.CreateMap<User, GetUserViewModel>();
+
+
 
 
 

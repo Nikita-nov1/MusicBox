@@ -10,6 +10,7 @@ namespace MusicBox.Domain.DomainServices.Interfaces
         List<Track> GetTracksWithAllAttachmentsExceptPlaylistsAndTrackFile();
         List<Track> GetAllTracksForAlbumWhitArtist(int albumId);
         List<Track> GetAllTracksForArtistWhitArtist(int artistId);
+        Track GetTarck(int trackId);
         Track GetTrackWithAllAttachmentsExceptPlaylistsAndTrackFile(int trackId);
         Track GetTrackWithAllAttachmentsExceptPlaylistsAndTrackStatisticsForPlay(int trackId);
         Track GetTrackWithAllAttachmentsExceptPlaylistsAndTrackFileAndTrackStatistics(int trackId);
