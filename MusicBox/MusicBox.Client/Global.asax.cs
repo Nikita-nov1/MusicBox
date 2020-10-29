@@ -26,6 +26,8 @@ namespace MusicBox
             CreateStorage.CreateUploadedFiles();
 
             new AddAdminToDb();
+
+            log4net.Config.XmlConfigurator.Configure();
         }
     }
 }
