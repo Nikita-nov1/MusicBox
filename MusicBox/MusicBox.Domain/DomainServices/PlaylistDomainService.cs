@@ -25,12 +25,10 @@ namespace MusicBox.Domain.DomainServices
 
         public void AddTrackToFavoritePlaylist(int trackId, string userId)
         {
-            User user = userDomainService.GetUserWithPlaylists(userId);
+            User user = userDomainService.GetUserWithPlaylistsAndTracks(userId);
             Track track = trackDomainService.GetTarck(trackId);
-            var playlists = user.Playlists;
 
             user.Playlists.First().Tracks.Add(track);
-
             unitOfWork.SaveChanges();
         }
     }

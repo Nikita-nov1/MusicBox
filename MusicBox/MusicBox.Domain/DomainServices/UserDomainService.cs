@@ -2,7 +2,7 @@
 using MusicBox.Domain.Models.Entities.Identity;
 using MusicBox.Domain.Repositories;
 using MusicBox.Domain.UnitOfWork;
-using System;
+using System.Threading.Tasks;
 
 namespace MusicBox.Domain.DomainServices
 {
@@ -17,9 +17,26 @@ namespace MusicBox.Domain.DomainServices
             this.unitOfWork = unitOfWork;
         }
 
-        public User GetUserWithPlaylists(string userId)
+        public User GetUserWithPlaylistsAndTracks(string userId)
         {
-            return userRepository.GetUserWithPlaylists(userId);
+            return userRepository.GetUserWithPlaylistsAndTracks(userId);
+        }
+
+        public async Task<User> GetUserByNameAsync(string userName)
+        {
+            return await userRepository.GetUserByNameAsync(userName);
+        }
+
+        public bool Updste(User user)
+        {
+            var result = unitOfWork.SaveChanges();
+
+            if (result > 0)
+            {
+                return true;
+            }
+             return false;
+
         }
     }
 }

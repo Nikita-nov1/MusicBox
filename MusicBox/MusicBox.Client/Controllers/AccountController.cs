@@ -43,8 +43,9 @@ namespace MusicBox.Controllers
         [HttpGet]
         public async Task<ActionResult> Index()
         {
-            User user = await UserManager.FindByNameAsync(User.Identity.Name);
-            return View(Mapper.Map<GetUserViewModel>(user));
+            GetUserViewModel userViewModel = await presentationServices.GetUserVmByNameAsync(User.Identity.Name);
+
+            return View(userViewModel);
 
         }
 
@@ -59,24 +60,10 @@ namespace MusicBox.Controllers
         {
             if (ModelState.IsValid)
             {
-                User user = new User
-                {
-                    FirstName = model.FirstName,
-                    LastName = model.LastName,
-                    UserName = model.UserName,
-                    Email = model.Email,
-                    DateBorn = model.DateBorn,
-                    UserImage = new UserImage(),
-                    
-                };
-                
+                User user = presentationServices.GetUserForRegister(model);
 
                 IdentityResult result = await UserManager.CreateAsync(user, model.Password);
-                //user = await UserManager.FindByNameAsync(User.Identity.Name);
-                //user.Playlists = new List<Playlist>();
-                //user.Playlists.Add(new Playlist() { PlaylistImage = new PlaylistImage() });
-
-                //result = await UserManager.CreateAsync(user, model.Password);
+                
                 if (result.Succeeded)
                 {
                     await UserManager.AddToRoleAsync(user.Id, "User");
@@ -128,8 +115,8 @@ namespace MusicBox.Controllers
             ViewBag.returnUrl = returnUrl;
             return View(model);
 
-
         }
+
         [HttpGet]
         public ActionResult Logout()
         {
@@ -162,50 +149,49 @@ namespace MusicBox.Controllers
         [HttpGet]
         public async Task<ActionResult> Edit()
         {
-            User user = await UserManager.FindByNameAsync(User.Identity.Name);
-            if (user != null)
-            {
-                EditViewModel model = new EditViewModel
-                {
-                    DateBorn = user.DateBorn,
-                    Email = user.Email,
-                    FirstName = user.FirstName,
-                    LastName = user.LastName,
+            EditUserViewModel userVm = await presentationServices.GetEditUserVmByNameAsync(User.Identity.Name);
 
-                };
-                return View(model);
+            if (userVm != null)
+            {
+                return View(userVm);
             }
             return RedirectToAction("Login", "Account");
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit(EditViewModel model)
+        public async Task<ActionResult> Edit(EditUserViewModel model)
         {
-            User user = await UserManager.FindByNameAsync(User.Identity.Name);
-            if (user != null)
+            if (ModelState.IsValid)  // в валидации мы проверяем, существует ли такой user
             {
-                user.DateBorn = model.DateBorn;
-                user.Email = model.Email;
-                user.FirstName = model.FirstName;
-                user.LastName = model.LastName;
-
-
-                IdentityResult result = await UserManager.UpdateAsync(user);
-                if (result.Succeeded)
+                User user = await UserManager.FindByNameAsync(User.Identity.Name);
+               // User user = await presentationServices.GetUser(User.Identity.Name);
+                if (user != null)
                 {
-                    return RedirectToAction("Index", "Home");
+                    // IdentityResult result = await presentationServices.UserUpdateAsync(User.Identity.Name, model);   - 
+
+                    user.DateBorn = model.DateBorn;
+                    user.Email = model.Email;
+                    user.FirstName = model.FirstName;
+                    user.LastName = model.LastName;
+
+                   //var isGood =  presentationServices.Updste(user);
+                    IdentityResult result = await UserManager.UpdateAsync(user);
+                        // if (isGood)
+                    if (result.Succeeded)
+                    {
+                        return RedirectToAction("Index", "Home");
+                    }
+                    else
+                    {
+                        ModelState.AddModelError("", "Что-то пошло не так");
+                    }
                 }
                 else
                 {
-                    ModelState.AddModelError("", "Что-то пошло не так");
+                    ModelState.AddModelError("", "Пользователь не найден");
                 }
             }
-            else
-            {
-                ModelState.AddModelError("", "Пользователь не найден");
-            }
-
             return View(model);
         }
     }

@@ -9,6 +9,7 @@ using MusicBox.Models.Album;
 using MusicBox.Models.Artist;
 using MusicBox.Models.Track;
 using MusicBox.Models.User;
+using System.Collections.Generic;
 using System.Web;
 
 namespace MusicBox.App_Start
@@ -132,6 +133,18 @@ namespace MusicBox.App_Start
 
             cfg.CreateMap<User, GetUserViewModel>();
 
+            cfg.CreateMap<RegisterUserViewModel, User>()
+                .BeforeMap((src, dest) => dest.UserImage = new UserImage())
+                .BeforeMap((src, dest) => dest.Playlists = new List<Playlist>())
+                .AfterMap((src, dest) => SetContentTypeForAlbumImage(src.Image, dest));
+
+
+            cfg.CreateMap<User, EditUserViewModel>();
+
+            
+
+
+
 
 
 
@@ -160,6 +173,15 @@ namespace MusicBox.App_Start
             if (image != null)
             {
                 album.AlbumImage.ContentType = image.ContentType;
+            }
+
+        }
+
+        private static void SetContentTypeForAlbumImage(HttpPostedFileBase image, User user)
+        {
+            if (image != null)
+            {
+                user.UserImage.ContentType = image.ContentType;
             }
 
         }

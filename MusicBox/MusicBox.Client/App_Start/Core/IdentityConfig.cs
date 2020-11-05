@@ -7,7 +7,7 @@ using MusicBox.Domain.Models.Entities.Identity;
 
 namespace MusicBox.App_Start.Core
 {
-    public class AppUserManager : UserManager<User>
+    public class AppUserManager : UserManager<User>// , IAppUserManager
     {
         public AppUserManager(IUserStore<User> store)
                 : base(store)

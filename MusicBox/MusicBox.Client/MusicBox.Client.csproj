@@ -249,7 +249,7 @@
     <Compile Include="Models\Artist\GetArtistsForClientViewModel.cs" />
     <Compile Include="Models\Track\GetTrackInformationViewModel.cs" />
     <Compile Include="Models\Track\GetTracksForClientViewModel.cs" />
-    <Compile Include="Models\User\EditViewModel.cs" />
+    <Compile Include="Models\User\EditUserViewModel.cs" />
     <Compile Include="Models\User\GetUserViewModel.cs" />
     <Compile Include="Models\User\LoginViewModel.cs" />
     <Compile Include="Models\User\RegisterUserViewModel.cs" />
@@ -323,6 +323,8 @@
     <Content Include="Files\Images\Album\defaultAlbumImage.jpg" />
     <Content Include="Files\Images\Artist\defaultArtistImage.jpg" />
     <Content Include="Files\Images\Icons\MusicBoxIcon.png" />
+    <Content Include="Files\Images\Playlist\playlist-like.png" />
+    <Content Include="Files\Images\User\user_default.png" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.bundle.js" />

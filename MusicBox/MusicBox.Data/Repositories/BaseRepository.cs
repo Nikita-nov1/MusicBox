@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace MusicBox.Data.Repositories
 {
@@ -19,6 +20,11 @@ namespace MusicBox.Data.Repositories
         public virtual T Get(object id)
         {
             return DbSet().Find(id);
+        }
+
+        public virtual Task<T> GetAsync(object id)
+        {
+            return DbSet().FindAsync(id);
         }
 
         public virtual int Count()
