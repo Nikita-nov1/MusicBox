@@ -1,5 +1,5 @@
-﻿using MusicBox.Domain.Interfaces;
-using System.Web.Hosting;
+﻿using System.Web.Hosting;
+using MusicBox.Domain.Interfaces;
 
 namespace MusicBox.Areas.Admin.PresentationServices
 {
@@ -19,7 +19,5 @@ namespace MusicBox.Areas.Admin.PresentationServices
         {
             return HostingEnvironment.MapPath("~/UploadedFiles/Tracks");
         }
-
     }
-
 }

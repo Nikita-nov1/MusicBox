@@ -1,6 +1,5 @@
 ﻿using MusicBox.Domain.DomainServices.Interfaces;
 using MusicBox.PresentationServices.Interfaces;
-using System;
 
 namespace MusicBox.PresentationServices
 {
@@ -15,7 +14,7 @@ namespace MusicBox.PresentationServices
 
         public void AddTrackToFavoritePlaylist(int trackId, string userId)
         {
-            playlistDomainService.AddTrackToFavoritePlaylist(trackId,userId);
+            playlistDomainService.AddTrackToFavoritePlaylist(trackId, userId);
         }
     }
 }

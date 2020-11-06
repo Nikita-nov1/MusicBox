@@ -1,13 +1,13 @@
-﻿using MusicBox.Domain.DomainServices.Interfaces;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Web;
+using MusicBox.Domain.DomainServices.Interfaces;
 using MusicBox.Domain.Interfaces;
 using MusicBox.Domain.Models.Entities;
 using MusicBox.Domain.Repositories;
 using MusicBox.Domain.UnitOfWork;
 using NAudio.Wave;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Web;
 
 namespace MusicBox.Domain.DomainServices
 {
@@ -20,8 +20,13 @@ namespace MusicBox.Domain.DomainServices
         private readonly ITrackStatisticsDomainService trackStatisticsDomainService;
         private readonly IArtistDomainService artistDomainService;
 
-        public TrackDomainService(ITrackRepository trackRepository, IUnitOfWork unitOfWork, IGetPathServices getPathServices, IAlbumDomainService albumDomainService,
-            ITrackStatisticsDomainService trackStatisticsDomainService, IArtistDomainService artistDomainService)
+        public TrackDomainService(
+            ITrackRepository trackRepository,
+            IUnitOfWork unitOfWork,
+            IGetPathServices getPathServices,
+            IAlbumDomainService albumDomainService,
+            ITrackStatisticsDomainService trackStatisticsDomainService,
+            IArtistDomainService artistDomainService)
         {
             this.trackRepository = trackRepository;
             this.unitOfWork = unitOfWork;
@@ -41,7 +46,7 @@ namespace MusicBox.Domain.DomainServices
             unitOfWork.SaveChanges();
         }
 
-        public void EditTrack(Track track ,HttpPostedFileBase uploadTrack)
+        public void EditTrack(Track track, HttpPostedFileBase uploadTrack)
         {
             if (uploadTrack != null)
             {
@@ -49,6 +54,7 @@ namespace MusicBox.Domain.DomainServices
                 track.TrackFile.ContentType = uploadTrack.ContentType;
                 track.DurationSong = GetDurationSongMp3(track.TrackFile.TrackLocation);
             }
+
             unitOfWork.SaveChanges();
         }
 
@@ -76,7 +82,6 @@ namespace MusicBox.Domain.DomainServices
         public Track GetTrackWithAllAttachmentsExceptPlaylistsAndTrackFile(int trackId)
         {
             return trackRepository.GetTrackWithAllAttachmentsExceptPlaylistsAndTrackFile(trackId);
-
         }
 
         public Track GetTrackWithAllAttachmentsExceptPlaylistsAndTrackFileAndTrackStatistics(int trackId)
@@ -87,7 +92,6 @@ namespace MusicBox.Domain.DomainServices
         public Track GetTrackWithAllAttachmentsExceptPlaylistsAndTrackStatistics(int trackId)
         {
             return trackRepository.GetTrackWithAllAttachmentsExceptPlaylistsAndTrackStatistics(trackId);
-
         }
 
         public Track GetTarck(int trackId)
@@ -105,42 +109,6 @@ namespace MusicBox.Domain.DomainServices
             return track;
         }
 
-        private string GetDurationSongMp3(string pathTrack)
-        {
-            string result = string.Empty;
-            string fileExt = Path.GetExtension(pathTrack);
-            if (fileExt == ".mp3")
-            {
-                //Use NAudio to get the duration of the File as a TimeSpan object
-                TimeSpan duration = new Mp3FileReader(pathTrack).TotalTime;
-                result = duration.ToString("mm\\:ss");
-            }
-            return result;
-
-        }
-
-        private void FixPathTrackLocationForPlayer(Track track)
-        {
-            var lastIndex = track.TrackFile.TrackLocation.LastIndexOf("Client");
-            if (lastIndex != -1)
-            {
-                track.TrackFile.TrackLocation = track.TrackFile.TrackLocation.Substring(lastIndex + 6);
-            }
-        }
-
-        private string SaveTrack(HttpPostedFileBase track)
-        {
-
-            var contentType = Path.GetExtension(track.FileName);
-            var directoryToSave = getPathServices.GetPathForSaveTracks();
-
-            var pathToSave = Path.Combine(directoryToSave, Guid.NewGuid().ToString() + contentType);
-
-            track.SaveAs(pathToSave);
-            return pathToSave;
-
-        }
-
         public bool IsIdExists(int id)
         {
             return trackRepository.IsIdExists(id);
@@ -155,8 +123,39 @@ namespace MusicBox.Domain.DomainServices
         {
             return trackRepository.IsUniqueTitleArtistTrack(trackId, artistTitle, trackTitle);
         }
+
+        private string GetDurationSongMp3(string pathTrack)
+        {
+            string result = string.Empty;
+            string fileExt = Path.GetExtension(pathTrack);
+            if (fileExt == ".mp3")
+            {
+                // Use NAudio to get the duration of the File as a TimeSpan object
+                TimeSpan duration = new Mp3FileReader(pathTrack).TotalTime;
+                result = duration.ToString("mm\\:ss");
+            }
+
+            return result;
+        }
+
+        private void FixPathTrackLocationForPlayer(Track track)
+        {
+            var lastIndex = track.TrackFile.TrackLocation.LastIndexOf("Client");
+            if (lastIndex != -1)
+            {
+                track.TrackFile.TrackLocation = track.TrackFile.TrackLocation.Substring(lastIndex + 6);
+            }
+        }
+
+        private string SaveTrack(HttpPostedFileBase track)
+        {
+            var contentType = Path.GetExtension(track.FileName);
+            var directoryToSave = getPathServices.GetPathForSaveTracks();
+
+            var pathToSave = Path.Combine(directoryToSave, Guid.NewGuid().ToString() + contentType);
+
+            track.SaveAs(pathToSave);
+            return pathToSave;
+        }
     }
 }
-
-
-

@@ -1,9 +1,9 @@
-﻿using MusicBox.Domain.Models.Entities;
-using MusicBox.Domain.Repositories;
-using MusicBox.Domain.UnitOfWork;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using MusicBox.Domain.Models.Entities;
+using MusicBox.Domain.Repositories;
+using MusicBox.Domain.UnitOfWork;
 
 namespace MusicBox.Data.Repositories
 {
@@ -12,7 +12,6 @@ namespace MusicBox.Data.Repositories
         public TrackRepository(IUnitOfWork unitOfWork)
             : base(unitOfWork)
         {
-           
         }
 
         public Track GetTrackWithAllAttachmentsExceptPlaylistsAndTrackFileAndTrackStatistics(int trackId)
@@ -24,7 +23,6 @@ namespace MusicBox.Data.Repositories
             Entry(entityTrack).Reference(c => c.Genre).Load();
 
             return entityTrack;
-
         }
 
         public Track GetTrackWithAllAttachmentsExceptPlaylistsAndTrackStatistics(int trackId)
@@ -37,7 +35,6 @@ namespace MusicBox.Data.Repositories
             Entry(entityTrack).Reference(c => c.TrackFile).Load();
 
             return entityTrack;
-
         }
 
         public Track GetTrackWithAllAttachmentsExceptPlaylistsAndTrackFile(int trackId)
@@ -50,7 +47,6 @@ namespace MusicBox.Data.Repositories
             Entry(entityTrack).Reference(c => c.TrackStatistics).Load();
 
             return entityTrack;
-
         }
 
         public List<Track> GetTracksWithAllAttachmentsExceptPlaylistsAndTrackFile()
@@ -62,7 +58,6 @@ namespace MusicBox.Data.Repositories
                 .Include(c => c.Genre)
                 .Include(c => c.TrackStatistics)
                 .ToList();
-
         }
 
         public bool IsIdExists(int id)

@@ -9,11 +9,11 @@ namespace MusicBox.Domain.DomainServices
     {
         private readonly IArtistImageRepository artistImageRepository;
         private readonly IUnitOfWork unitOfWork;
+
         public ArtistImageDomainService(IArtistImageRepository artistImageRepository, IUnitOfWork unitOfWork)
         {
             this.artistImageRepository = artistImageRepository;
             this.unitOfWork = unitOfWork;
-
         }
 
         public ArtistImage GetArtistImage(int artitId)

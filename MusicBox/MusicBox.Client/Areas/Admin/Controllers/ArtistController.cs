@@ -1,12 +1,8 @@
-﻿using MusicBox.Areas.Admin.Models.Artists;
+﻿using System.Net;
+using System.Web.Mvc;
+using MusicBox.Areas.Admin.Models.Artists;
 using MusicBox.Areas.Admin.PresentationServices.Interfaces;
 using MusicBox.Domain.Models.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Web;
-using System.Web.Mvc;
 
 namespace MusicBox.Areas.Admin.Controllers
 {
@@ -20,14 +16,13 @@ namespace MusicBox.Areas.Admin.Controllers
             this.presentationServices = presentationServices;
         }
 
-
         // GET: Admin/Artist
         public ActionResult Index()
         {
             return View(presentationServices.GetArtists());
         }
 
-        public ActionResult RenderImage(int id)  // todo доделать async
+        public ActionResult RenderImage(int id) // todo доделать async
         {
             ArtistImage artistImage = presentationServices.GetImage(id);
             if (artistImage.Image != null && !string.IsNullOrEmpty(artistImage.ContentType))
@@ -72,7 +67,7 @@ namespace MusicBox.Areas.Admin.Controllers
             return View(presentationServices.GetEditArtistVm(id));
         }
 
-        //POST: Admin/Artist/Edit/5
+        // POST: Admin/Artist/Edit/5
         [HttpPost]
         public ActionResult Edit(EditArtistsViewModel artistVm)
         {
@@ -84,7 +79,6 @@ namespace MusicBox.Areas.Admin.Controllers
 
             return View(artistVm);
         }
-
 
         // GET: Admin/Artist/Delete/5
         public ActionResult Delete(int? id)
@@ -98,7 +92,8 @@ namespace MusicBox.Areas.Admin.Controllers
         }
 
         // POST: Admin/Artist/Delete/5
-        [HttpPost, ActionName("Delete")]
+        [HttpPost]
+        [ActionName("Delete")]
         public ActionResult DeleteConfirmed(int id)
         {
             if (ModelState.IsValid)
@@ -108,7 +103,6 @@ namespace MusicBox.Areas.Admin.Controllers
             }
 
             return RedirectToAction("Index");
-
         }
     }
 }

@@ -1,6 +1,6 @@
-﻿using MusicBox.Domain.Models.Entities;
+﻿using System.Web.Mvc;
+using MusicBox.Domain.Models.Entities;
 using MusicBox.PresentationServices.Interfaces;
-using System.Web.Mvc;
 
 namespace MusicBox.Controllers
 {
@@ -19,7 +19,7 @@ namespace MusicBox.Controllers
             return View(presentationServices.GetAlbums());
         }
 
-        public ActionResult RenderImage(int id)  // todo доделать async
+        public ActionResult RenderImage(int id) // todo доделать async
         {
             AlbumImage albumImage = presentationServices.GetImage(id);
             if (albumImage.Image != null && !string.IsNullOrEmpty(albumImage.ContentType))
@@ -31,6 +31,5 @@ namespace MusicBox.Controllers
                 return null;
             }
         }
-
     }
 }

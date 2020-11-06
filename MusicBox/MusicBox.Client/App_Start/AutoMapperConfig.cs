@@ -1,4 +1,6 @@
-﻿using AutoMapper;
+﻿using System.Collections.Generic;
+using System.Web;
+using AutoMapper;
 using MusicBox.Areas.Admin.Models.Albums;
 using MusicBox.Areas.Admin.Models.Artists;
 using MusicBox.Areas.Admin.Models.Tracks;
@@ -9,8 +11,6 @@ using MusicBox.Models.Album;
 using MusicBox.Models.Artist;
 using MusicBox.Models.Track;
 using MusicBox.Models.User;
-using System.Collections.Generic;
-using System.Web;
 
 namespace MusicBox.App_Start
 {
@@ -18,7 +18,6 @@ namespace MusicBox.App_Start
     {
         public static void Configure(IMapperConfigurationExpression cfg)
         {
-
             cfg.CreateMap<CreateArtistsViewModel, Artist>()
                 .BeforeMap((src, dest) => dest.ArtistImage = new ArtistImage())
                 .AfterMap((src, dest) => SetContentTypeForArtistImage(src.Image, dest));
@@ -29,12 +28,10 @@ namespace MusicBox.App_Start
                 .ForMember(dest => dest.Id, opt => opt.MapFrom(scr => scr.Artist.Id))
                 .ForMember(dest => dest.Title, opt => opt.MapFrom(scr => scr.Artist.Title));
 
-
             cfg.CreateMap<Artist, EditArtistsViewModel>()
                 .ForMember(dest => dest.Image, opt => opt.Ignore());
 
-
-            cfg.CreateMap<EditArtistsViewModel, Artist>()           
+            cfg.CreateMap<EditArtistsViewModel, Artist>()
                .ForMember(dest => dest.Id, opt => opt.Ignore())
                .AfterMap((src, dest) => ChangeArtistImage(src.Image, dest));
 
@@ -55,7 +52,6 @@ namespace MusicBox.App_Start
                 .ForMember(dest => dest.Artist, opt => opt.MapFrom(scr => scr.Artist.Title))
                 .ForMember(dest => dest.Image, opt => opt.Ignore());
 
-
             cfg.CreateMap<EditAlbumsViewModel, Album>()
                .ForMember(dest => dest.Id, opt => opt.Ignore())
                .ForMember(dest => dest.Artist, opt => opt.Ignore())
@@ -66,7 +62,7 @@ namespace MusicBox.App_Start
             cfg.CreateMap<Album, GetAlbumsForArtistVm>();
 
             cfg.CreateMap<Album, DetailsAlbumsViewModel>();
-            
+
             cfg.CreateMap<CreateTracksViewModel, Track>()
                 .BeforeMap((src, dest) =>
                 {
@@ -81,7 +77,6 @@ namespace MusicBox.App_Start
                 .ForMember(dest => dest.Album, opt => opt.MapFrom(scr => scr.Album.Title))
                 .ForMember(dest => dest.Artist, opt => opt.MapFrom(scr => scr.Artist.Title))
                 .ForMember(dest => dest.CountOfCalls, opt => opt.MapFrom(scr => scr.TrackStatistics.CountOfCalls));
-
 
             cfg.CreateMap<Track, EditTracksViewModel>()
                 .ForMember(dest => dest.MoodId, opt => opt.MapFrom(scr => scr.Mood.Id))
@@ -118,7 +113,6 @@ namespace MusicBox.App_Start
 
             cfg.CreateMap<Artist, GetArtistsForClientViewModel>();
 
-
             cfg.CreateMap<Album, GetAlbumsForClientViewModel>()
                 .ForMember(dest => dest.ArtistName, opt => opt.MapFrom(scr => scr.Artist.Title));
 
@@ -138,17 +132,7 @@ namespace MusicBox.App_Start
                 .BeforeMap((src, dest) => dest.Playlists = new List<Playlist>())
                 .AfterMap((src, dest) => SetContentTypeForAlbumImage(src.Image, dest));
 
-
             cfg.CreateMap<User, EditUserViewModel>();
-
-            
-
-
-
-
-
-
-
         }
 
         private static void ChangeArtistImage(HttpPostedFileBase image, Artist dest)
@@ -165,7 +149,6 @@ namespace MusicBox.App_Start
             {
                 artist.ArtistImage.ContentType = image.ContentType;
             }
-
         }
 
         private static void SetContentTypeForAlbumImage(HttpPostedFileBase image, Album album)
@@ -174,7 +157,6 @@ namespace MusicBox.App_Start
             {
                 album.AlbumImage.ContentType = image.ContentType;
             }
-
         }
 
         private static void SetContentTypeForAlbumImage(HttpPostedFileBase image, User user)
@@ -183,7 +165,6 @@ namespace MusicBox.App_Start
             {
                 user.UserImage.ContentType = image.ContentType;
             }
-
         }
 
         private static void ChangeAlbumImage(HttpPostedFileBase image, Album dest)
@@ -193,6 +174,5 @@ namespace MusicBox.App_Start
                 dest.AlbumImage.ContentType = image.ContentType;
             }
         }
-
     }
 }

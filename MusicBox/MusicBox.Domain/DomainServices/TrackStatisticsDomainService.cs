@@ -21,7 +21,6 @@ namespace MusicBox.Domain.DomainServices
             TrackStatistics trackStatistics = trackStatisticsRepository.Get(trackId);
             ++trackStatistics.CountOfCalls;
             unitOfWork.SaveChanges();
-
         }
     }
 }

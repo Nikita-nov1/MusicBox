@@ -7,8 +7,10 @@ namespace MusicBox.Models.User
     {
         [Display(Name = "Логин")]
         public string UserName { get; set; }
+
         [Display(Name = "Фамилия")]
         public string FirstName { get; set; }
+
         [Display(Name = "Имя")]
         public string LastName { get; set; }
 
@@ -19,9 +21,5 @@ namespace MusicBox.Models.User
         [EmailAddress]
         [Display(Name = "Почта")]
         public string Email { get; set; }
-
-
-
-
     }
 }

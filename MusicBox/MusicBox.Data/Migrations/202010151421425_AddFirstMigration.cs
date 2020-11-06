@@ -1,8 +1,7 @@
 ﻿namespace MusicBox.Data.Migrations
 {
-    using System;
     using System.Data.Entity.Migrations;
-    
+
     public partial class AddFirstMigration : DbMigration
     {
         public override void Up()
@@ -179,14 +178,13 @@
                 .Index(t => t.TrackId)
                 .Index(t => t.PlaylistId);
 
-          //  Sql("ALTER TABLE [dbo].[Tracks] DROP CONSTRAINT [FK_dbo.Tracks_dbo.Albums_AlbumId]");
+            // Sql("ALTER TABLE [dbo].[Tracks] DROP CONSTRAINT [FK_dbo.Tracks_dbo.Albums_AlbumId]");
 
-            //Sql("ALTER TABLE [dbo].[Tracks]  WITH CHECK ADD  CONSTRAINT [FK_dbo.Tracks_dbo.Albums_AlbumId] FOREIGN KEY([AlbumId]) REFERENCES[dbo].[Albums]([Id]) ON DELETE SET NULL ON UPDATE NO ACTION");
+            // Sql("ALTER TABLE [dbo].[Tracks]  WITH CHECK ADD  CONSTRAINT [FK_dbo.Tracks_dbo.Albums_AlbumId] FOREIGN KEY([AlbumId]) REFERENCES[dbo].[Albums]([Id]) ON DELETE SET NULL ON UPDATE NO ACTION");
 
-            //Sql("ALTER TABLE [dbo].[Tracks] CHECK CONSTRAINT [FK_dbo.Tracks_dbo.Albums_AlbumId]  ");
-
+            // Sql("ALTER TABLE [dbo].[Tracks] CHECK CONSTRAINT [FK_dbo.Tracks_dbo.Albums_AlbumId]  ");
         }
-        
+
         public override void Down()
         {
             DropForeignKey("dbo.Tracks", "AlbumId", "dbo.Albums");

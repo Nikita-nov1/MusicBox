@@ -12,6 +12,5 @@ namespace MusicBox.Models.User
         [DataType(DataType.Password)]
         [Display(Name = "Пароль")]
         public string Password { get; set; }
-
     }
 }

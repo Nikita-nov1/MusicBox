@@ -1,10 +1,10 @@
-﻿using MusicBox.Domain.Models.AdditionalModels;
+﻿using System.Collections.Generic;
+using System.Data.Entity;
+using System.Linq;
+using MusicBox.Domain.Models.AdditionalModels;
 using MusicBox.Domain.Models.Entities;
 using MusicBox.Domain.Repositories;
 using MusicBox.Domain.UnitOfWork;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
 
 namespace MusicBox.Data.Repositories
 {
@@ -27,7 +27,7 @@ namespace MusicBox.Data.Repositories
             return GetQueryableItems().FirstOrDefault(c => c.Title == artistTitle);
         }
 
-        public Artist GetArtistWhitTracks(int artistId) //todo replace GetArtistWhitTracks on GetArtistWithTracks
+        public Artist GetArtistWhitTracks(int artistId) // todo replace GetArtistWhitTracks on GetArtistWithTracks
         {
             var entityArtist = Get(artistId);
             Entry(entityArtist).Collection(c => c.Tracks).Load();
@@ -84,7 +84,6 @@ namespace MusicBox.Data.Repositories
             Entry(artist).Collection(c => c.Albums).Load();
 
             return artist.Albums;
-
         }
 
         public List<Track> GetTracksForArtist(int artistId)

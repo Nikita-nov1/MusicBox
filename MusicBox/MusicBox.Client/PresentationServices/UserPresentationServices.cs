@@ -1,13 +1,13 @@
-﻿using AutoMapper;
+﻿using System.IO;
+using System.Threading.Tasks;
+using System.Web;
+using System.Web.Hosting;
+using AutoMapper;
 using MusicBox.Domain.DomainServices.Interfaces;
 using MusicBox.Domain.Models.Entities;
 using MusicBox.Domain.Models.Entities.Identity;
 using MusicBox.Models.User;
 using MusicBox.PresentationServices.Interfaces;
-using System.IO;
-using System.Threading.Tasks;
-using System.Web;
-using System.Web.Hosting;
 
 namespace MusicBox.PresentationServices
 {
@@ -16,12 +16,10 @@ namespace MusicBox.PresentationServices
         private readonly IPlaylistDomainService playlistDomainService;
         private readonly IUserDomainService userDomainService;
 
-
         public UserPresentationServices(IPlaylistDomainService playlistDomainService, IUserDomainService userDomainService)
         {
             this.playlistDomainService = playlistDomainService;
             this.userDomainService = userDomainService;
-
         }
 
         public async Task<GetUserViewModel> GetUserVmByNameAsync(string userName)
@@ -37,6 +35,7 @@ namespace MusicBox.PresentationServices
             {
                 return Mapper.Map<EditUserViewModel>(user);
             }
+
             return null;
         }
 
@@ -52,7 +51,6 @@ namespace MusicBox.PresentationServices
 
         public User GetUserForRegister(RegisterUserViewModel modelVm)
         {
-
             User user = Mapper.Map<User>(modelVm);
 
             if (modelVm.Image != null)
@@ -75,7 +73,6 @@ namespace MusicBox.PresentationServices
             playlist.Title = "MyFavoriteTracks";
 
             return playlist;
-
         }
 
         private byte[] ConvertToBytes(HttpPostedFileBase image)
@@ -84,12 +81,14 @@ namespace MusicBox.PresentationServices
             {
                 return null;
             }
+
             byte[] imageBytes = null;
 
             using (var binaryReader = new BinaryReader(image.InputStream))
             {
                 imageBytes = binaryReader.ReadBytes(image.ContentLength);
             }
+
             return imageBytes;
         }
 
@@ -111,13 +110,13 @@ namespace MusicBox.PresentationServices
             {
                 using (var binaryReader = new BinaryReader(fileStream))
                 {
-                    playlist.PlaylistImage = new PlaylistImage();
-                    playlist.PlaylistImage.ContentType = Path.GetExtension(fileStream.Name);
-                    playlist.PlaylistImage.Image = binaryReader.ReadBytes((int)fileStream.Length);
+                    playlist.PlaylistImage = new PlaylistImage
+                    {
+                        ContentType = Path.GetExtension(fileStream.Name),
+                        Image = binaryReader.ReadBytes((int)fileStream.Length)
+                    };
                 }
             }
         }
-
-
     }
 }

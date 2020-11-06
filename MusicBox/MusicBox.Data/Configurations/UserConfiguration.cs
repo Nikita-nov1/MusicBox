@@ -1,5 +1,5 @@
-﻿using MusicBox.Domain.Models.Entities.Identity;
-using System.Data.Entity.ModelConfiguration;
+﻿using System.Data.Entity.ModelConfiguration;
+using MusicBox.Domain.Models.Entities.Identity;
 
 namespace MusicBox.Data.Configurations
 {
@@ -13,7 +13,6 @@ namespace MusicBox.Data.Configurations
             Property(c => c.FirstName).IsRequired().HasMaxLength(25);
             Property(c => c.LastName).IsRequired().HasMaxLength(25);
             Property(c => c.DateBorn).HasColumnType("date");
-
         }
     }
 }

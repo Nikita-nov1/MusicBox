@@ -1,12 +1,12 @@
-﻿using MusicBox.Domain.Models.Entities.Identity;
-using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
+using MusicBox.Domain.Models.Entities.Identity;
 
 namespace MusicBox.Domain.Repositories
 {
     public interface IUserRepository : IBaseRepository<User>
     {
         User GetUserWithPlaylistsAndTracks(string userId);
+
         Task<User> GetUserByNameAsync(string userName);
     }
 }

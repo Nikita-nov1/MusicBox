@@ -1,9 +1,9 @@
-﻿using MusicBox.Domain.Models.Entities;
-using MusicBox.Domain.Repositories;
-using MusicBox.Domain.UnitOfWork;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using MusicBox.Domain.Models.Entities;
+using MusicBox.Domain.Repositories;
+using MusicBox.Domain.UnitOfWork;
 
 namespace MusicBox.Data.Repositories
 {
@@ -35,8 +35,6 @@ namespace MusicBox.Data.Repositories
                 .Include(x => x.Artist)
                 .Include(q => q.Tracks)
                 .Single(q => q.Id.Equals(albumId)).Tracks;
-
-
         }
 
         public Album GetAlbumWithImageAndArtist(int id)
@@ -70,7 +68,6 @@ namespace MusicBox.Data.Repositories
             .Include(x => x.Tracks.Select(y => y.Mood))
             .Include(x => x.Tracks.Select(y => y.TrackStatistics))
             .Single(x => x.Id == id);
-
         }
 
         public bool IsIdExists(int id)

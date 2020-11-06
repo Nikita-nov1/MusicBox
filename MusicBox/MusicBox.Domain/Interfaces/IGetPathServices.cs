@@ -9,7 +9,9 @@ namespace MusicBox.Domain.Interfaces
     public interface IGetPathServices
     {
         string GetPathDefaultArtistImage();
+
         string GetPathDefaultAlbumImage();
+
         string GetPathForSaveTracks();
     }
 }

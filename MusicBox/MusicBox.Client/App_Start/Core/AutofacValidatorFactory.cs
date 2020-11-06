@@ -1,6 +1,6 @@
-﻿using FluentValidation;
-using System;
+﻿using System;
 using System.Web.Mvc;
+using FluentValidation;
 
 namespace MusicBox.App_Start.Core
 {

@@ -1,10 +1,10 @@
-﻿using MusicBox.Domain.DomainServices.Interfaces;
+﻿using System;
+using System.Linq;
+using MusicBox.Domain.DomainServices.Interfaces;
 using MusicBox.Domain.Models.Entities;
 using MusicBox.Domain.Models.Entities.Identity;
 using MusicBox.Domain.Repositories;
 using MusicBox.Domain.UnitOfWork;
-using System;
-using System.Linq;
 
 namespace MusicBox.Domain.DomainServices
 {

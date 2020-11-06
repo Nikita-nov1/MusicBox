@@ -1,5 +1,5 @@
-﻿using MusicBox.Domain.Models.Entities;
-using System.Data.Entity.ModelConfiguration;
+﻿using System.Data.Entity.ModelConfiguration;
+using MusicBox.Domain.Models.Entities;
 
 namespace MusicBox.Data.Configurations
 {
@@ -15,10 +15,9 @@ namespace MusicBox.Data.Configurations
 
             Property(c => c.ContentType).IsRequired().HasMaxLength(50);
 
-            HasRequired<Track>(c => c.Track)
+            HasRequired(c => c.Track)
                 .WithRequiredDependent(c => c.TrackFile)
                 .WillCascadeOnDelete(true);
-
         }
     }
 }

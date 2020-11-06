@@ -1,14 +1,15 @@
-﻿using MusicBox.Domain.Repositories;
-using MusicBox.Domain.UnitOfWork;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Threading.Tasks;
+using MusicBox.Domain.Repositories;
+using MusicBox.Domain.UnitOfWork;
 
 namespace MusicBox.Data.Repositories
 {
-    public class BaseRepository<T> : IBaseRepository<T> where T : class
+    public class BaseRepository<T> : IBaseRepository<T>
+        where T : class
     {
         private readonly IUnitOfWork unitOfWork;
 
@@ -36,6 +37,7 @@ namespace MusicBox.Data.Repositories
         {
             DbSet().Add(item);
         }
+
         public virtual T AddWithEntityReturn(T item)
         {
             return DbSet().Add(item);
@@ -45,7 +47,6 @@ namespace MusicBox.Data.Repositories
         {
             return DbSet().Create();
         }
-
 
         public virtual void Delete(T item)
         {
@@ -69,7 +70,7 @@ namespace MusicBox.Data.Repositories
 
         protected virtual DbEntityEntry<T> Entry(T entry)
         {
-            return unitOfWork.Entry<T>(entry);
+            return unitOfWork.Entry(entry);
         }
 
         private DbSet<T> DbSet()
@@ -77,6 +78,4 @@ namespace MusicBox.Data.Repositories
             return unitOfWork.Set<T>();
         }
     }
-
-
 }

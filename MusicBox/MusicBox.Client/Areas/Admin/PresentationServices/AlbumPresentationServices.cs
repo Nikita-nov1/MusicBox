@@ -1,9 +1,9 @@
-﻿using AutoMapper;
+﻿using System.Collections.Generic;
+using AutoMapper;
 using MusicBox.Areas.Admin.Models.Albums;
 using MusicBox.Areas.Admin.PresentationServices.Interfaces;
 using MusicBox.Domain.DomainServices.Interfaces;
 using MusicBox.Domain.Models.Entities;
-using System.Collections.Generic;
 
 namespace MusicBox.Areas.Admin.PresentationServices
 {
@@ -22,22 +22,20 @@ namespace MusicBox.Areas.Admin.PresentationServices
 
         public List<GetAlbumsViewModel> GetAlbums()
         {
-            List<Album> albums  = albumDomainService.GetAlbumsWithArtistAndTracks();
-            return Mapper.Map<List<GetAlbumsViewModel>>(albums);   
-
+            List<Album> albums = albumDomainService.GetAlbumsWithArtistAndTracks();
+            return Mapper.Map<List<GetAlbumsViewModel>>(albums);
         }
 
         public EditAlbumsViewModel GetEditAlbumVm(int id)
         {
             Album album = albumDomainService.GetAlbumWhitArtist(id);
             return Mapper.Map<EditAlbumsViewModel>(album);
-
         }
 
         public void EditAlbum(EditAlbumsViewModel albumsVm)
         {
             Album album = albumDomainService.GetAlbumWithImageAndArtist(albumsVm.Id);
-            album = Mapper.Map<EditAlbumsViewModel, Album>(albumsVm, album);
+            album = Mapper.Map(albumsVm, album);
             album.Artist = artistDomainService.GetArtistOrCreateNewIfHeNotExist(albumsVm.Artist);
 
             if (albumsVm.Image != null)
@@ -46,14 +44,12 @@ namespace MusicBox.Areas.Admin.PresentationServices
             }
 
             albumDomainService.EditAlbum();
-
         }
 
         public DeleteAlbumsViewModel GetDeleteAlbumVm(int id)
         {
             Album album = albumDomainService.GetAlbumWhitArtist(id);
             return Mapper.Map<DeleteAlbumsViewModel>(album);
-
         }
 
         public DetailsAlbumsViewModel GetDetailsAlbumVm(int id)
@@ -64,7 +60,6 @@ namespace MusicBox.Areas.Admin.PresentationServices
         public void DeleteAlbum(int id)
         {
             albumDomainService.DeleteAlbum(id);
-
         }
 
         public AlbumImage GetImage(int albumId)
@@ -74,9 +69,10 @@ namespace MusicBox.Areas.Admin.PresentationServices
             {
                 return new AlbumImage();
             }
-            return albumImage;
 
+            return albumImage;
         }
+
         public void AddAlbum(CreateAlbumsViewModel albumsVm)
         {
             Album album = Mapper.Map<Album>(albumsVm);
@@ -94,10 +90,6 @@ namespace MusicBox.Areas.Admin.PresentationServices
             }
 
             return (Mapper.Map<List<GetAlbumsForArtistVm>>(albumDomainService.GetAlbumsForArtist(artistTitle)), true);
-            
         }
-
-
-
     }
 }

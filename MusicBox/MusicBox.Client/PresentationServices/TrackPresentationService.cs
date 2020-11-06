@@ -1,16 +1,15 @@
-﻿using AutoMapper;
+﻿using System.Collections.Generic;
+using AutoMapper;
 using MusicBox.Domain.DomainServices.Interfaces;
 using MusicBox.Domain.Models.Entities;
 using MusicBox.Models.Track;
 using MusicBox.PresentationServices.Interfaces;
-using System.Collections.Generic;
 
 namespace MusicBox.PresentationServices
 {
     public class TrackPresentationService : ITrackPresentationService
     {
         private readonly ITrackDomainService trackDomainService;
-
 
         public TrackPresentationService(ITrackDomainService trackDomainService)
         {
@@ -34,6 +33,5 @@ namespace MusicBox.PresentationServices
             Track track = trackDomainService.GetTrackWithAllAttachmentsExceptPlaylistsAndTrackStatisticsForPlay(trackId);
             return Mapper.Map<GetTrackInformationViewModel>(track);
         }
-
     }
 }

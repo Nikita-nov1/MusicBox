@@ -6,7 +6,6 @@ namespace MusicBox.Models.User
 {
     public class EditUserViewModel
     {
-
         [Required]
         [StringLength(25, MinimumLength = 2)]
         public string FirstName { get; set; }

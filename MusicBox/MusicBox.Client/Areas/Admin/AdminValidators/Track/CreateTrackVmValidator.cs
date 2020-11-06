@@ -4,7 +4,6 @@ using MusicBox.Domain.DomainServices.Interfaces;
 
 namespace MusicBox.Areas.Admin.AdminValidators.Track
 {
-
     public class CreateTrackVmValidator : AbstractValidator<CreateTracksViewModel>
     {
         private readonly IArtistDomainService artistDomainService;
@@ -13,8 +12,12 @@ namespace MusicBox.Areas.Admin.AdminValidators.Track
         private readonly IAlbumDomainService albumDomainService;
         private readonly ITrackDomainService trackDomainService;
 
-        public CreateTrackVmValidator(IArtistDomainService artistDomainService, IGenreDomainService genreDomainService,
-            IMoodDomainService moodDomainService, IAlbumDomainService albumDomainService, ITrackDomainService trackDomainService)
+        public CreateTrackVmValidator(
+            IArtistDomainService artistDomainService,
+            IGenreDomainService genreDomainService,
+            IMoodDomainService moodDomainService,
+            IAlbumDomainService albumDomainService,
+            ITrackDomainService trackDomainService)
         {
             this.artistDomainService = artistDomainService;
             this.moodDomainService = moodDomainService;

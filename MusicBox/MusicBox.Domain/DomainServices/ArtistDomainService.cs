@@ -1,11 +1,11 @@
-﻿using MusicBox.Domain.DomainServices.Interfaces;
+﻿using System.Collections.Generic;
+using System.IO;
+using MusicBox.Domain.DomainServices.Interfaces;
 using MusicBox.Domain.Interfaces;
 using MusicBox.Domain.Models.AdditionalModels;
 using MusicBox.Domain.Models.Entities;
 using MusicBox.Domain.Repositories;
 using MusicBox.Domain.UnitOfWork;
-using System.Collections.Generic;
-using System.IO;
 
 namespace MusicBox.Domain.DomainServices
 {
@@ -28,6 +28,7 @@ namespace MusicBox.Domain.DomainServices
             {
                 OpenFileAndConvertToBytes(artist);
             }
+
             var result = artistRepository.AddWithEntityReturn(artist);
             unitOfWork.SaveChanges();
             return result;
@@ -65,15 +66,16 @@ namespace MusicBox.Domain.DomainServices
             {
                 atrist = AddArtist(new Artist { Title = artistTitle, ArtistImage = new ArtistImage() });
             }
+
             return atrist;
         }
 
-        public List<Artist> GetArtists() 
+        public List<Artist> GetArtists()
         {
             return artistRepository.GetAll();
         }
 
-        public Artist GetArtistWithTracksAndAlbumsWithAllAttachments(int id) 
+        public Artist GetArtistWithTracksAndAlbumsWithAllAttachments(int id)
         {
             return artistRepository.GetArtistWithTracksAndAlbumsWithAllAttachments(id);
         }
@@ -111,6 +113,11 @@ namespace MusicBox.Domain.DomainServices
             return artistRepository.IsUniqueTitle(id, title);
         }
 
+        public bool IsExistsArtist(string artistTitle)
+        {
+            return artistRepository.IsExistsArtist(artistTitle);
+        }
+
         private void OpenFileAndConvertToBytes(Artist artist)
         {
             using (FileStream fileStream = new FileStream(getDefaultImage.GetPathDefaultArtistImage(), FileMode.Open))
@@ -131,12 +138,8 @@ namespace MusicBox.Domain.DomainServices
             {
                 track.Album = null;
             }
-            unitOfWork.SaveChanges();
-        }
 
-        public bool IsExistsArtist(string artistTitle)
-        {
-            return artistRepository.IsExistsArtist(artistTitle);
+            unitOfWork.SaveChanges();
         }
     }
 }

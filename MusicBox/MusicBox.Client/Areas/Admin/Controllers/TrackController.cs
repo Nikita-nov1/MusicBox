@@ -1,7 +1,7 @@
-﻿using MusicBox.Areas.Admin.Models.Tracks;
-using MusicBox.Areas.Admin.PresentationServices.Interfaces;
-using System.Net;
+﻿using System.Net;
 using System.Web.Mvc;
+using MusicBox.Areas.Admin.Models.Tracks;
+using MusicBox.Areas.Admin.PresentationServices.Interfaces;
 
 namespace MusicBox.Areas.Admin.Controllers
 {
@@ -58,6 +58,7 @@ namespace MusicBox.Areas.Admin.Controllers
                 presentationServices.EditTrack(trackVm);
                 return RedirectToAction("Index");
             }
+
             presentationServices.GetEditTrackVm(trackVm);
             return View(trackVm);
         }
@@ -73,7 +74,8 @@ namespace MusicBox.Areas.Admin.Controllers
             return View(presentationServices.GetDeleteTrackVm((int)id));
         }
 
-        [HttpPost, ActionName("Delete")]
+        [HttpPost]
+        [ActionName("Delete")]
         public ActionResult DeleteConfirmed(int id)
         {
             if (ModelState.IsValid)
@@ -83,8 +85,6 @@ namespace MusicBox.Areas.Admin.Controllers
             }
 
             return RedirectToAction("Index");
-
         }
-
     }
 }

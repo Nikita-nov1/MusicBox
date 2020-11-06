@@ -1,4 +1,7 @@
-﻿using Autofac;
+﻿using System.Linq;
+using System.Reflection;
+using System.Web.Mvc;
+using Autofac;
 using Autofac.Integration.Mvc;
 using FluentValidation;
 using FluentValidation.Mvc;
@@ -14,9 +17,6 @@ using MusicBox.Domain.Interfaces;
 using MusicBox.Domain.Repositories;
 using MusicBox.Domain.UnitOfWork;
 using MusicBox.PresentationServices.Interfaces;
-using System.Linq;
-using System.Reflection;
-using System.Web.Mvc;
 
 namespace MusicBox.App_Start
 {

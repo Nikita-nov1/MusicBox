@@ -13,17 +13,17 @@ namespace MusicBox.App_Start.Core
                 : base(store)
         {
         }
-        public static AppUserManager Create(IdentityFactoryOptions<AppUserManager> options,
-                                                IOwinContext context)
+
+        public static AppUserManager Create(IdentityFactoryOptions<AppUserManager> options, IOwinContext context)
         {
             MusicBoxDbContext db = context.Get<MusicBoxDbContext>();
             AppUserManager manager = new AppUserManager(new UserStore<User>(db));
             return manager;
         }
 
-        //1
+        // 1
         // public class FastBusUserManager : UserManager<User, int>       ---- валидация User
-        //{
+        // {
         //    public FastBusUserManager(FastBusUserStore store)
         //        : base(store)
         //    {
@@ -33,7 +33,7 @@ namespace MusicBox.App_Start.Core
         //            RequireUniqueEmail = true
         //        };
 
-        //        PasswordValidator = new PasswordValidator
+        // PasswordValidator = new PasswordValidator
         //        {
         //            RequiredLength = 6,
         //            RequireNonLetterOrDigit = false,
@@ -42,19 +42,20 @@ namespace MusicBox.App_Start.Core
         //            RequireUppercase = false
         //        };
 
-        //        UserLockoutEnabledByDefault = false;
+        // UserLockoutEnabledByDefault = false;
         //    }
-        //   
-        //1
+        //
+        // 1
     }
 
     public class AppRoleManager : RoleManager<Role>
     {
         public AppRoleManager(RoleStore<Role> store)
                     : base(store)
-        { }
-        public static AppRoleManager Create(IdentityFactoryOptions<AppRoleManager> options,
-                                                IOwinContext context)
+        {
+        }
+
+        public static AppRoleManager Create(IdentityFactoryOptions<AppRoleManager> options,  IOwinContext context)
         {
             return new AppRoleManager(new
                     RoleStore<Role>(context.Get<MusicBoxDbContext>()));

@@ -1,10 +1,10 @@
-﻿using Microsoft.AspNet.Identity;
+﻿using System;
+using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using MusicBox.App_Start.Core;
 using MusicBox.Data.Context;
 using MusicBox.Domain.Models.Entities;
 using MusicBox.Domain.Models.Entities.Identity;
-using System;
 
 namespace MusicBox.Infrastructure
 {
@@ -14,7 +14,6 @@ namespace MusicBox.Infrastructure
         {
             Seed(new MusicBoxDbContext());
         }
-
 
         private void Seed(MusicBoxDbContext context)
         {
@@ -39,9 +38,6 @@ namespace MusicBox.Infrastructure
                 userManager.AddToRole(nikita.Id, "User");
             }
 
-
-
-
             User alexey = new User
             {
                 FirstName = "Алексей",
@@ -59,9 +55,6 @@ namespace MusicBox.Infrastructure
                 userManager.AddToRole(alexey.Id, "Admin");
                 userManager.AddToRole(alexey.Id, "User");
             }
-
-
         }
     }
 }
-

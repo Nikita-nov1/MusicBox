@@ -1,7 +1,7 @@
-﻿using FluentValidation;
+﻿using System;
+using FluentValidation;
 using MusicBox.Areas.Admin.Models.Albums;
 using MusicBox.Domain.DomainServices.Interfaces;
-using System;
 
 namespace MusicBox.Areas.Admin.AdminValidators.Album
 {
@@ -10,7 +10,7 @@ namespace MusicBox.Areas.Admin.AdminValidators.Album
         private readonly IAlbumDomainService albumDomainService;
         private readonly IArtistDomainService artistDomainService;
 
-        public EditAlbumVmValidator(IAlbumDomainService albumDomainService , IArtistDomainService artistDomainService)
+        public EditAlbumVmValidator(IAlbumDomainService albumDomainService, IArtistDomainService artistDomainService)
         {
             this.albumDomainService = albumDomainService;
             this.artistDomainService = artistDomainService;

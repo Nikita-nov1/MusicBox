@@ -1,16 +1,15 @@
-﻿using MusicBox.Areas.Admin.Models.Albums;
-using MusicBox.Areas.Admin.PresentationServices.Interfaces;
-using MusicBox.Domain.Models.Entities;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Net;
 using System.Web.Mvc;
+using MusicBox.Areas.Admin.Models.Albums;
+using MusicBox.Areas.Admin.PresentationServices.Interfaces;
+using MusicBox.Domain.Models.Entities;
 
 namespace MusicBox.Areas.Admin.Controllers
 {
     [Authorize(Roles = "Admin")]
     public class AlbumController : Controller
     {
-
         private readonly IAlbumPresentationServices presentationServices;
 
         public AlbumController(IAlbumPresentationServices presentationServices)
@@ -24,7 +23,7 @@ namespace MusicBox.Areas.Admin.Controllers
             return View(presentationServices.GetAlbums());
         }
 
-        public ActionResult RenderImage(int id)  // todo доделать async
+        public ActionResult RenderImage(int id) // todo доделать async
         {
             AlbumImage albumImage = presentationServices.GetImage(id);
             if (albumImage.Image != null && !string.IsNullOrEmpty(albumImage.ContentType))
@@ -40,14 +39,12 @@ namespace MusicBox.Areas.Admin.Controllers
         public ActionResult Details(int id)
         {
             return View(presentationServices.GetDetailsAlbumVm(id));
-
         }
 
         [HttpGet]
         public ActionResult Create()
         {
             return View();
-
         }
 
         [HttpPost]
@@ -91,7 +88,8 @@ namespace MusicBox.Areas.Admin.Controllers
             return View(presentationServices.GetDeleteAlbumVm((int)id));
         }
 
-        [HttpPost, ActionName("Delete")]
+        [HttpPost]
+        [ActionName("Delete")]
         public ActionResult DeleteConfirmed(int id)
         {
             if (ModelState.IsValid)
@@ -101,7 +99,6 @@ namespace MusicBox.Areas.Admin.Controllers
             }
 
             return RedirectToAction("Index");
-
         }
 
         [HttpPost]

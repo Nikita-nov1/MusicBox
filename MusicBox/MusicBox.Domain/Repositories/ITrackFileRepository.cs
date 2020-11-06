@@ -2,7 +2,6 @@
 
 namespace MusicBox.Domain.Repositories
 {
-
     public interface ITrackFileRepository : IBaseRepository<TrackFile>
     {
     }

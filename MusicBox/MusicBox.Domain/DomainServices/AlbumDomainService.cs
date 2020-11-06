@@ -1,11 +1,11 @@
-﻿using MusicBox.Domain.DomainServices.Interfaces;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using MusicBox.Domain.DomainServices.Interfaces;
 using MusicBox.Domain.Interfaces;
 using MusicBox.Domain.Models.Entities;
 using MusicBox.Domain.Repositories;
 using MusicBox.Domain.UnitOfWork;
-using System;
-using System.Collections.Generic;
-using System.IO;
 
 namespace MusicBox.Domain.DomainServices
 {
@@ -80,6 +80,7 @@ namespace MusicBox.Domain.DomainServices
             {
                 OpenFileAndConvertToBytes(album);
             }
+
             album.DateOfCreation = DateTime.Now;
             albumRepository.Add(album);
             unitOfWork.SaveChanges();
@@ -97,15 +98,19 @@ namespace MusicBox.Domain.DomainServices
             unitOfWork.SaveChanges();
         }
 
-        private void RemoveAlbumLinkForAllTracks(int albumId)
+        public bool IsIdExists(int id)
         {
-            Album album = albumRepository.GetAlbumWhitTracks(albumId);
+            return albumRepository.IsIdExists(id);
+        }
 
-            foreach (var track in album.Tracks)
-            {
-                track.Album = null;
-            }
-            unitOfWork.SaveChanges();
+        public bool IsUniqueTitleArtistAlbum(int albumId, string artistTitle, string albumTitle)
+        {
+            return albumRepository.IsUniqueTitleArtistAlbum(albumId, artistTitle, albumTitle);
+        }
+
+        public bool IsUniqueNewTitleArtistAlbum(string artistTitle, string albumTitle)
+        {
+            return albumRepository.IsUniqueNewTitleArtistAlbum(artistTitle, albumTitle);
         }
 
         private void OpenFileAndConvertToBytes(Album album)
@@ -120,19 +125,16 @@ namespace MusicBox.Domain.DomainServices
             }
         }
 
-        public bool IsIdExists(int id)
+        private void RemoveAlbumLinkForAllTracks(int albumId)
         {
-            return albumRepository.IsIdExists(id);
-        }
+            Album album = albumRepository.GetAlbumWhitTracks(albumId);
 
-        public bool IsUniqueTitleArtistAlbum(int albumId, string artistTitle, string albumTitle)
-        {
-            return albumRepository.IsUniqueTitleArtistAlbum(albumId, artistTitle, albumTitle);
-        }
+            foreach (var track in album.Tracks)
+            {
+                track.Album = null;
+            }
 
-        public bool IsUniqueNewTitleArtistAlbum(string artistTitle, string albumTitle)
-        {
-            return albumRepository.IsUniqueNewTitleArtistAlbum(artistTitle, albumTitle);
+            unitOfWork.SaveChanges();
         }
     }
 }

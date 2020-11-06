@@ -9,18 +9,16 @@ namespace MusicBox.Domain.DomainServices
     {
         private readonly IAlbumImageRepository albumImageRepository;
         private readonly IUnitOfWork unitOfWork;
+
         public AlbumImageDomainService(IAlbumImageRepository albumImageRepository, IUnitOfWork unitOfWork)
         {
             this.albumImageRepository = albumImageRepository;
             this.unitOfWork = unitOfWork;
-
         }
 
         public AlbumImage GetAlbumImage(int albumId)
         {
             return albumImageRepository.GetFirstOrDefault(albumId);
         }
-
-
     }
 }

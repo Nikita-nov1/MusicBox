@@ -1,0 +1,627 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="C:\Users\Asus\.Rider2019.3\config\consoles\db" t="IncludeRecursive" />
+    <e p="C:\Users\Asus\.Rider2019.3\config\extensions" t="IncludeRecursive" />
+    <e p="C:\Users\Asus\.Rider2019.3\system\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\Asus\.Rider2019.3\system\resharper-host\local\Transient\ReSharperHost\v193\SolutionCaches\_MusicBox.682567196.00" t="ExcludeRecursive" />
+    <e p="C:\Users\Asus\Documents\gitignore_global.txt" t="IncludeRecursive" />
+    <e p="C:\Users\Asus\source\repos\Nikita-nov1\MusicBox\MusicBox" t="IncludeFlat">
+      <e p="1 Presentation" t="Include" />
+      <e p="2 Domain" t="Include" />
+      <e p="3 Infrastructure" t="Include">
+        <e p="FillingDatabase" t="Include" />
+      </e>
+      <e p="FillingDb" t="IncludeRecursive">
+        <e p="AddElementsDb.cs" t="Include" />
+        <e p="App.config" t="Include" />
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="obj" t="ExcludeRecursive" />
+        <e p="packages.config" t="Include" />
+        <e p="Program.cs" t="Include" />
+        <e p="Properties" t="Include">
+          <e p="AssemblyInfo.cs" t="Include" />
+        </e>
+        <e p="SetupDb.csproj" t="IncludeRecursive" />
+      </e>
+      <e p="MusicBox.Client" t="IncludeRecursive">
+        <e p="App_Data" t="Include" />
+        <e p="App_Start" t="Include">
+          <e p="AutofacContainer.cs" t="Include" />
+          <e p="AutoMapperConfig.cs" t="Include" />
+          <e p="BundleConfig.cs" t="Include" />
+          <e p="Core" t="Include">
+            <e p="AutofacValidatorFactory.cs" t="Include" />
+            <e p="IdentityConfig.cs" t="Include" />
+          </e>
+          <e p="FilterConfig.cs" t="Include" />
+          <e p="RouteConfig.cs" t="Include" />
+        </e>
+        <e p="Areas" t="Include">
+          <e p="Admin" t="Include">
+            <e p="AdminAreaRegistration.cs" t="Include" />
+            <e p="AdminValidators" t="Include">
+              <e p="Album" t="Include">
+                <e p="CreateAlbumVmValidator.cs" t="Include" />
+                <e p="EditAlbumVmValidator.cs" t="Include" />
+              </e>
+              <e p="Artist" t="Include">
+                <e p="CreateArtistVmValidator.cs" t="Include" />
+                <e p="EditArtistVmValidator.cs" t="Include" />
+              </e>
+              <e p="Track" t="Include">
+                <e p="CreateTrackVmValidator.cs" t="Include" />
+                <e p="EditTrackVmValidator.cs" t="Include" />
+              </e>
+            </e>
+            <e p="Controllers" t="Include">
+              <e p="AlbumController.cs" t="Include" />
+              <e p="ArtistController.cs" t="Include" />
+              <e p="HomeController.cs" t="Include" />
+              <e p="TrackController.cs" t="Include" />
+            </e>
+            <e p="Data" t="Include" />
+            <e p="Models" t="Include">
+              <e p="Albums" t="Include">
+                <e p="CreateAlbumsViewModel.cs" t="Include" />
+                <e p="DeleteAlbumsViewModel.cs" t="Include" />
+                <e p="DetailsAlbumsViewModel.cs" t="Include" />
+                <e p="EditAlbumsViewModel.cs" t="Include" />
+                <e p="GetAlbumsForArtistVm.cs" t="Include" />
+                <e p="GetAlbumsViewModel.cs" t="Include" />
+              </e>
+              <e p="Artists" t="Include">
+                <e p="CreateArtistsViewModel.cs" t="Include" />
+                <e p="DeleteArtistsViewModel.cs" t="Include" />
+                <e p="DetailsArtistsViewModel.cs" t="Include" />
+                <e p="EditArtistsViewModel.cs" t="Include" />
+                <e p="GetArtistsViewModel.cs" t="Include" />
+              </e>
+              <e p="Tracks" t="Include">
+                <e p="CreateTracksViewModel.cs" t="Include" />
+                <e p="DeleteTracksViewModel.cs" t="Include" />
+                <e p="DetailsTracksViewModel.cs" t="Include" />
+                <e p="EditTracksViewModel.cs" t="Include" />
+                <e p="GetTracksViewModel.cs" t="Include" />
+              </e>
+            </e>
+            <e p="PresentationServices" t="Include">
+              <e p="AlbumPresentationServices.cs" t="Include" />
+              <e p="ArtistPresentationServices.cs" t="Include" />
+              <e p="BaseAdminPresentationService.cs" t="Include" />
+              <e p="GetPathServices.cs" t="Include" />
+              <e p="Interfaces" t="Include">
+                <e p="IAlbumPresentationServices.cs" t="Include" />
+                <e p="IArtistPresentationServices.cs" t="Include" />
+                <e p="IBaseAdminPresentationService.cs" t="Include" />
+                <e p="ITrackPresentationServices.cs" t="Include" />
+              </e>
+              <e p="TrackPresentationServices.cs" t="Include" />
+            </e>
+            <e p="Views" t="Include">
+              <e p="_ViewStart.cshtml" t="Include" />
+              <e p="Album" t="Include">
+                <e p="Create.cshtml" t="Include" />
+                <e p="Delete.cshtml" t="Include" />
+                <e p="Details.cshtml" t="Include" />
+                <e p="Edit.cshtml" t="Include" />
+                <e p="Index.cshtml" t="Include" />
+                <e p="PartialForDetails.cshtml" t="Include" />
+              </e>
+              <e p="Artist" t="Include">
+                <e p="Create.cshtml" t="Include" />
+                <e p="Delete.cshtml" t="Include" />
+                <e p="Details.cshtml" t="Include" />
+                <e p="Edit.cshtml" t="Include" />
+                <e p="Index.cshtml" t="Include" />
+                <e p="PartialForDetailsAlbums.cshtml" t="Include" />
+                <e p="PartialForDetailsTracks.cshtml" t="Include" />
+              </e>
+              <e p="Home" t="Include">
+                <e p="Index.cshtml" t="Include" />
+              </e>
+              <e p="Shared" t="Include">
+                <e p="_Layout.cshtml" t="Include" />
+              </e>
+              <e p="Track" t="Include">
+                <e p="Create.cshtml" t="Include" />
+                <e p="Delete.cshtml" t="Include" />
+                <e p="Details.cshtml" t="Include" />
+                <e p="Edit.cshtml" t="Include" />
+                <e p="Index.cshtml" t="Include" />
+              </e>
+              <e p="web.config" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="Content" t="Include">
+          <e p="bootstrap-grid.css" t="Include" />
+          <e p="bootstrap-grid.css.map" t="Include" />
+          <e p="bootstrap-grid.min.css" t="Include" />
+          <e p="bootstrap-grid.min.css.map" t="Include" />
+          <e p="bootstrap-reboot.css" t="Include" />
+          <e p="bootstrap-reboot.css.map" t="Include" />
+          <e p="bootstrap-reboot.min.css" t="Include" />
+          <e p="bootstrap-reboot.min.css.map" t="Include" />
+          <e p="bootstrap.css" t="Include" />
+          <e p="bootstrap.css.map" t="Include" />
+          <e p="bootstrap.min.css" t="Include" />
+          <e p="bootstrap.min.css.map" t="Include" />
+          <e p="images" t="Include">
+            <e p="play.png" t="Include" />
+          </e>
+          <e p="jquery-ui.css" t="Include" />
+          <e p="MvcGrid" t="Include">
+            <e p="Fonts" t="Include">
+              <e p="GridGlyphs.woff" t="Include" />
+            </e>
+            <e p="mvc-grid.css" t="Include" />
+          </e>
+          <e p="Site.css" t="Include" />
+          <e p="themes" t="Include">
+            <e p="base" t="Include">
+              <e p="accordion.css" t="Include" />
+              <e p="all.css" t="Include" />
+              <e p="autocomplete.css" t="Include" />
+              <e p="base.css" t="Include" />
+              <e p="button.css" t="Include" />
+              <e p="core.css" t="Include" />
+              <e p="datepicker.css" t="Include" />
+              <e p="dialog.css" t="Include" />
+              <e p="draggable.css" t="Include" />
+              <e p="images" t="Include">
+                <e p="ui-bg_flat_0_aaaaaa_40x100.png" t="Include" />
+                <e p="ui-bg_flat_75_ffffff_40x100.png" t="Include" />
+                <e p="ui-bg_glass_55_fbf9ee_1x400.png" t="Include" />
+                <e p="ui-bg_glass_65_ffffff_1x400.png" t="Include" />
+                <e p="ui-bg_glass_75_dadada_1x400.png" t="Include" />
+                <e p="ui-bg_glass_75_e6e6e6_1x400.png" t="Include" />
+                <e p="ui-bg_glass_95_fef1ec_1x400.png" t="Include" />
+                <e p="ui-bg_highlight-soft_75_cccccc_1x100.png" t="Include" />
+                <e p="ui-icons_222222_256x240.png" t="Include" />
+                <e p="ui-icons_2e83ff_256x240.png" t="Include" />
+                <e p="ui-icons_444444_256x240.png" t="Include" />
+                <e p="ui-icons_454545_256x240.png" t="Include" />
+                <e p="ui-icons_555555_256x240.png" t="Include" />
+                <e p="ui-icons_777620_256x240.png" t="Include" />
+                <e p="ui-icons_777777_256x240.png" t="Include" />
+                <e p="ui-icons_888888_256x240.png" t="Include" />
+                <e p="ui-icons_cc0000_256x240.png" t="Include" />
+                <e p="ui-icons_cd0a0a_256x240.png" t="Include" />
+                <e p="ui-icons_ffffff_256x240.png" t="Include" />
+              </e>
+              <e p="jquery-ui.css" t="Include" />
+              <e p="jquery-ui.min.css" t="Include" />
+              <e p="menu.css" t="Include" />
+              <e p="progressbar.css" t="Include" />
+              <e p="resizable.css" t="Include" />
+              <e p="selectable.css" t="Include" />
+              <e p="selectmenu.css" t="Include" />
+              <e p="slider.css" t="Include" />
+              <e p="sortable.css" t="Include" />
+              <e p="spinner.css" t="Include" />
+              <e p="tabs.css" t="Include" />
+              <e p="theme.css" t="Include" />
+              <e p="tooltip.css" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="Controllers" t="Include">
+          <e p="AccountController.cs" t="Include" />
+          <e p="AlbumController.cs" t="Include" />
+          <e p="ArtistController.cs" t="Include" />
+          <e p="HomeController.cs" t="Include" />
+          <e p="PlaylistController.cs" t="Include" />
+          <e p="TrackController.cs" t="Include" />
+        </e>
+        <e p="ExtensionMethods" t="Include">
+          <e p="MappingExpressionExtension.cs" t="Include" />
+        </e>
+        <e p="favicon.ico" t="Include" />
+        <e p="Files" t="Include">
+          <e p="images" t="Include">
+            <e p="Album" t="Include">
+              <e p="defaultAlbumImage.jpg" t="Include" />
+            </e>
+            <e p="Artist" t="Include">
+              <e p="defaultArtistImage.jpg" t="Include" />
+            </e>
+            <e p="Icons" t="Include">
+              <e p="MusicBoxIcon.png" t="Include" />
+            </e>
+            <e p="Playlist" t="Include">
+              <e p="playlist-like.png" t="Include" />
+            </e>
+            <e p="User" t="Include">
+              <e p="user_default.png" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="Global.asax" t="Include" />
+        <e p="Global.asax.cs" t="Include" />
+        <e p="Infrastructure" t="Include">
+          <e p="AddAdminToDb.cs" t="Include" />
+          <e p="CreateStorage.cs" t="Include" />
+        </e>
+        <e p="Models" t="Include">
+          <e p="Album" t="Include">
+            <e p="GetAlbumsForClientViewModel.cs" t="Include" />
+          </e>
+          <e p="Artist" t="Include">
+            <e p="GetArtistsForClientViewModel.cs" t="Include" />
+          </e>
+          <e p="Track" t="Include">
+            <e p="GetTrackInformationViewModel.cs" t="Include" />
+            <e p="GetTracksForClientViewModel.cs" t="Include" />
+          </e>
+          <e p="User" t="Include">
+            <e p="EditUserViewModel.cs" t="Include" />
+            <e p="GetUserViewModel.cs" t="Include" />
+            <e p="LoginViewModel.cs" t="Include" />
+            <e p="RegisterUserViewModel.cs" t="Include" />
+          </e>
+        </e>
+        <e p="MusicBox.Client.csproj" t="IncludeRecursive" />
+        <e p="obj" t="ExcludeRecursive" />
+        <e p="packages.config" t="Include" />
+        <e p="PresentationServices" t="Include">
+          <e p="AlbumPresentationServices.cs" t="Include" />
+          <e p="ArtistPresentationServices.cs" t="Include" />
+          <e p="Interfaces" t="Include">
+            <e p="IAlbumPresentationServices.cs" t="Include" />
+            <e p="IArtistPresentationServices.cs" t="Include" />
+            <e p="IBasePresentationService.cs" t="Include" />
+            <e p="IPlaylistPresentationServices.cs" t="Include" />
+            <e p="ITrackPresentationService.cs" t="Include" />
+            <e p="IUserPresentationServices.cs" t="Include" />
+          </e>
+          <e p="PlaylistPresentationServices.cs" t="Include" />
+          <e p="TrackPresentationService.cs" t="Include" />
+          <e p="UserPresentationServices.cs" t="Include" />
+        </e>
+        <e p="Properties" t="Include">
+          <e p="AssemblyInfo.cs" t="Include" />
+        </e>
+        <e p="Scripts" t="Include">
+          <e p="bootstrap.bundle.js" t="Include" />
+          <e p="bootstrap.bundle.js.map" t="Include" />
+          <e p="bootstrap.bundle.min.js" t="Include" />
+          <e p="bootstrap.bundle.min.js.map" t="Include" />
+          <e p="bootstrap.js" t="Include" />
+          <e p="bootstrap.js.map" t="Include" />
+          <e p="bootstrap.min.js" t="Include" />
+          <e p="bootstrap.min.js.map" t="Include" />
+          <e p="esm" t="Include">
+            <e p="popper-utils.js" t="Include" />
+            <e p="popper-utils.js.map" t="Include" />
+            <e p="popper-utils.min.js" t="Include" />
+            <e p="popper-utils.min.js.map" t="Include" />
+            <e p="popper.js" t="Include" />
+            <e p="popper.js.map" t="Include" />
+            <e p="popper.min.js" t="Include" />
+            <e p="popper.min.js.map" t="Include" />
+          </e>
+          <e p="index.d.ts" t="Include" />
+          <e p="index.js.flow" t="Include" />
+          <e p="jquery-3.5.1.intellisense.js" t="Include" />
+          <e p="jquery-3.5.1.js" t="Include" />
+          <e p="jquery-3.5.1.min.js" t="Include" />
+          <e p="jquery-3.5.1.min.map" t="Include" />
+          <e p="jquery-3.5.1.slim.js" t="Include" />
+          <e p="jquery-3.5.1.slim.min.js" t="Include" />
+          <e p="jquery-3.5.1.slim.min.map" t="Include" />
+          <e p="jquery-ui-1.12.1.js" t="Include" />
+          <e p="jquery-ui-1.12.1.min.js" t="Include" />
+          <e p="jquery.unobtrusive-ajax.js" t="Include" />
+          <e p="jquery.unobtrusive-ajax.min.js" t="Include" />
+          <e p="jquery.validate-vsdoc.js" t="Include" />
+          <e p="jquery.validate.js" t="Include" />
+          <e p="jquery.validate.min.js" t="Include" />
+          <e p="jquery.validate.unobtrusive.js" t="Include" />
+          <e p="jquery.validate.unobtrusive.min.js" t="Include" />
+          <e p="modernizr-2.8.3.js" t="Include" />
+          <e p="MvcGrid" t="Include">
+            <e p="mvc-grid-additional.js" t="Include" />
+            <e p="mvc-grid.js" t="Include" />
+          </e>
+          <e p="Player" t="Include">
+            <e p="AudioPlayer.js" t="Include" />
+          </e>
+          <e p="popper-utils.js" t="Include" />
+          <e p="popper-utils.js.map" t="Include" />
+          <e p="popper-utils.min.js" t="Include" />
+          <e p="popper-utils.min.js.map" t="Include" />
+          <e p="popper.js" t="Include" />
+          <e p="popper.js.map" t="Include" />
+          <e p="popper.min.js" t="Include" />
+          <e p="popper.min.js.map" t="Include" />
+          <e p="README.md" t="Include" />
+          <e p="src" t="Include">
+            <e p="index.js" t="Include" />
+            <e p="methods" t="Include">
+              <e p="defaults.js" t="Include" />
+              <e p="destroy.js" t="Include" />
+              <e p="disableEventListeners.js" t="Include" />
+              <e p="enableEventListeners.js" t="Include" />
+              <e p="placements.js" t="Include" />
+              <e p="update.js" t="Include" />
+            </e>
+            <e p="modifiers" t="Include">
+              <e p="applyStyle.js" t="Include" />
+              <e p="arrow.js" t="Include" />
+              <e p="computeStyle.js" t="Include" />
+              <e p="flip.js" t="Include" />
+              <e p="hide.js" t="Include" />
+              <e p="index.js" t="Include" />
+              <e p="inner.js" t="Include" />
+              <e p="keepTogether.js" t="Include" />
+              <e p="offset.js" t="Include" />
+              <e p="preventOverflow.js" t="Include" />
+              <e p="shift.js" t="Include" />
+            </e>
+            <e p="utils" t="Include">
+              <e p="clockwise.js" t="Include" />
+              <e p="computeAutoPlacement.js" t="Include" />
+              <e p="debounce.js" t="Include" />
+              <e p="find.js" t="Include" />
+              <e p="findCommonOffsetParent.js" t="Include" />
+              <e p="findIndex.js" t="Include" />
+              <e p="getBordersSize.js" t="Include" />
+              <e p="getBoundaries.js" t="Include" />
+              <e p="getBoundingClientRect.js" t="Include" />
+              <e p="getClientRect.js" t="Include" />
+              <e p="getFixedPositionOffsetParent.js" t="Include" />
+              <e p="getOffsetParent.js" t="Include" />
+              <e p="getOffsetRect.js" t="Include" />
+              <e p="getOffsetRectRelativeToArbitraryNode.js" t="Include" />
+              <e p="getOppositePlacement.js" t="Include" />
+              <e p="getOppositeVariation.js" t="Include" />
+              <e p="getOuterSizes.js" t="Include" />
+              <e p="getParentNode.js" t="Include" />
+              <e p="getPopperOffsets.js" t="Include" />
+              <e p="getReferenceNode.js" t="Include" />
+              <e p="getReferenceOffsets.js" t="Include" />
+              <e p="getRoot.js" t="Include" />
+              <e p="getRoundedOffsets.js" t="Include" />
+              <e p="getScroll.js" t="Include" />
+              <e p="getScrollParent.js" t="Include" />
+              <e p="getStyleComputedProperty.js" t="Include" />
+              <e p="getSupportedPropertyName.js" t="Include" />
+              <e p="getViewportOffsetRectRelativeToArtbitraryNode.js" t="Include" />
+              <e p="getWindow.js" t="Include" />
+              <e p="getWindowSizes.js" t="Include" />
+              <e p="includeScroll.js" t="Include" />
+              <e p="index.js" t="Include" />
+              <e p="isBrowser.js" t="Include" />
+              <e p="isFixed.js" t="Include" />
+              <e p="isFunction.js" t="Include" />
+              <e p="isIE.js" t="Include" />
+              <e p="isModifierEnabled.js" t="Include" />
+              <e p="isModifierRequired.js" t="Include" />
+              <e p="isNumeric.js" t="Include" />
+              <e p="isOffsetContainer.js" t="Include" />
+              <e p="removeEventListeners.js" t="Include" />
+              <e p="runModifiers.js" t="Include" />
+              <e p="setAttributes.js" t="Include" />
+              <e p="setStyles.js" t="Include" />
+              <e p="setupEventListeners.js" t="Include" />
+            </e>
+          </e>
+          <e p="umd" t="Include">
+            <e p="popper-utils.js" t="Include" />
+            <e p="popper-utils.js.map" t="Include" />
+            <e p="popper-utils.min.js" t="Include" />
+            <e p="popper-utils.min.js.map" t="Include" />
+            <e p="popper.js" t="Include" />
+            <e p="popper.js.flow" t="Include" />
+            <e p="popper.js.map" t="Include" />
+            <e p="popper.min.js" t="Include" />
+            <e p="popper.min.js.map" t="Include" />
+          </e>
+        </e>
+        <e p="Startup.cs" t="Include" />
+        <e p="Utilities" t="Include">
+          <e p="Logger" t="Include">
+            <e p="Log.cs" t="Include" />
+          </e>
+        </e>
+        <e p="Views" t="Include">
+          <e p="_ViewStart.cshtml" t="Include" />
+          <e p="Account" t="Include">
+            <e p="Delete.cshtml" t="Include" />
+            <e p="Edit.cshtml" t="Include" />
+            <e p="Index.cshtml" t="Include" />
+            <e p="Login.cshtml" t="Include" />
+            <e p="Register.cshtml" t="Include" />
+          </e>
+          <e p="Album" t="Include">
+            <e p="DsplayAlbumPartial.cshtml" t="Include" />
+            <e p="Index.cshtml" t="Include" />
+          </e>
+          <e p="Artist" t="Include">
+            <e p="DsplayArtistPartial.cshtml" t="Include" />
+            <e p="Index.cshtml" t="Include" />
+          </e>
+          <e p="Home" t="Include">
+            <e p="Index.cshtml" t="Include" />
+          </e>
+          <e p="Playlist" t="Include" />
+          <e p="Roles" t="Include" />
+          <e p="Shared" t="Include">
+            <e p="_Layout.cshtml" t="Include" />
+            <e p="_LayoutPersonalAccount.cshtml" t="Include" />
+            <e p="Error.cshtml" t="Include" />
+            <e p="MvcGrid" t="Include">
+              <e p="_Grid.cshtml" t="Include" />
+              <e p="_Pager.cshtml" t="Include" />
+            </e>
+          </e>
+          <e p="Track" t="Include">
+            <e p="TracksAjaxPartialForAlbum.cshtml" t="Include" />
+            <e p="TracksAjaxPartialForArtist.cshtml" t="Include" />
+          </e>
+          <e p="web.config" t="Include" />
+        </e>
+        <e p="web.config" t="Include" />
+        <e p="Web.Debug.config" t="Include" />
+        <e p="Web.Release.config" t="Include" />
+      </e>
+      <e p="MusicBox.Data" t="IncludeRecursive">
+        <e p="App.config" t="Include" />
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="Configurations" t="Include">
+          <e p="AlbumConfiguration.cs" t="Include" />
+          <e p="AlbumImageConfiguration.cs" t="Include" />
+          <e p="ArtistConfiguration.cs" t="Include" />
+          <e p="ArtistImageConfiguration.cs" t="Include" />
+          <e p="GenreConfiguration.cs" t="Include" />
+          <e p="GenreImageConfiguration.cs" t="Include" />
+          <e p="MoodConfiguration.cs" t="Include" />
+          <e p="MoodImageConfiguration.cs" t="Include" />
+          <e p="PlaylistConfiguration.cs" t="Include" />
+          <e p="PlaylistImageConfiguration.cs" t="Include" />
+          <e p="RoleConfiguration.cs" t="Include" />
+          <e p="TrackConfiguration.cs" t="Include" />
+          <e p="TrackFileConfiguration.cs" t="Include" />
+          <e p="TrackStatisticsConfiguration.cs" t="Include" />
+          <e p="UserConfiguration.cs" t="Include" />
+          <e p="UserImageConfiguration.cs" t="Include" />
+        </e>
+        <e p="Context" t="Include">
+          <e p="IMusicBoxDbContext.cs" t="Include" />
+          <e p="MusicBoxDbContext.cs" t="Include" />
+        </e>
+        <e p="Migrations" t="Include">
+          <e p="202010151421425_AddFirstMigration.cs" t="Include" />
+          <e p="202010151421425_AddFirstMigration.designer.cs" t="Include" />
+          <e p="202010151421425_AddFirstMigration.resx" t="Include" />
+          <e p="202010170036049_AddSecondMigration.cs" t="Include" />
+          <e p="202010170036049_AddSecondMigration.designer.cs" t="Include" />
+          <e p="202010170036049_AddSecondMigration.resx" t="Include" />
+          <e p="202010201332187_FixAlbumTitleIsNotUniqueMigration.cs" t="Include" />
+          <e p="202010201332187_FixAlbumTitleIsNotUniqueMigration.designer.cs" t="Include" />
+          <e p="202010201332187_FixAlbumTitleIsNotUniqueMigration.resx" t="Include" />
+          <e p="202010261323281_AddConteTypeForTrackMigration.cs" t="Include" />
+          <e p="202010261323281_AddConteTypeForTrackMigration.designer.cs" t="Include" />
+          <e p="202010261323281_AddConteTypeForTrackMigration.resx" t="Include" />
+          <e p="202010282312336_AddIdentity.cs" t="Include" />
+          <e p="202010282312336_AddIdentity.designer.cs" t="Include" />
+          <e p="202010282312336_AddIdentity.resx" t="Include" />
+          <e p="202010290226485_AddRoleForIdentity.cs" t="Include" />
+          <e p="202010290226485_AddRoleForIdentity.designer.cs" t="Include" />
+          <e p="202010290226485_AddRoleForIdentity.resx" t="Include" />
+          <e p="Configuration.cs" t="Include" />
+        </e>
+        <e p="MusicBox.Data.csproj" t="IncludeRecursive" />
+        <e p="obj" t="ExcludeRecursive" />
+        <e p="packages.config" t="Include" />
+        <e p="Properties" t="Include">
+          <e p="AssemblyInfo.cs" t="Include" />
+        </e>
+        <e p="Repositories" t="Include">
+          <e p="AlbumImageRepository.cs" t="Include" />
+          <e p="AlbumRepository.cs" t="Include" />
+          <e p="ArtistImageRepository.cs" t="Include" />
+          <e p="ArtistRepository.cs" t="Include" />
+          <e p="BaseRepository.cs" t="Include" />
+          <e p="GenreRepository.cs" t="Include" />
+          <e p="MoodRepository.cs" t="Include" />
+          <e p="PlaylistRepository.cs" t="Include" />
+          <e p="TrackFileRepository.cs" t="Include" />
+          <e p="TrackRepository.cs" t="Include" />
+          <e p="TrackStatisticsRepository.cs" t="Include" />
+          <e p="UserRepository.cs" t="Include" />
+        </e>
+        <e p="UnitOfWork" t="Include">
+          <e p="UnitOfWork.cs" t="Include" />
+        </e>
+      </e>
+      <e p="MusicBox.Domain" t="IncludeRecursive">
+        <e p="App.config" t="Include" />
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="DomainServices" t="Include">
+          <e p="AlbumDomainService.cs" t="Include" />
+          <e p="AlbumImageDomainService.cs" t="Include" />
+          <e p="ArtistDomainService.cs" t="Include" />
+          <e p="ArtistImageDomainService.cs" t="Include" />
+          <e p="GenreDomainService.cs" t="Include" />
+          <e p="Interfaces" t="Include">
+            <e p="IAlbumDomainService.cs" t="Include" />
+            <e p="IAlbumImageDomainService.cs" t="Include" />
+            <e p="IArtistDomainService.cs" t="Include" />
+            <e p="IArtistImageDomainService.cs" t="Include" />
+            <e p="IBaseDomainService.cs" t="Include" />
+            <e p="IGenreDomainService.cs" t="Include" />
+            <e p="IMoodDomainService.cs" t="Include" />
+            <e p="IPlaylistDomainService.cs" t="Include" />
+            <e p="ITrackDomainService.cs" t="Include" />
+            <e p="ITrackFileDomainService.cs" t="Include" />
+            <e p="ITrackStatisticsDomainService.cs" t="Include" />
+            <e p="IUserDomainService.cs" t="Include" />
+          </e>
+          <e p="MoodDomainService.cs" t="Include" />
+          <e p="PlaylistDomainService.cs" t="Include" />
+          <e p="TrackDomainService.cs" t="Include" />
+          <e p="TrackFileDomainService.cs" t="Include" />
+          <e p="TrackStatisticsDomainService.cs" t="Include" />
+          <e p="UserDomainService.cs" t="Include" />
+        </e>
+        <e p="Interfaces" t="Include">
+          <e p="IGetPathServices.cs" t="Include" />
+        </e>
+        <e p="Models" t="Include">
+          <e p="AdditionalModels" t="Include">
+            <e p="ArtistStatistics.cs" t="Include" />
+          </e>
+          <e p="Entities" t="Include">
+            <e p="Album.cs" t="Include" />
+            <e p="AlbumImage.cs" t="Include" />
+            <e p="Artist.cs" t="Include" />
+            <e p="ArtistImage.cs" t="Include" />
+            <e p="BaseEntity.cs" t="Include" />
+            <e p="Genre.cs" t="Include" />
+            <e p="GenreImage.cs" t="Include" />
+            <e p="Identity" t="Include">
+              <e p="Role.cs" t="Include" />
+              <e p="User.cs" t="Include" />
+            </e>
+            <e p="Mood.cs" t="Include" />
+            <e p="MoodImage.cs" t="Include" />
+            <e p="Playlist.cs" t="Include" />
+            <e p="PlaylistImage.cs" t="Include" />
+            <e p="Track.cs" t="Include" />
+            <e p="TrackFile.cs" t="Include" />
+            <e p="TrackStatistics.cs" t="Include" />
+            <e p="UserImage.cs" t="Include" />
+          </e>
+        </e>
+        <e p="MusicBox.Domain.csproj" t="IncludeRecursive" />
+        <e p="obj" t="ExcludeRecursive" />
+        <e p="packages.config" t="Include" />
+        <e p="Properties" t="Include">
+          <e p="AssemblyInfo.cs" t="Include" />
+        </e>
+        <e p="Repositories" t="Include">
+          <e p="IAlbumImageRepository.cs" t="Include" />
+          <e p="IAlbumRepository.cs" t="Include" />
+          <e p="IArtistImageRepository.cs" t="Include" />
+          <e p="IArtistRepository.cs" t="Include" />
+          <e p="IBaseRepository.cs" t="Include" />
+          <e p="IGenreRepository.cs" t="Include" />
+          <e p="IMoodRepository.cs" t="Include" />
+          <e p="IPlaylistRepository.cs" t="Include" />
+          <e p="ITrackFileRepository.cs" t="Include" />
+          <e p="ITrackRepository.cs" t="Include" />
+          <e p="ITrackStatisticsRepository.cs" t="Include" />
+          <e p="IUserRepository.cs" t="Include" />
+        </e>
+        <e p="UnitOfWork" t="Include">
+          <e p="IUnitOfWork.cs" t="Include" />
+        </e>
+      </e>
+      <e p="MusicBox.sln" t="IncludeFlat" />
+      <e p="packages" t="ExcludeRecursive" />
+    </e>
+  </component>
+</project>

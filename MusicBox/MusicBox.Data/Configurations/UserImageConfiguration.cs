@@ -1,10 +1,9 @@
-﻿using MusicBox.Domain.Models.Entities;
-using MusicBox.Domain.Models.Entities.Identity;
-using System.Data.Entity.ModelConfiguration;
+﻿using System.Data.Entity.ModelConfiguration;
+using MusicBox.Domain.Models.Entities;
 
 namespace MusicBox.Data.Configurations
 {
-    class UserImageConfiguration : EntityTypeConfiguration<UserImage>
+    public class UserImageConfiguration : EntityTypeConfiguration<UserImage>
     {
         public UserImageConfiguration()
         {
@@ -16,8 +15,7 @@ namespace MusicBox.Data.Configurations
 
             Property(c => c.ContentType).HasMaxLength(50);
 
-
-            HasRequired<User>(c => c.User)
+            HasRequired(c => c.User)
                 .WithRequiredDependent(c => c.UserImage)
                 .WillCascadeOnDelete(true);
         }

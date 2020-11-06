@@ -6,8 +6,8 @@ using MusicBox.Data.Context;
 using MusicBox.Utilities.Logger;
 using Owin;
 
-
 [assembly: OwinStartup(typeof(MusicBox.Startup))]
+
 namespace MusicBox
 {
     public class Startup
@@ -15,8 +15,9 @@ namespace MusicBox
         public void Configuration(IAppBuilder app)
         {
             Log.Info("Login-page started...");
+
             // настраиваем контекст и менеджер
-            app.CreatePerOwinContext<MusicBoxDbContext>(MusicBoxDbContext.Create);
+            app.CreatePerOwinContext(MusicBoxDbContext.Create);
             app.CreatePerOwinContext<AppUserManager>(AppUserManager.Create);
 
             app.CreatePerOwinContext<AppRoleManager>(AppRoleManager.Create);

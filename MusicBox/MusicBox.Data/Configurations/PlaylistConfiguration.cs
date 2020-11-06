@@ -1,5 +1,5 @@
-﻿using MusicBox.Domain.Models.Entities;
-using System.Data.Entity.ModelConfiguration;
+﻿using System.Data.Entity.ModelConfiguration;
+using MusicBox.Domain.Models.Entities;
 
 namespace MusicBox.Data.Configurations
 {
@@ -19,7 +19,6 @@ namespace MusicBox.Data.Configurations
                     ToTable("TrackPlaylists")
                     .MapLeftKey("TrackId")
                     .MapRightKey("PlaylistId"));
-
         }
     }
 }

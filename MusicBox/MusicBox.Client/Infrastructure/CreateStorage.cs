@@ -8,10 +8,10 @@ namespace MusicBox.Infrastructure
         public static void CreateUploadedFiles()
         {
             var folder = HostingEnvironment.MapPath("~/UploadedFiles");
-            if (!Directory.Exists(folder)) 
+            if (!Directory.Exists(folder))
             {
                 Directory.CreateDirectory(folder);
-                Directory.CreateDirectory(folder+ "/Tracks");
+                Directory.CreateDirectory(folder + "/Tracks");
             }
         }
     }

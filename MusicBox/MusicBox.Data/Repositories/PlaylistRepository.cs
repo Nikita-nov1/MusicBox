@@ -10,8 +10,5 @@ namespace MusicBox.Data.Repositories
             : base(unitOfWork)
         {
         }
-
-       
-
     }
 }

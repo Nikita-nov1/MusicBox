@@ -1,8 +1,8 @@
-﻿using Microsoft.AspNet.Identity;
+﻿using System.Data.Entity.Migrations;
+using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using MusicBox.Data.Context;
 using MusicBox.Domain.Models.Entities.Identity;
-using System.Data.Entity.Migrations;
 
 namespace MusicBox.Data.Migrations
 {
@@ -21,8 +21,6 @@ namespace MusicBox.Data.Migrations
             roleManager.Create(new Role { Name = "User", Description = "User" });
 
             context.SaveChanges();
-           
-
         }
     }
 }

@@ -1,8 +1,8 @@
-﻿using MusicBox.Domain.DomainServices.Interfaces;
+﻿using System.Threading.Tasks;
+using MusicBox.Domain.DomainServices.Interfaces;
 using MusicBox.Domain.Models.Entities.Identity;
 using MusicBox.Domain.Repositories;
 using MusicBox.Domain.UnitOfWork;
-using System.Threading.Tasks;
 
 namespace MusicBox.Domain.DomainServices
 {
@@ -35,8 +35,8 @@ namespace MusicBox.Domain.DomainServices
             {
                 return true;
             }
-             return false;
 
+            return false;
         }
     }
 }

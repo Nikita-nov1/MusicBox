@@ -1,12 +1,9 @@
-﻿using AutoMapper;
+﻿using System.Collections.Generic;
+using AutoMapper;
 using MusicBox.Domain.DomainServices.Interfaces;
 using MusicBox.Domain.Models.Entities;
 using MusicBox.Models.Artist;
 using MusicBox.PresentationServices.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 namespace MusicBox.PresentationServices
 {
@@ -25,7 +22,6 @@ namespace MusicBox.PresentationServices
         {
             List<Artist> artists = artistDomainService.GetArtists();
             return Mapper.Map<List<GetArtistsForClientViewModel>>(artists);
-
         }
 
         public ArtistImage GetImage(int artistId)
@@ -35,10 +31,8 @@ namespace MusicBox.PresentationServices
             {
                 return new ArtistImage();
             }
+
             return artistImage;
         }
-
     }
-
-
 }

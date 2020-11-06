@@ -1,7 +1,7 @@
-﻿using FluentValidation;
+﻿using System;
+using FluentValidation;
 using MusicBox.Areas.Admin.Models.Albums;
 using MusicBox.Domain.DomainServices.Interfaces;
-using System;
 
 namespace MusicBox.Areas.Admin.AdminValidators.Album
 {

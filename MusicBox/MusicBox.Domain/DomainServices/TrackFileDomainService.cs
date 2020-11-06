@@ -1,11 +1,11 @@
-﻿using MusicBox.Domain.DomainServices.Interfaces;
-using MusicBox.Domain.Repositories;
-using MusicBox.Domain.UnitOfWork;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MusicBox.Domain.DomainServices.Interfaces;
+using MusicBox.Domain.Repositories;
+using MusicBox.Domain.UnitOfWork;
 
 namespace MusicBox.Domain.DomainServices
 {
