@@ -4,7 +4,7 @@ namespace MusicBox.Domain.Models.Entities
 {
     public class UserImage
     {
-        public int Id { get; set; }
+        public string Id { get; set; }
 
         public byte[] Image { get; set; }
 

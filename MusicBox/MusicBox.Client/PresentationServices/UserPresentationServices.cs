@@ -22,6 +22,10 @@ namespace MusicBox.PresentationServices
             this.userDomainService = userDomainService;
         }
 
+        // public Task DeleteUserImage(string userId)
+        // {
+
+        // }
         public async Task<GetUserViewModel> GetUserVmByNameAsync(string userName)
         {
             User user = await userDomainService.GetUserByNameAsync(userName);

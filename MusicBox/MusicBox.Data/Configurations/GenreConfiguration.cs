@@ -12,6 +12,7 @@ namespace MusicBox.Data.Configurations
             HasKey(c => c.Id);
 
             Property(p => p.Title).HasMaxLength(30);
+
             HasIndex(c => c.Title).IsUnique(true);
 
             HasMany(c => c.Tracks)

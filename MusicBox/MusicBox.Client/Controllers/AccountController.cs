@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using MusicBox.App_Start.Core;
@@ -51,14 +52,22 @@ namespace MusicBox.Controllers
                 if (result.Succeeded)
                 {
                     await UserManager.AddToRoleAsync(user.Id, "User");
-                    return RedirectToAction("Login", "Account");
+
+                    var identityClaim = new IdentityUserClaim { ClaimType = "Year", ClaimValue = model.DateBorn.Value.ToShortDateString() };
+                    user.Claims.Add(identityClaim);
+                    await UserManager.UpdateAsync(user);
+
+                    var code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+                    var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+
+                    await UserManager.SendEmailAsync(user.Id, "Подтверждение электронной почты", "Для завершения регистрации перейдите по ссылке:: <a href=\"" + callbackUrl + "\">завершить регистрацию</a>");
+
+                    System.Console.WriteLine();
+                    return View("DisplayEmail");
                 }
                 else
                 {
-                    foreach (string error in result.Errors)
-                    {
-                        ModelState.AddModelError(string.Empty, error);
-                    }
+                    AddErrors(result);
                 }
             }
 
@@ -66,6 +75,97 @@ namespace MusicBox.Controllers
         }
 
         [HttpGet]
+        public async Task<ActionResult> ConfirmEmail(string userId, string code)
+        {
+            if (userId == null || code == null)
+            {
+                return View("Error");
+            }
+
+            var result = await UserManager.ConfirmEmailAsync(userId, code);
+            return View(result.Succeeded ? "ConfirmEmail" : "Error");
+        }
+
+        // GET: /Account/ForgotPassword
+        [HttpGet]
+        [AllowAnonymous]
+        public ActionResult ForgotPassword()
+        {
+            return View();
+        }
+
+        // POST: /Account/ForgotPassword
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> ForgotPassword(ForgotPasswordViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = await UserManager.FindByNameAsync(model.UserName);
+                if (user == null || !user.EmailConfirmed)
+                {
+                    return View("ForgotPasswordConfirmation");
+                }
+
+                string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
+                var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+                await UserManager.SendEmailAsync(user.Id, "Сброс пароля", "Пожалуйста, сбросьте свой пароль, нажав <a href=\"" + callbackUrl + "\">здесь</a>");
+                return RedirectToAction("ForgotPasswordConfirmation", "Account");
+            }
+
+            return View(model);
+        }
+
+        [HttpGet]
+        [AllowAnonymous]
+        public ActionResult ForgotPasswordConfirmation()
+        {
+            return View();
+        }
+
+        [HttpGet]
+        [AllowAnonymous]
+        public ActionResult ResetPassword(string code)
+        {
+            return code == null ? View("Error") : View();
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> ResetPassword(ResetPasswordViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            var user = await UserManager.FindByNameAsync(model.UserName);
+            if (user == null)
+            {
+                return RedirectToAction("ResetPasswordConfirmation", "Account");
+            }
+
+            var result = await UserManager.ResetPasswordAsync(user.Id, model.Code, model.Password);
+            if (result.Succeeded)
+            {
+                return RedirectToAction("ResetPasswordConfirmation", "Account");
+            }
+
+            AddErrors(result);
+            return View();
+        }
+
+        [HttpGet]
+        [AllowAnonymous]
+        public ActionResult ResetPasswordConfirmation()
+        {
+            return View();
+        }
+
+        [HttpGet]
+        [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
             ViewBag.returnUrl = returnUrl;
@@ -85,14 +185,21 @@ namespace MusicBox.Controllers
                 }
                 else
                 {
-                    ClaimsIdentity claim = await UserManager.CreateIdentityAsync(user, DefaultAuthenticationTypes.ApplicationCookie);
-                    AuthenticationManager.SignOut();
-                    AuthenticationManager.SignIn(
-                        new AuthenticationProperties
-                        {
-                            IsPersistent = true
-                        }, claim);
-                    return string.IsNullOrEmpty(returnUrl) ? RedirectToAction("Index", "Home") : (ActionResult)Redirect(returnUrl);
+                    if (user.EmailConfirmed == true)
+                    {
+                        ClaimsIdentity claim = await UserManager.CreateIdentityAsync(user, DefaultAuthenticationTypes.ApplicationCookie);
+                        AuthenticationManager.SignOut();
+                        AuthenticationManager.SignIn(
+                            new AuthenticationProperties
+                            {
+                                IsPersistent = true
+                            }, claim);
+                        return string.IsNullOrEmpty(returnUrl) ? RedirectToAction("Index", "Home") : (ActionResult)Redirect(returnUrl);
+                    }
+                    else
+                    {
+                        ModelState.AddModelError(string.Empty, "Email не подтверждён.");
+                    }
                 }
             }
 
@@ -120,6 +227,7 @@ namespace MusicBox.Controllers
             User user = await UserManager.FindByNameAsync(User.Identity.Name);
             if (user != null)
             {
+                // await presentationServices.DeleteUserPlaylist(user.Id);
                 IdentityResult result = await UserManager.DeleteAsync(user);
                 if (result.Succeeded)
                 {
@@ -147,7 +255,6 @@ namespace MusicBox.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit(EditUserViewModel model)
         {
-            // в валидации мы проверяем, существует ли такой user
             if (ModelState.IsValid)
             {
                 User user = await UserManager.FindByNameAsync(User.Identity.Name);
@@ -181,6 +288,14 @@ namespace MusicBox.Controllers
             }
 
             return View(model);
+        }
+
+        private void AddErrors(IdentityResult result)
+        {
+            foreach (var error in result.Errors)
+            {
+                ModelState.AddModelError(string.Empty, error);
+            }
         }
     }
 }

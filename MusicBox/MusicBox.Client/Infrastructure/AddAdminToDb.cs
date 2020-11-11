@@ -24,11 +24,12 @@ namespace MusicBox.Infrastructure
                 FirstName = "Никита",
                 LastName = "Новицкий",
                 UserName = "SuperUser",
-                Email = "nikita@mail.ru",
+                Email = "nikita.novitski11@gmail.com",
                 DateBorn = new DateTime(1997, 05, 17),
                 UserImage = new UserImage(),
+                EmailConfirmed = true
             };
-            string password = "123456nik";
+            string password = "123456Nik";
 
             var result1 = userManager.Create(nikita, password);
 
@@ -46,8 +47,9 @@ namespace MusicBox.Infrastructure
                 Email = "alexey@mail.ru",
                 DateBorn = new DateTime(1980, 10, 25),
                 UserImage = new UserImage(),
+                EmailConfirmed = true
             };
-            password = "123456alexey";
+            password = "123456Alexey";
             var result2 = userManager.Create(alexey, password);
 
             if (result2.Succeeded)

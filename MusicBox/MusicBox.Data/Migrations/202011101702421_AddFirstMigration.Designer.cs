@@ -7,13 +7,13 @@ namespace MusicBox.Data.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class FixAlbumTitleIsNotUniqueMigration : IMigrationMetadata
+    public sealed partial class AddFirstMigration : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(FixAlbumTitleIsNotUniqueMigration));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(AddFirstMigration));
         
         string IMigrationMetadata.Id
         {
-            get { return "202010201332187_FixAlbumTitleIsNotUniqueMigration"; }
+            get { return "202011101702421_AddFirstMigration"; }
         }
         
         string IMigrationMetadata.Source

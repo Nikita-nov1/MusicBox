@@ -126,29 +126,13 @@
     <Compile Include="Configurations\UserImageConfiguration.cs" />
     <Compile Include="Context\IMusicBoxDbContext.cs" />
     <Compile Include="Context\MusicBoxDbContext.cs" />
-    <Compile Include="Migrations\202010151421425_AddFirstMigration.cs" />
-    <Compile Include="Migrations\202010151421425_AddFirstMigration.designer.cs">
-      <DependentUpon>202010151421425_AddFirstMigration.cs</DependentUpon>
+    <Compile Include="Migrations\202011101702421_AddFirstMigration.cs" />
+    <Compile Include="Migrations\202011101702421_AddFirstMigration.designer.cs">
+      <DependentUpon>202011101702421_AddFirstMigration.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202010170036049_AddSecondMigration.cs" />
-    <Compile Include="Migrations\202010170036049_AddSecondMigration.designer.cs">
-      <DependentUpon>202010170036049_AddSecondMigration.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202010201332187_FixAlbumTitleIsNotUniqueMigration.cs" />
-    <Compile Include="Migrations\202010201332187_FixAlbumTitleIsNotUniqueMigration.designer.cs">
-      <DependentUpon>202010201332187_FixAlbumTitleIsNotUniqueMigration.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202010261323281_AddConteTypeForTrackMigration.cs" />
-    <Compile Include="Migrations\202010261323281_AddConteTypeForTrackMigration.designer.cs">
-      <DependentUpon>202010261323281_AddConteTypeForTrackMigration.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202010282312336_AddIdentity.cs" />
-    <Compile Include="Migrations\202010282312336_AddIdentity.designer.cs">
-      <DependentUpon>202010282312336_AddIdentity.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202010290226485_AddRoleForIdentity.cs" />
-    <Compile Include="Migrations\202010290226485_AddRoleForIdentity.designer.cs">
-      <DependentUpon>202010290226485_AddRoleForIdentity.cs</DependentUpon>
+    <Compile Include="Migrations\202011101848219_FixUserPlaylists.cs" />
+    <Compile Include="Migrations\202011101848219_FixUserPlaylists.designer.cs">
+      <DependentUpon>202011101848219_FixUserPlaylists.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -171,26 +155,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202010151421425_AddFirstMigration.resx">
-      <DependentUpon>202010151421425_AddFirstMigration.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202010170036049_AddSecondMigration.resx">
-      <DependentUpon>202010170036049_AddSecondMigration.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202010201332187_FixAlbumTitleIsNotUniqueMigration.resx">
-      <DependentUpon>202010201332187_FixAlbumTitleIsNotUniqueMigration.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202010261323281_AddConteTypeForTrackMigration.resx">
-      <DependentUpon>202010261323281_AddConteTypeForTrackMigration.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202010282312336_AddIdentity.resx">
-      <DependentUpon>202010282312336_AddIdentity.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202010290226485_AddRoleForIdentity.resx">
-      <DependentUpon>202010290226485_AddRoleForIdentity.cs</DependentUpon>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\MusicBox.Domain\MusicBox.Domain.csproj">
       <Project>{519ddb3b-b8b9-44b2-ab28-4fe7b1a2e592}</Project>
       <Name>MusicBox.Domain</Name>
@@ -199,6 +163,14 @@
   <ItemGroup>
     <Analyzer Include="..\packages\StyleCop.Analyzers.1.1.118\analyzers\dotnet\cs\StyleCop.Analyzers.CodeFixes.dll" />
     <Analyzer Include="..\packages\StyleCop.Analyzers.1.1.118\analyzers\dotnet\cs\StyleCop.Analyzers.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202011101702421_AddFirstMigration.resx">
+      <DependentUpon>202011101702421_AddFirstMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011101848219_FixUserPlaylists.resx">
+      <DependentUpon>202011101848219_FixUserPlaylists.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

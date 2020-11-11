@@ -17,8 +17,8 @@ namespace MusicBox.Data.Configurations
                 .WithMany(c => c.Playlists)
                 .Map(c => c.
                     ToTable("TrackPlaylists")
-                    .MapLeftKey("TrackId")
-                    .MapRightKey("PlaylistId"));
+                    .MapLeftKey("PlaylistId")
+                    .MapRightKey("TrackId"));
         }
     }
 }

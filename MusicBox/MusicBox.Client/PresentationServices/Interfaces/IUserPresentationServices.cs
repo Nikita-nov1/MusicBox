@@ -10,6 +10,7 @@ namespace MusicBox.PresentationServices.Interfaces
 
         Task<EditUserViewModel> GetEditUserVmByNameAsync(string userName);
 
+        // Task DeleteUserImage(string userId);
         User GetUserForRegister(RegisterUserViewModel model);
 
         Task<User> GetUser(string userName);

@@ -32,7 +32,7 @@ namespace MusicBox.Models.User
         public string Password { get; set; }
 
         [Required]
-        [Compare("Password", ErrorMessage = "Пароли не совпадают")]
+        [Compare("Password", ErrorMessage = "Пароли не совпадают.")]
         [DataType(DataType.Password)]
         public string PasswordConfirm { get; set; }
 

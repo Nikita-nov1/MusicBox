@@ -15,8 +15,8 @@ namespace MusicBox.Data.Migrations
 
         protected override void Seed(MusicBoxDbContext context)
         {
-            var roleStore = new RoleStore<Role>(context);
-            var roleManager = new RoleManager<Role>(roleStore);
+            var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
+
             roleManager.Create(new Role { Name = "Admin", Description = "Administrator" });
             roleManager.Create(new Role { Name = "User", Description = "User" });
 

@@ -7,13 +7,13 @@ namespace MusicBox.Data.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class AddIdentity : IMigrationMetadata
+    public sealed partial class FixUserPlaylists : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AddIdentity));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(FixUserPlaylists));
         
         string IMigrationMetadata.Id
         {
-            get { return "202010282312336_AddIdentity"; }
+            get { return "202011101848219_FixUserPlaylists"; }
         }
         
         string IMigrationMetadata.Source

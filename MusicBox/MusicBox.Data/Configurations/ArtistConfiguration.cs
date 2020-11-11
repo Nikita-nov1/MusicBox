@@ -12,6 +12,7 @@ namespace MusicBox.Data.Configurations
             HasKey(c => c.Id);
 
             Property(p => p.Title).HasColumnName("Full_Name").HasMaxLength(30).IsRequired();
+
             HasIndex(c => c.Title).IsUnique(true);
         }
     }

@@ -8,11 +8,21 @@ namespace MusicBox.Data.Configurations
         public UserConfiguration()
         {
             ToTable("Users");
+
             HasKey(c => c.Id);
 
             Property(c => c.FirstName).IsRequired().HasMaxLength(25);
+
             Property(c => c.LastName).IsRequired().HasMaxLength(25);
+
             Property(c => c.DateBorn).HasColumnType("date");
+
+            HasMany(c => c.Playlists)
+                .WithMany(c => c.User)
+                .Map(c => c.
+                    ToTable("UserPlaylists")
+                    .MapLeftKey("UserId")
+                    .MapRightKey("PlaylistId"));
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System.Web.Mvc;
+using MusicBox.Utilities.AuthorizeAttributes;
 
 namespace MusicBox.Controllers
 {
@@ -13,6 +14,7 @@ namespace MusicBox.Controllers
             return View();
         }
 
+        [ClaimsAuthorize(Age = 18)]
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
