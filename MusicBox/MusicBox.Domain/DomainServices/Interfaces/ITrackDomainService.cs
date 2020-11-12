@@ -24,6 +24,8 @@ namespace MusicBox.Domain.DomainServices.Interfaces
 
         Track GetTrackWithAllAttachmentsExceptPlaylistsAndTrackStatistics(int trackId);
 
+        List<Track> GetTracksVmForCharts();
+
         void EditTrack(Track track, HttpPostedFileBase uploadTrack);
 
         void DeleteTrack(int id);

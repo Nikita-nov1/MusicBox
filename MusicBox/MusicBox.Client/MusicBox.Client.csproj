@@ -238,6 +238,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AlbumController.cs" />
     <Compile Include="Controllers\ArtistController.cs" />
+    <Compile Include="Controllers\ChartsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PlaylistController.cs" />
     <Compile Include="Controllers\TrackController.cs" />
@@ -259,9 +260,11 @@
     <Compile Include="Models\User\ResetPasswordViewModel.cs" />
     <Compile Include="PresentationServices\AlbumPresentationServices.cs" />
     <Compile Include="PresentationServices\ArtistPresentationServices.cs" />
+    <Compile Include="PresentationServices\ChartsPresentationService.cs" />
     <Compile Include="PresentationServices\Interfaces\IAlbumPresentationServices.cs" />
     <Compile Include="PresentationServices\Interfaces\IArtistPresentationServices.cs" />
     <Compile Include="PresentationServices\Interfaces\IBasePresentationService.cs" />
+    <Compile Include="PresentationServices\Interfaces\IChartsPresentationService.cs" />
     <Compile Include="PresentationServices\Interfaces\IPlaylistPresentationServices.cs" />
     <Compile Include="PresentationServices\Interfaces\ITrackPresentationService.cs" />
     <Compile Include="PresentationServices\Interfaces\IUserPresentationServices.cs" />
@@ -511,12 +514,12 @@
     <Content Include="Views\Account\ResetPassword.cshtml" />
     <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Charts\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Views\Playlist\" />
-    <Folder Include="Views\Roles\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

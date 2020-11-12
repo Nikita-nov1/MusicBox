@@ -107,72 +107,72 @@ namespace SetupDb
                        new Track()
                         {
                             Title = "Перемен", Album = allAlbums[0], Artist = allArtists[0], Genre = allGenres[0], Mood = allMood[0],
-                            TrackFile = new TrackFile { TrackLocation = "Some path" }, TrackStatistics = new TrackStatistics { CountOfCalls = 0 }, DateOfCreation = DateTime.Now, DurationSong = "1:13"
+                            TrackFile = new TrackFile { TrackLocation = "Some path", ContentType = "mp3" }, TrackStatistics = new TrackStatistics { CountOfCalls = 0 }, DateOfCreation = DateTime.Now, DurationSong = "1:13"
                         },
                        new Track()
                         {
                             Title = "Юность", Album = allAlbums[1], Artist = allArtists[1], Genre = allGenres[1], Mood = allMood[2],
-                            TrackFile = new TrackFile { TrackLocation = "Some path" }, TrackStatistics = new TrackStatistics { CountOfCalls = 0 }, DateOfCreation = DateTime.Now, DurationSong = "1:13"
+                            TrackFile = new TrackFile { TrackLocation = "Some path", ContentType = "mp3" }, TrackStatistics = new TrackStatistics { CountOfCalls = 0 }, DateOfCreation = DateTime.Now, DurationSong = "1:13"
                         },
                        new Track()
                         {
                             Title = "Времена", Album = allAlbums[2], Artist = allArtists[2], Genre = allGenres[2], Mood = allMood[1],
-                            TrackFile = new TrackFile { TrackLocation = "Some path" }, TrackStatistics = new TrackStatistics { CountOfCalls = 0 }, DateOfCreation = DateTime.Now, DurationSong = "1:13"
+                            TrackFile = new TrackFile { TrackLocation = "Some path", ContentType = "mp3" }, TrackStatistics = new TrackStatistics { CountOfCalls = 0 }, DateOfCreation = DateTime.Now, DurationSong = "1:13"
                         },
                        new Track()
                         {
                             Title = "Воины света", Album = allAlbums[3], Artist = allArtists[3], Genre = allGenres[3], Mood = allMood[3],
-                            TrackFile = new TrackFile { TrackLocation = "Some path" }, TrackStatistics = new TrackStatistics { CountOfCalls = 0 }, DateOfCreation = DateTime.Now, DurationSong = "1:13"
+                            TrackFile = new TrackFile { TrackLocation = "Some path", ContentType = "mp3" }, TrackStatistics = new TrackStatistics { CountOfCalls = 0 }, DateOfCreation = DateTime.Now, DurationSong = "1:13"
                         },
                        new Track()
                         {
                             Title = "Самый белый цветок", Album = allAlbums[4], Artist = allArtists[4], Genre = allGenres[4], Mood = allMood[4],
-                            TrackFile = new TrackFile { TrackLocation = "Some path" }, TrackStatistics = new TrackStatistics { CountOfCalls = 0 }, DateOfCreation = DateTime.Now, DurationSong = "1:13"
+                            TrackFile = new TrackFile { TrackLocation = "Some path", ContentType = "mp3" }, TrackStatistics = new TrackStatistics { CountOfCalls = 0 }, DateOfCreation = DateTime.Now, DurationSong = "1:13"
                         },
                        new Track()
                         {
                             Title = "Грай", Album = allAlbums[5], Artist = allArtists[5], Genre = allGenres[5], Mood = allMood[5],
-                            TrackFile = new TrackFile { TrackLocation = "Some path" }, TrackStatistics = new TrackStatistics { CountOfCalls = 0 }, DateOfCreation = DateTime.Now, DurationSong = "1:13"
+                            TrackFile = new TrackFile { TrackLocation = "Some path", ContentType = "mp3" }, TrackStatistics = new TrackStatistics { CountOfCalls = 0 }, DateOfCreation = DateTime.Now, DurationSong = "1:13"
                         },
                        new Track()
                         {
                             Title = "Лютики", Album = allAlbums[6], Artist = allArtists[6], Genre = allGenres[6], Mood = allMood[6],
-                            TrackFile = new TrackFile { TrackLocation = "Some path" }, TrackStatistics = new TrackStatistics { CountOfCalls = 0 }, DateOfCreation = DateTime.Now, DurationSong = "1:13"
+                            TrackFile = new TrackFile { TrackLocation = "Some path", ContentType = "mp3" }, TrackStatistics = new TrackStatistics { CountOfCalls = 0 }, DateOfCreation = DateTime.Now, DurationSong = "1:13"
                         },
                        new Track()
                         {
                             Title = "Что такое осень", Album = allAlbums[7], Artist = allArtists[7], Genre = allGenres[7], Mood = allMood[7],
-                            TrackFile = new TrackFile { TrackLocation = "Some path" }, TrackStatistics = new TrackStatistics { CountOfCalls = 0 }, DateOfCreation = DateTime.Now, DurationSong = "1:13"
+                            TrackFile = new TrackFile { TrackLocation = "Some path", ContentType = "mp3" }, TrackStatistics = new TrackStatistics { CountOfCalls = 0 }, DateOfCreation = DateTime.Now, DurationSong = "1:13"
                         },
                        new Track()
                         {
                             Title = "В последний раз", Album = allAlbums[8], Artist = allArtists[8], Genre = allGenres[8], Mood = allMood[8],
-                            TrackFile = new TrackFile { TrackLocation = "Some path" }, TrackStatistics = new TrackStatistics { CountOfCalls = 0 }, DateOfCreation = DateTime.Now, DurationSong = "1:13"
+                            TrackFile = new TrackFile { TrackLocation = "Some path", ContentType = "mp3" }, TrackStatistics = new TrackStatistics { CountOfCalls = 0 }, DateOfCreation = DateTime.Now, DurationSong = "1:13"
                         },
                        new Track()
                         {
                             Title = "Девочка, танцуй", Album = allAlbums[9], Artist = allArtists[9], Genre = allGenres[9], Mood = allMood[9],
-                            TrackFile = new TrackFile { TrackLocation = "Some path" }, TrackStatistics = new TrackStatistics { CountOfCalls = 0 }, DateOfCreation = DateTime.Now, DurationSong = "1:13"
+                            TrackFile = new TrackFile { TrackLocation = "Some path", ContentType = "mp3" }, TrackStatistics = new TrackStatistics { CountOfCalls = 0 }, DateOfCreation = DateTime.Now, DurationSong = "1:13"
                         },
                        new Track()
                         {
                             Title = "Мир сошёл с ума", Album = allAlbums[10], Artist = allArtists[0], Genre = allGenres[10], Mood = allMood[0],
-                            TrackFile = new TrackFile { TrackLocation = "Some path" }, TrackStatistics = new TrackStatistics { CountOfCalls = 0 }, DateOfCreation = DateTime.Now, DurationSong = "1:13"
+                            TrackFile = new TrackFile { TrackLocation = "Some path", ContentType = "mp3" }, TrackStatistics = new TrackStatistics { CountOfCalls = 0 }, DateOfCreation = DateTime.Now, DurationSong = "1:13"
                         },
                        new Track()
                         {
                             Title = "В последнюю осень", Album = allAlbums[1], Artist = allArtists[1], Genre = allGenres[0], Mood = allMood[1],
-                            TrackFile = new TrackFile { TrackLocation = "Some path" }, TrackStatistics = new TrackStatistics { CountOfCalls = 0 }, DateOfCreation = DateTime.Now, DurationSong = "1:13"
+                            TrackFile = new TrackFile { TrackLocation = "Some path", ContentType = "mp3" }, TrackStatistics = new TrackStatistics { CountOfCalls = 0 }, DateOfCreation = DateTime.Now, DurationSong = "1:13"
                         },
                        new Track()
                         {
                             Title = "Положение", Album = allAlbums[2], Artist = allArtists[2], Genre = allGenres[2], Mood = allMood[2],
-                            TrackFile = new TrackFile { TrackLocation = "Some path" }, TrackStatistics = new TrackStatistics { CountOfCalls = 0 }, DateOfCreation = DateTime.Now, DurationSong = "1:13"
+                            TrackFile = new TrackFile { TrackLocation = "Some path", ContentType = "mp3" }, TrackStatistics = new TrackStatistics { CountOfCalls = 0 }, DateOfCreation = DateTime.Now, DurationSong = "1:13"
                         },
                        new Track()
                         {
                             Title = "Кукла колдуна", Album = allAlbums[3], Artist = allArtists[3], Genre = allGenres[1], Mood = allMood[3],
-                            TrackFile = new TrackFile { TrackLocation = "Some path" }, TrackStatistics = new TrackStatistics { CountOfCalls = 0 }, DateOfCreation = DateTime.Now, DurationSong = "1:13"
+                            TrackFile = new TrackFile { TrackLocation = "Some path", ContentType = "mp3" }, TrackStatistics = new TrackStatistics { CountOfCalls = 0 }, DateOfCreation = DateTime.Now, DurationSong = "1:13"
                         }
                     };
                     db.Set<Track>().AddRange(traks);

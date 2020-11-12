@@ -7,6 +7,7 @@
     @Styles.Render(" ~/Content/jquery-ui")
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
 
 
 
@@ -106,7 +107,7 @@
                                 <a class="nav-link" href="@Url.Action("Index","Artist")">Артисты</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link " href="#">Чарт</a>
+                                <a class="nav-link " href="@Url.Action("Index","Charts")">Чарт</a>
                             </li>
                         </ul>
                     </div>
@@ -134,8 +135,7 @@
 
                 <hr />
                 <footer class="blockquote-footer">
-                    @*/// протестить*@
-                    <p>&copy; @DateTime.Now.Year - MusicBox</p>
+                    <p> @DateTime.Now.Year - MusicBox</p>
                 </footer>
             </div>
 
@@ -155,7 +155,6 @@
 
 
 
-    @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/scripts/jquery.unobtrusive-ajax.js")
     @RenderSection("scripts", required: false)

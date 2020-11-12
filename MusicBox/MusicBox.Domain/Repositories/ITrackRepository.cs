@@ -7,6 +7,8 @@ namespace MusicBox.Domain.Repositories
     {
         List<Track> GetTracksWithAllAttachmentsExceptPlaylistsAndTrackFile();
 
+        List<Track> GetTopFiftyTracksForChartsWhitArtist();
+
         Track GetTrackWithAllAttachmentsExceptPlaylistsAndTrackFile(int trackId);
 
         Track GetTrackWithAllAttachmentsExceptPlaylistsAndTrackFileAndTrackStatistics(int trackId);

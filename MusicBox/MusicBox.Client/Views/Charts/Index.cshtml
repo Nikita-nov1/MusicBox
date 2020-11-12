@@ -1,16 +1,18 @@
 ﻿@using MusicBox.Models.Track
 
 @model List<GetTracksForClientViewModel>
-
+@{
+    ViewBag.Title = "Charts";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
 
 <div class="row ">
     <div class="col-12 mt-4">
-        <h2>Треки: </h2>
+        <h2>Треки, популярные на MusicBox прямо сейчас: </h2>
     </div>
 </div>
 
-
-<div class="row h-100  ml-0">
+<div class="row mb-4 ml-0">
 
     @foreach (var track in Model)
     {
@@ -23,15 +25,13 @@
                     <p5>
                         <strong>@track.Title</strong><small><i> - @track.ArtistName </i></small> <span class="ml-5">@track.DurationSong</span>
                         <button type="button" class="likeTrack btn btn-default btn-xs border-0" value="@track.Id">&#10084;</button>
-                    </p5> 
+                    </p5>
                 </div>
             </div>
         </div>
     }
 
 </div>
-
-
 
 <script type="text/javascript">
     $(function () {
@@ -45,7 +45,7 @@
             })
                 .done(function (track) {
 
-                   
+
                 });
         });
 
@@ -56,7 +56,7 @@
                 url: "/Track/GetTrackInformation",
                 data: { trackId: trackId }
             })
-                .done(function (track) {     
+                .done(function (track) {
 
                     $("#player").empty();
                     var audio = $("<audio></audio>").attr('controls', 'controls').attr('style', 'width:100%');
@@ -64,8 +64,9 @@
                     var source = $("<source/>").attr('type', track.ContentType).attr('src', track.TrackLocation);
                     $("#player audio").append(source);
 
-                    $("#player audio source").parent()[0].play(); 
+                    $("#player audio source").parent()[0].play();
                 });
         });
     });
 </script>
+

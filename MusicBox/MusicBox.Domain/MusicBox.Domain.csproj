@@ -119,11 +119,13 @@
     <Compile Include="DomainServices\AlbumDomainService.cs" />
     <Compile Include="DomainServices\AlbumImageDomainService.cs" />
     <Compile Include="DomainServices\ArtistImageDomainService.cs" />
+    <Compile Include="DomainServices\ChartsDomainService.cs" />
     <Compile Include="DomainServices\GenreDomainService.cs" />
     <Compile Include="DomainServices\ArtistDomainService.cs" />
     <Compile Include="DomainServices\Interfaces\IAlbumImageDomainService.cs" />
     <Compile Include="DomainServices\Interfaces\IArtistImageDomainService.cs" />
     <Compile Include="DomainServices\Interfaces\IBaseDomainService.cs" />
+    <Compile Include="DomainServices\Interfaces\IChartsDomainService.cs" />
     <Compile Include="DomainServices\Interfaces\IMoodDomainService.cs" />
     <Compile Include="DomainServices\Interfaces\IGenreDomainService.cs" />
     <Compile Include="DomainServices\Interfaces\IArtistDomainService.cs" />

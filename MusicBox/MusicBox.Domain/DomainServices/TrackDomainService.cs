@@ -79,6 +79,11 @@ namespace MusicBox.Domain.DomainServices
             return artistDomainService.GetAllTracksForArtistWhitArtist(artistId);
         }
 
+        public List<Track> GetTracksVmForCharts()
+        {
+            return trackRepository.GetTopFiftyTracksForChartsWhitArtist();
+        }
+
         public Track GetTrackWithAllAttachmentsExceptPlaylistsAndTrackFile(int trackId)
         {
             return trackRepository.GetTrackWithAllAttachmentsExceptPlaylistsAndTrackFile(trackId);

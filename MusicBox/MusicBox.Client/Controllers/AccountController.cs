@@ -13,6 +13,7 @@ using MusicBox.PresentationServices.Interfaces;
 
 namespace MusicBox.Controllers
 {
+    [Authorize(Roles = "User,Admin")]
     public class AccountController : Controller
     {
         private readonly IUserPresentationServices presentationServices;
@@ -35,12 +36,14 @@ namespace MusicBox.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public ActionResult Register()
         {
             return View();
         }
 
         [HttpPost]
+        [AllowAnonymous]
         public async Task<ActionResult> Register(RegisterUserViewModel model)
         {
             if (ModelState.IsValid)
@@ -75,6 +78,7 @@ namespace MusicBox.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public async Task<ActionResult> ConfirmEmail(string userId, string code)
         {
             if (userId == null || code == null)
@@ -86,7 +90,6 @@ namespace MusicBox.Controllers
             return View(result.Succeeded ? "ConfirmEmail" : "Error");
         }
 
-        // GET: /Account/ForgotPassword
         [HttpGet]
         [AllowAnonymous]
         public ActionResult ForgotPassword()
@@ -94,7 +97,6 @@ namespace MusicBox.Controllers
             return View();
         }
 
-        // POST: /Account/ForgotPassword
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -173,6 +175,7 @@ namespace MusicBox.Controllers
         }
 
         [HttpPost]
+        [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
         {

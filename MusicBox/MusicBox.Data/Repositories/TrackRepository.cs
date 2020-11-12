@@ -60,6 +60,16 @@ namespace MusicBox.Data.Repositories
                 .ToList();
         }
 
+        public List<Track> GetTopFiftyTracksForChartsWhitArtist()
+        {
+            return GetQueryableItems()
+                .Include(c => c.TrackStatistics)
+                .Include(c => c.Artist)
+                .OrderByDescending(c => c.TrackStatistics.CountOfCalls)
+                .Take(5)
+                .ToList();
+        }
+
         public bool IsIdExists(int id)
         {
             return GetQueryableItems().Any(x => x.Id.Equals(id));
